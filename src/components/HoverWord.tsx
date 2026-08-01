@@ -4,12 +4,16 @@ export default function HoverWord({
   children,
   onClick,
   as = "span",
+  bold = true,
+  className = "",
   "data-cursor": dataCursor,
   "aria-label": ariaLabel,
 }: {
   children: React.ReactNode;
   onClick?: () => void;
   as?: "span" | "button";
+  bold?: boolean;
+  className?: string;
   "data-cursor"?: string;
   "aria-label"?: string;
 }) {
@@ -20,9 +24,9 @@ export default function HoverWord({
       onClick={onClick}
       data-cursor={dataCursor}
       aria-label={ariaLabel}
-      className={`group relative isolate inline-flex items-center px-4 pb-1.5 pt-2 font-display text-5xl font-semibold text-text-primary sm:text-6xl ${
-        onClick ? "cursor-pointer" : ""
-      }`}
+      className={`group relative isolate inline-flex items-center px-2.5 pb-1.5 pt-2 font-display text-4xl text-text-primary sm:px-4 sm:text-6xl ${
+        bold ? "font-semibold" : "font-normal"
+      } ${onClick ? "cursor-pointer" : ""} ${className}`}
     >
       <span
         aria-hidden

@@ -118,16 +118,24 @@ a[data-cursor="smile"]:focus-visible {
   }
 }
 
-/* Grid system: 12 columns, 200px margin, 24px gutter, stretch */
+/* Grid system: responsive columns (4 / 8 / 12), 24px gutter, center mode */
 .grid-columns {
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   column-gap: 24px;
-  padding-inline: 200px;
+  margin-inline: auto;
+  padding-inline: 24px;
 }
 
-@media (max-width: 1024px) {
+@media (min-width: 768px) {
   .grid-columns {
-    padding-inline: 24px;
+    grid-template-columns: repeat(8, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-columns {
+    grid-template-columns: repeat(12, 1fr);
+    max-width: 1137px;
   }
 }
