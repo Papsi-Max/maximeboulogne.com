@@ -21,7 +21,7 @@ export default function NavPill({
       href={href}
       className={`group flex items-center justify-center gap-3 rounded-full px-6 py-3 transition-colors duration-200 ${
         isAccent
-          ? "bg-bg-accent hover:bg-text-primary"
+          ? "bg-bg-accent hover:bg-[#FFE37C]"
           : "bg-bg-tertiary hover:bg-[#525252]"
       }`}
     >

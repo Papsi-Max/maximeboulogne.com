@@ -47,7 +47,7 @@ export default function PageShell({
   return (
     <MotionConfig reducedMotion="user">
       <MusicWidgetProvider>
-        <main className="relative flex min-h-screen w-full overflow-hidden bg-bg-primary py-24">
+        <main className="py-160 relative flex min-h-screen w-full overflow-hidden bg-bg-primary">
           <div className="grid-columns w-full">
             <div className="relative col-span-4 md:col-span-8 lg:col-span-8 lg:col-start-3">
               {children}
