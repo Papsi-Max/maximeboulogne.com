@@ -32,24 +32,25 @@ jobs:
           cp -r public .next/standalone/public
           cp -r .next/static .next/standalone/.next/static
 
-      - name: Add SSH key
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
-          chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan -H "${{ secrets.SSH_HOST }}" >> ~/.ssh/known_hosts
-
       - name: Rsync build to VPS
-        run: |
-          rsync -az --delete \
-            -e "ssh -i ~/.ssh/deploy_key" \
-            .next/standalone/ "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ env.DEPLOY_PATH }}/"
+        uses: easingthemes/ssh-deploy@v2.1.5
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          REMOTE_HOST: ${{ secrets.SSH_HOST }}
+          REMOTE_USER: ${{ secrets.SSH_USER }}
+          REMOTE_PORT: 22
+          SOURCE: .next/standalone/
+          TARGET: ${{ env.DEPLOY_PATH }}/
 
       - name: Restart app via PM2
-        run: |
-          ssh -i ~/.ssh/deploy_key "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" \
-            "cd ${{ env.DEPLOY_PATH }} && /home/deploy/.nvm/versions/node/v22.15.0/bin/pm2 restart ${{ env.PM2_PROCESS_NAME }} --update-env || /home/deploy/.nvm/versions/node/v22.15.0/bin/pm2 start server.js --name ${{ env.PM2_PROCESS_NAME }}"
-
-      - name: Cleanup SSH key
-        if: always()
-        run: rm -f ~/.ssh/deploy_key
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            export NVM_DIR="$HOME/.nvm"
+            source "$NVM_DIR/nvm.sh"
+            cd ${{ env.DEPLOY_PATH }}
+            pm2 restart ${{ env.PM2_PROCESS_NAME }} --update-env || pm2 start server.js --name ${{ env.PM2_PROCESS_NAME }}
+            pm2 save
