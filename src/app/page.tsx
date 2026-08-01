@@ -12,27 +12,26 @@ export default function Home() {
   return (
     <div className="flex flex-col items-start gap-12">
       <div className="flex w-full flex-col items-start gap-2 px-4">
-        <div className="flex w-full flex-col items-start">
+        <h1 className="flex w-full flex-col items-start font-display text-5xl font-normal text-text-primary sm:text-6xl">
           <div className="flex items-baseline">
-            <span className="font-display text-5xl font-normal text-text-primary sm:text-6xl">
-              I&rsquo;m
-            </span>
+            <span>I&rsquo;m</span>
             <Link href="/about" data-cursor="smile">
               <HoverWord as="span">Maxime.</HoverWord>
             </Link>
           </div>
-          <p className="font-display text-5xl font-normal text-text-primary sm:text-6xl">
-            Designer,
-          </p>
+          <span>Designer,</span>
           <div className="flex items-baseline">
-            <span className="font-display text-5xl font-normal text-text-primary sm:text-6xl">
-              and
-            </span>
-            <HoverWord onClick={openMusic} as="button" data-cursor="play">
+            <span>and</span>
+            <HoverWord
+              onClick={openMusic}
+              as="button"
+              data-cursor="play"
+              aria-label="Open the music player: metal enjoyer."
+            >
               metal enjoyer.
             </HoverWord>
           </div>
-        </div>
+        </h1>
         <p className="w-full font-body text-lg text-text-secondary">
           I build stuff to bring order to complexity. Lately, that means
           figuring out how AI should behave in user experiences.
@@ -73,8 +72,9 @@ export default function Home() {
             rel="noreferrer noopener"
             className="flex items-center gap-1.5 rounded-full px-4 py-1.5 font-body text-base text-text-secondary underline decoration-from-font transition-colors hover:bg-bg-tertiary hover:text-text-primary"
           >
-            <LinkedInIcon className="h-4 w-4" />
+            <LinkedInIcon aria-hidden className="h-4 w-4" />
             LinkedIn
+            <span className="sr-only"> (opens in a new tab)</span>
           </a>
         </div>
       </div>

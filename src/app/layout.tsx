@@ -19,7 +19,7 @@ const tasaExplorer = TASA_Explorer({
 export const metadata: Metadata = {
   title: "Maxime Boulogne — Designer",
   description:
-    "Je build stuff pour ramener de l'ordre dans la complexité. Designer UX, référent AI & UI.",
+    "I build stuff to bring order to complexity. UX designer, AI & UI go-to person.",
 };
 
 export default function RootLayout({
@@ -29,7 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="fr"
+      lang="en"
       className={`${newsreader.variable} ${tasaExplorer.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-bg-primary text-text-primary font-body">

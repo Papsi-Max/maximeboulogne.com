@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Pause, Play, Music2 } from "lucide-react";
+import { Pause, Play, Music2, X } from "lucide-react";
 
 type MusicWidgetProps = {
   src?: string;
@@ -9,6 +9,8 @@ type MusicWidgetProps = {
   title?: string;
   artist?: string;
   className?: string;
+  onClose?: () => void;
+  autoFocus?: boolean;
 };
 
 function formatTime(seconds: number) {
@@ -26,13 +28,20 @@ export default function MusicWidget({
   title = "The Ogre",
   artist = "Gnome",
   className = "",
+  onClose,
+  autoFocus = false,
 }: MusicWidgetProps) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const barRef = useRef<HTMLDivElement>(null);
+  const playButtonRef = useRef<HTMLButtonElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0); // 0..1
   const [duration, setDuration] = useState(0);
   const [ready, setReady] = useState(true);
+
+  useEffect(() => {
+    if (autoFocus) playButtonRef.current?.focus();
+  }, [autoFocus]);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -80,13 +89,60 @@ export default function MusicWidget({
     setProgress(ratio);
   };
 
+  const seekBy = (deltaSeconds: number) => {
+    const audio = audioRef.current;
+    if (!audio || !audio.duration) return;
+    const time = Math.min(
+      audio.duration,
+      Math.max(0, audio.currentTime + deltaSeconds)
+    );
+    audio.currentTime = time;
+    setProgress(time / audio.duration);
+  };
+
+  const handleBarKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    switch (e.key) {
+      case "ArrowRight":
+      case "ArrowUp":
+        e.preventDefault();
+        seekBy(5);
+        break;
+      case "ArrowLeft":
+      case "ArrowDown":
+        e.preventDefault();
+        seekBy(-5);
+        break;
+      case "Home":
+        e.preventDefault();
+        seekBy(-Infinity);
+        break;
+      case "End":
+        e.preventDefault();
+        seekBy(Infinity);
+        break;
+    }
+  };
+
   const currentTime = (progress || 0) * (duration || 0);
 
   return (
     <div
-      className={`flex w-[338px] flex-col gap-0.5 rounded-2xl border border-border-secondary bg-bg-secondary p-1.5 shadow-[0px_8px_12px_6px_rgba(0,0,0,0.15),0px_4px_4px_0px_rgba(0,0,0,0.3)] ${className}`}
+      role="region"
+      aria-label="Music player"
+      className={`relative flex w-[338px] flex-col gap-0.5 rounded-2xl border border-border-secondary bg-bg-secondary p-1.5 shadow-[0px_8px_12px_6px_rgba(0,0,0,0.15),0px_4px_4px_0px_rgba(0,0,0,0.3)] ${className}`}
     >
       <audio ref={audioRef} src={src} preload="metadata" />
+
+      {onClose && (
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Close music player"
+          className="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full bg-bg-tertiary text-text-primary transition-colors hover:bg-[#525252]"
+        >
+          <X aria-hidden className="h-3.5 w-3.5" strokeWidth={2} />
+        </button>
+      )}
 
       <div className="flex flex-1 items-center gap-3">
         <div className="relative aspect-square h-16 shrink-0 overflow-hidden rounded-xl bg-bg-tertiary">
@@ -99,7 +155,7 @@ export default function MusicWidget({
             />
           ) : (
             <div className="flex h-full w-full items-center justify-center text-text-secondary">
-              <Music2 className="h-6 w-6" strokeWidth={1.5} />
+              <Music2 aria-hidden className="h-6 w-6" strokeWidth={1.5} />
             </div>
           )}
         </div>
@@ -114,19 +170,28 @@ export default function MusicWidget({
         </div>
 
         <button
+          ref={playButtonRef}
           type="button"
           onClick={togglePlay}
           disabled={!ready}
-          aria-label={isPlaying ? "Mettre en pause" : "Lancer la lecture"}
+          aria-label={isPlaying ? "Pause" : "Play"}
           className="flex shrink-0 items-center gap-1 rounded-full bg-bg-tertiary px-4 py-2 transition-colors duration-150 hover:bg-[#525252] disabled:opacity-40"
         >
           {isPlaying ? (
-            <Pause className="h-4 w-4 text-text-primary" fill="currentColor" />
+            <Pause
+              aria-hidden
+              className="h-4 w-4 text-text-primary"
+              fill="currentColor"
+            />
           ) : (
-            <Play className="h-4 w-4 text-text-primary" fill="currentColor" />
+            <Play
+              aria-hidden
+              className="h-4 w-4 text-text-primary"
+              fill="currentColor"
+            />
           )}
           <span className="font-body text-base font-semibold text-text-primary">
-            {isPlaying ? "Pause" : "Lecture"}
+            {isPlaying ? "Pause" : "Play"}
           </span>
         </button>
       </div>
@@ -135,6 +200,15 @@ export default function MusicWidget({
         <div
           ref={barRef}
           onClick={(e) => seek(e.clientX)}
+          onKeyDown={handleBarKeyDown}
+          role="slider"
+          tabIndex={0}
+          aria-label="Seek"
+          aria-orientation="horizontal"
+          aria-valuemin={0}
+          aria-valuemax={Math.round(duration) || 0}
+          aria-valuenow={Math.round(currentTime)}
+          aria-valuetext={`${formatTime(currentTime)} of ${formatTime(duration)}`}
           className="relative flex flex-1 cursor-pointer items-center py-2"
         >
           <div className="h-1 w-full rounded-full bg-bg-tertiary" />

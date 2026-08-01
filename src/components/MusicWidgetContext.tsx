@@ -1,10 +1,11 @@
 "use client";
 
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useRef, useState } from "react";
 
 const MusicWidgetContext = createContext<{
   showMusic: boolean;
   openMusic: () => void;
+  closeMusic: () => void;
 } | null>(null);
 
 export function MusicWidgetProvider({
@@ -13,9 +14,21 @@ export function MusicWidgetProvider({
   children: React.ReactNode;
 }) {
   const [showMusic, setShowMusic] = useState(false);
+  const triggerRef = useRef<HTMLElement | null>(null);
+
   return (
     <MusicWidgetContext.Provider
-      value={{ showMusic, openMusic: () => setShowMusic(true) }}
+      value={{
+        showMusic,
+        openMusic: () => {
+          triggerRef.current = document.activeElement as HTMLElement | null;
+          setShowMusic(true);
+        },
+        closeMusic: () => {
+          setShowMusic(false);
+          triggerRef.current?.focus();
+        },
+      }}
     >
       {children}
     </MusicWidgetContext.Provider>

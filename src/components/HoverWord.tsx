@@ -5,17 +5,21 @@ export default function HoverWord({
   onClick,
   as = "span",
   "data-cursor": dataCursor,
+  "aria-label": ariaLabel,
 }: {
   children: React.ReactNode;
   onClick?: () => void;
   as?: "span" | "button";
   "data-cursor"?: string;
+  "aria-label"?: string;
 }) {
   const Comp = as;
   return (
     <Comp
+      type={as === "button" ? "button" : undefined}
       onClick={onClick}
       data-cursor={dataCursor}
+      aria-label={ariaLabel}
       className={`group relative isolate inline-flex items-center px-4 pb-1.5 pt-2 font-display text-5xl font-semibold text-text-primary sm:text-6xl ${
         onClick ? "cursor-pointer" : ""
       }`}

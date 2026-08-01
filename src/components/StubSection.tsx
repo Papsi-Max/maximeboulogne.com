@@ -14,8 +14,8 @@ export default function StubSection({
         href="/"
         className="flex items-center gap-2 rounded-full px-2 py-2 -ml-2 font-body text-text-secondary transition-colors hover:bg-bg-tertiary hover:text-text-primary"
       >
-        <ArrowLeft className="h-5 w-5" strokeWidth={1.75} />
-        Retour
+        <ArrowLeft aria-hidden className="h-5 w-5" strokeWidth={1.75} />
+        Back
       </Link>
       <div className="flex items-baseline gap-3">
         <h1 className="font-display text-5xl font-normal text-text-primary">
@@ -26,9 +26,9 @@ export default function StubSection({
         </span>
       </div>
       <p className="max-w-lg font-body text-lg text-text-secondary">
-        Cette section n&rsquo;est pas encore maquettée dans le Figma — ajoute
-        le frame correspondant et je la brancherai ici avec le même
-        traitement que la home.
+        This section isn&rsquo;t designed in Figma yet — add the corresponding
+        frame and I&rsquo;ll wire it up here with the same treatment as the
+        home page.
       </p>
     </div>
   );

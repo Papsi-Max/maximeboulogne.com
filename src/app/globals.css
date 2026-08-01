@@ -67,12 +67,12 @@ body {
 }
 
 @media (pointer: fine) {
-  body {
+  body.custom-cursor-active {
     cursor: none;
   }
 
-  a,
-  button {
+  body.custom-cursor-active a,
+  body.custom-cursor-active button {
     cursor: none;
   }
 }
@@ -91,6 +91,7 @@ body {
 
 a:focus-visible,
 button:focus-visible,
+[role="slider"]:focus-visible,
 [data-cursor]:focus-visible {
   outline: 2px solid var(--color-text-accent);
   outline-offset: 4px;
