@@ -48,7 +48,7 @@ jobs:
       - name: Restart app via PM2
         run: |
           ssh -i ~/.ssh/deploy_key "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" \
-            "cd ${{ env.DEPLOY_PATH }} && pm2 restart ${{ env.PM2_PROCESS_NAME }} --update-env || pm2 start server.js --name ${{ env.PM2_PROCESS_NAME }}"
+            "cd ${{ env.DEPLOY_PATH }} && /home/deploy/.nvm/versions/node/v22.15.0/bin/pm2 restart ${{ env.PM2_PROCESS_NAME }} --update-env || /home/deploy/.nvm/versions/node/v22.15.0/bin/pm2 start server.js --name ${{ env.PM2_PROCESS_NAME }}"
 
       - name: Cleanup SSH key
         if: always()
