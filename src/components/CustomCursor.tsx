@@ -32,6 +32,12 @@ export default function CustomCursor() {
   }, []);
 
   useEffect(() => {
+    if (isTouch) return;
+    document.body.classList.add("custom-cursor-active");
+    return () => document.body.classList.remove("custom-cursor-active");
+  }, [isTouch]);
+
+  useEffect(() => {
     const onMove = (e: MouseEvent) => {
       x.set(e.clientX);
       y.set(e.clientY);

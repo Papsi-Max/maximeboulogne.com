@@ -1,7 +1,14 @@
-export default function LinkedInIcon({ className }: { className?: string }) {
+export default function LinkedInIcon({
+  className,
+  "aria-hidden": ariaHidden,
+}: {
+  className?: string;
+  "aria-hidden"?: boolean | "true" | "false";
+}) {
   return (
     <svg
       className={className}
+      aria-hidden={ariaHidden}
       viewBox="0 0 16 16"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

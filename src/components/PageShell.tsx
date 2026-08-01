@@ -1,6 +1,7 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { useEffect } from "react";
+import { AnimatePresence, motion, MotionConfig } from "framer-motion";
 import MusicWidget from "@/components/MusicWidget";
 import CustomCursor from "@/components/CustomCursor";
 import FocusIndicator from "@/components/FocusIndicator";
@@ -10,7 +11,17 @@ import {
 } from "@/components/MusicWidgetContext";
 
 function MusicWidgetOverlay() {
-  const { showMusic } = useMusicWidget();
+  const { showMusic, closeMusic } = useMusicWidget();
+
+  useEffect(() => {
+    if (!showMusic) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeMusic();
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [showMusic, closeMusic]);
+
   return (
     <AnimatePresence>
       {showMusic && (
@@ -21,7 +32,7 @@ function MusicWidgetOverlay() {
           transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
           className="fixed bottom-8 right-6 sm:right-10"
         >
-          <MusicWidget />
+          <MusicWidget onClose={closeMusic} autoFocus />
         </motion.div>
       )}
     </AnimatePresence>
@@ -34,16 +45,20 @@ export default function PageShell({
   children: React.ReactNode;
 }) {
   return (
-    <MusicWidgetProvider>
-      <main className="relative flex min-h-screen w-full overflow-hidden bg-bg-primary py-24">
-        <div className="grid-columns w-full">
-          <div className="relative col-start-3 col-span-8 -mx-4">{children}</div>
-        </div>
+    <MotionConfig reducedMotion="user">
+      <MusicWidgetProvider>
+        <main className="relative flex min-h-screen w-full overflow-hidden bg-bg-primary py-24">
+          <div className="grid-columns w-full">
+            <div className="relative col-start-3 col-span-8 -mx-4">
+              {children}
+            </div>
+          </div>
 
-        <MusicWidgetOverlay />
-      </main>
-      <CustomCursor />
-      <FocusIndicator />
-    </MusicWidgetProvider>
+          <MusicWidgetOverlay />
+        </main>
+        <CustomCursor />
+        <FocusIndicator />
+      </MusicWidgetProvider>
+    </MotionConfig>
   );
 }
