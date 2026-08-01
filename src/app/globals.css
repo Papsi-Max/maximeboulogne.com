@@ -107,6 +107,11 @@ a[data-cursor="smile"]:focus-visible {
   border-radius: 12px;
 }
 
+.py-160 {
+  padding-top: 160px;
+  padding-bottom: 160px;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
