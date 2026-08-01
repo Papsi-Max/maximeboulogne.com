@@ -49,7 +49,7 @@ export default function PageShell({
       <MusicWidgetProvider>
         <main className="relative flex min-h-screen w-full overflow-hidden bg-bg-primary py-24">
           <div className="grid-columns w-full">
-            <div className="relative col-start-3 col-span-8 -mx-4">
+            <div className="relative col-span-4 md:col-span-8 lg:col-span-8 lg:col-start-3">
               {children}
             </div>
           </div>

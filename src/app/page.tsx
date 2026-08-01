@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <div className="flex flex-col items-start gap-12">
       <div className="flex w-full flex-col items-start gap-2 px-4">
-        <h1 className="flex w-full flex-col items-start font-display text-5xl font-normal text-text-primary sm:text-6xl">
+        <h1 className="flex w-full flex-col items-start font-display text-4xl font-normal text-text-primary sm:text-6xl">
           <div className="flex items-baseline">
             <span>I&rsquo;m</span>
             <Link href="/about" data-cursor="smile">
@@ -20,11 +20,12 @@ export default function Home() {
             </Link>
           </div>
           <span>Designer,</span>
-          <div className="flex items-baseline">
+          <div className="flex items-baseline whitespace-nowrap">
             <span>and</span>
             <HoverWord
               onClick={openMusic}
               as="button"
+              bold={false}
               data-cursor="play"
               aria-label="Open the music player: metal enjoyer."
             >
