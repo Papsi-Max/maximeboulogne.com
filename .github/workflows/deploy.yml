@@ -19,7 +19,7 @@ jobs:
             source "$NVM_DIR/nvm.sh"
             cd /home/deploy/apps/maximeboulogne.com
             git pull origin main
-            npm ci
+            npm install
             npm run build
             pm2 restart portfolio --update-env
             pm2 save
