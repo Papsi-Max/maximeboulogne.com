@@ -1,0 +1,132 @@
+@import "tailwindcss";
+@import "material-symbols/rounded.css";
+
+.material-symbols-rounded {
+  font-variation-settings:
+    "FILL" 1,
+    "wght" 400,
+    "GRAD" 0,
+    "opsz" 48;
+  display: block;
+  width: 48px;
+  height: 48px;
+  font-size: 48px;
+  line-height: 1;
+  text-align: center;
+}
+
+:root {
+  /* Text & Icons */
+  --color-text-primary: #f1e7db;
+  --color-text-secondary: #d9d2c8;
+  --color-text-accent: #ffeda9;
+  --color-text-inverse: #384000;
+
+  /* Backgrounds */
+  --color-bg-primary: #1e1e1e;
+  --color-bg-secondary: #2b2b2b;
+  --color-bg-tertiary: #404040;
+  --color-bg-accent: #ffeda9;
+  --color-bg-inverse: #384000;
+
+  /* Borders */
+  --color-border-primary: #8c8c8c;
+  --color-border-secondary: #757575;
+}
+
+@theme inline {
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-text-accent: var(--color-text-accent);
+  --color-text-inverse: var(--color-text-inverse);
+
+  --color-bg-primary: var(--color-bg-primary);
+  --color-bg-secondary: var(--color-bg-secondary);
+  --color-bg-tertiary: var(--color-bg-tertiary);
+  --color-bg-accent: var(--color-bg-accent);
+  --color-bg-inverse: var(--color-bg-inverse);
+
+  --color-border-primary: var(--color-border-primary);
+  --color-border-secondary: var(--color-border-secondary);
+
+  --font-display: var(--font-newsreader);
+  --font-body: var(--font-tasa);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (pointer: fine) {
+  body {
+    cursor: none;
+  }
+
+  a,
+  button {
+    cursor: none;
+  }
+}
+
+@keyframes focus-outline-in {
+  0% {
+    outline-width: 0px;
+  }
+  60% {
+    outline-width: 8px;
+  }
+  100% {
+    outline-width: 2px;
+  }
+}
+
+a:focus-visible,
+button:focus-visible,
+[data-cursor]:focus-visible {
+  outline: 2px solid var(--color-text-accent);
+  outline-offset: 4px;
+  border-radius: 12px;
+  animation: focus-outline-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+a:focus-visible {
+  border-radius: 1000px;
+}
+
+a[data-cursor="smile"]:focus-visible {
+  border-radius: 12px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Grid system: 12 columns, 200px margin, 24px gutter, stretch */
+.grid-columns {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: 24px;
+  padding-inline: 200px;
+}
+
+@media (max-width: 1024px) {
+  .grid-columns {
+    padding-inline: 24px;
+  }
+}
