@@ -1,29 +1,6 @@
-export type WorkContentBlock =
-  | { type: "paragraph"; text: string }
-  | { type: "quote"; text: string }
-  | { type: "image"; src: string; alt: string; width: number; height: number }
-  | {
-      type: "screenPair";
-      desktop: { src: string; alt: string; width: number; height: number };
-      mobile: { src: string; alt: string; width: number; height: number };
-      caption?: string;
-    }
-  | { type: "heading"; text: string; note?: string }
-  | {
-      type: "accordionImage";
-      title: string;
-      note?: string;
-      src: string;
-      alt: string;
-      width: number;
-      height: number;
-    }
-  | {
-      type: "callout";
-      icon: string;
-      title: string;
-      items: string[];
-    };
+import type { WorkContentBlock } from "./types";
+
+export type { WorkContentBlock };
 
 export const livinfranceAccommodationProcessContent: WorkContentBlock[] = [
   {
