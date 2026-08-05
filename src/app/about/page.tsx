@@ -13,13 +13,13 @@ const ABOUT_PARAGRAPHS = [
 export default function AboutPage() {
   return (
     <div className="flex flex-col items-start gap-4 px-4">
-      <div className="flex w-full items-center gap-3">
+      <div className="flex w-full items-start gap-3">
         <Link
           href="/"
           aria-label="Back"
-          className="flex items-center rounded-full p-2 text-text-primary transition-colors hover:bg-bg-tertiary"
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-text-primary transition-colors hover:bg-bg-tertiary"
         >
-          <ArrowLeft aria-hidden className="h-7 w-7" strokeWidth={1.75} />
+          <ArrowLeft aria-hidden className="h-9 w-9" strokeWidth={1.75} />
         </Link>
         <h1 className="flex-1 font-display text-5xl font-normal text-text-primary">
           About

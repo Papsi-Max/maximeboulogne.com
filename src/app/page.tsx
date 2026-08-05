@@ -5,6 +5,10 @@ import LinkedInIcon from "@/components/LinkedInIcon";
 import HoverWord from "@/components/HoverWord";
 import NavPill from "@/components/NavPill";
 import { useMusicWidget } from "@/components/MusicWidgetContext";
+import { workItems } from "@/data/work";
+import { projectItems } from "@/data/projects";
+import { noteItems } from "@/data/notes";
+import { countLabel } from "@/lib/count-label";
 
 export default function Home() {
   const { openMusic } = useMusicWidget();
@@ -19,7 +23,7 @@ export default function Home() {
               <HoverWord as="span">Maxime.</HoverWord>
             </Link>
           </div>
-          <span>Designer,</span>
+          <span>Designer at ADEO,</span>
           <div className="flex items-baseline whitespace-nowrap">
             <span>and</span>
             <HoverWord
@@ -41,13 +45,21 @@ export default function Home() {
 
       <div className="flex flex-col items-start gap-2 px-4">
         <NavPill
-          href="/case-studies"
-          label="Case studies"
-          count="99"
+          href="/work"
+          label="Work"
+          count={countLabel(workItems.length)}
           variant="accent"
         />
-        <NavPill href="/projects" label="Projects" count="99" />
-        <NavPill href="/notes" label="Notes" count="Coming soon" />
+        <NavPill
+          href="/projects"
+          label="Projects"
+          count={countLabel(projectItems.length)}
+        />
+        <NavPill
+          href="/notes"
+          label="Notes"
+          count={countLabel(noteItems.length)}
+        />
       </div>
 
       <div className="flex w-full max-w-[342px] flex-col items-start gap-4">

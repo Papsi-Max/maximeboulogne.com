@@ -34,7 +34,7 @@ export default function NavPill({
           {label}
         </span>
         <span
-          className={`flex items-center justify-center rounded-full px-1.5 py-0.5 text-sm font-semibold ${
+          className={`flex min-w-6 items-center justify-center rounded-full px-1.5 py-0.5 text-sm font-semibold ${
             isAccent
               ? "bg-bg-inverse text-text-accent"
               : "bg-bg-accent text-text-inverse"

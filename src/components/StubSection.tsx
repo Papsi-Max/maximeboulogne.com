@@ -21,7 +21,7 @@ export default function StubSection({
         <h1 className="font-display text-5xl font-normal text-text-primary">
           {title}
         </h1>
-        <span className="flex items-center justify-center rounded-full bg-bg-accent px-2 py-0.5 text-sm font-semibold text-text-inverse">
+        <span className="flex min-w-6 items-center justify-center rounded-full bg-bg-accent px-2 py-0.5 text-sm font-semibold text-text-inverse">
           {count}
         </span>
       </div>
