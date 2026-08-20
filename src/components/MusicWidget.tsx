@@ -125,13 +125,14 @@ export default function MusicWidget({
 
   const currentTime = (progress || 0) * (duration || 0);
 
-  // TEST 2: full visual layout, no <audio> element mounted.
   return (
     <div
       role="region"
       aria-label="Music player"
       className={`relative flex w-[338px] flex-col gap-0.5 rounded-2xl border border-border-secondary bg-bg-secondary p-1.5 shadow-[0px_8px_12px_6px_rgba(0,0,0,0.15),0px_4px_4px_0px_rgba(0,0,0,0.3)] ${className}`}
     >
+      <audio ref={audioRef} src={src} preload="metadata" />
+
       {onClose && (
         <button
           type="button"
