@@ -3,7 +3,13 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import type { WorkItem } from "@/data/work";
 
-export default function WorkCard({ item }: { item: WorkItem }) {
+export default function WorkCard({
+  item,
+  priority,
+}: {
+  item: WorkItem;
+  priority?: boolean;
+}) {
   return (
     <Link
       href={`/work/${item.slug}`}
@@ -18,6 +24,9 @@ export default function WorkCard({ item }: { item: WorkItem }) {
           alt={item.imageAlt}
           fill
           sizes="(min-width: 768px) 45vw, 90vw"
+          placeholder="blur"
+          blurDataURL={item.imageBlurDataURL}
+          priority={priority}
           className="object-cover"
         />
       </div>
