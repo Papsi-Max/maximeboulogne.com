@@ -12,24 +12,28 @@ import { useEffect, useRef } from "react";
  * invalidated when a clipped layer moves without any other layer changing.
  *
  * We observed that mounting/animating an unrelated element elsewhere on the
- * page (the music player widget, animating via Framer Motion on every frame
- * for ~0.3s) reliably stops the ghosting for as long as it stays active.
- * That confirms the trigger is continuous, per-frame layer invalidation —
- * not anything specific to the widget itself, and not a one-off nudge every
- * couple of seconds (an earlier version of this component used a slow
- * setInterval toggle, which was not enough).
+ * page (the music player widget) reliably stops the ghosting for as long as
+ * it stays active. The widget's effect comes from a genuine repaint: a new
+ * DOM node with border-radius/box-shadow being created and painted, not
+ * merely a transform tick on an already-stable layer. A pure `transform`
+ * change on a stable layer is exactly the path WebRender optimizes to
+ * *avoid* repainting — so it does not reproduce the effect (confirmed: an
+ * earlier version of this component only changed `transform` per frame and
+ * did not help).
  *
- * This component reproduces that side effect deliberately and cheaply: a
- * tiny, always-mounted, off-screen element that nudges a compositor-only
- * property (`transform`) on every animation frame, continuously, for as
- * long as the page is open. It never becomes visible and has no
- * layout/paint cost beyond a single GPU layer tick per frame.
+ * This component forces a genuine, cheap repaint on a fixed interval: it
+ * toggles a layout-affecting property (`clipPath` on/off) on a tiny,
+ * always-mounted, off-screen element, which forces the browser to
+ * recompute and repaint that element's clip — the same class of paint work
+ * that CustomCursor and the music widget both do, but harmless here since
+ * the element is 1x1px and invisible.
  *
  * Safe to remove entirely once the underlying WebRender bug is fixed
  * upstream — this is a mitigation, not a real fix.
  */
 export default function WebRenderKeepAlive() {
   const ref = useRef<HTMLDivElement>(null);
+  const on = useRef(false);
 
   useEffect(() => {
     const el = ref.current;
@@ -40,18 +44,15 @@ export default function WebRenderKeepAlive() {
       navigator.userAgent.toLowerCase().includes("firefox");
     if (!isFirefox) return;
 
-    let frame: number;
-    const tick = (t: number) => {
-      // Sub-pixel oscillation: visually a no-op, but a real transform
-      // change on every frame, matching what the music widget's
-      // animation does while it's mounted.
-      const s = 1 + Math.sin(t / 500) * 0.0001;
-      el.style.transform = `translate3d(0, 0, 0) scale(${s})`;
-      frame = requestAnimationFrame(tick);
-    };
-    frame = requestAnimationFrame(tick);
+    const id = window.setInterval(() => {
+      on.current = !on.current;
+      el.style.clipPath = on.current ? "circle(50%)" : "circle(49.9%)";
+      // Force a synchronous style/layout flush so the repaint actually
+      // happens now, rather than getting batched away.
+      void el.getBoundingClientRect();
+    }, 500);
 
-    return () => cancelAnimationFrame(frame);
+    return () => window.clearInterval(id);
   }, []);
 
   return (
@@ -59,7 +60,6 @@ export default function WebRenderKeepAlive() {
       ref={ref}
       aria-hidden
       className="pointer-events-none fixed left-0 top-0 h-px w-px opacity-0"
-      style={{ willChange: "transform" }}
     />
   );
 }
