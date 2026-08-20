@@ -75,7 +75,8 @@ export default function CustomCursor() {
       }}
     >
       <motion.div
-        className="flex h-full w-full items-center justify-center overflow-hidden rounded-full bg-bg-inverse"
+        className="flex h-full w-full items-center justify-center bg-bg-inverse"
+        style={{ clipPath: "circle(50%)" }}
         animate={{ scale, opacity: visible ? 1 : 0 }}
         transition={{ type: "spring", damping: 25, stiffness: 350 }}
       >
