@@ -5,7 +5,6 @@ import { AnimatePresence, motion, MotionConfig } from "framer-motion";
 import MusicWidget from "@/components/MusicWidget";
 import CustomCursor from "@/components/CustomCursor";
 import FocusIndicator from "@/components/FocusIndicator";
-import WebRenderKeepAlive from "@/components/WebRenderKeepAlive";
 import {
   MusicWidgetProvider,
   useMusicWidget,
@@ -59,7 +58,6 @@ export default function PageShell({
         </main>
         <CustomCursor />
         <FocusIndicator />
-        <WebRenderKeepAlive />
       </MusicWidgetProvider>
     </MotionConfig>
   );
