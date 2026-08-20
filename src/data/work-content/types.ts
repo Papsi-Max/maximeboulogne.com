@@ -1,30 +1,11 @@
 export type WorkContentLeaf =
   | { type: "paragraph"; text: string }
   | { type: "quote"; text: string; attribution?: string }
-  | {
-      type: "image";
-      src: string;
-      alt: string;
-      width: number;
-      height: number;
-      blurDataURL: string;
-    }
+  | { type: "image"; src: string; alt: string; width: number; height: number }
   | {
       type: "screenPair";
-      desktop: {
-        src: string;
-        alt: string;
-        width: number;
-        height: number;
-        blurDataURL: string;
-      };
-      mobile: {
-        src: string;
-        alt: string;
-        width: number;
-        height: number;
-        blurDataURL: string;
-      };
+      desktop: { src: string; alt: string; width: number; height: number };
+      mobile: { src: string; alt: string; width: number; height: number };
       caption?: string;
     }
   | { type: "heading"; text: string; note?: string }
@@ -39,7 +20,6 @@ export type WorkContentLeaf =
       alt: string;
       width: number;
       height: number;
-      blurDataURL: string;
     }
   | {
       type: "callout";
