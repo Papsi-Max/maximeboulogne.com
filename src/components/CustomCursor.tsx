@@ -63,50 +63,46 @@ export default function CustomCursor() {
   return (
     <motion.div
       aria-hidden
-      className="pointer-events-none fixed left-0 top-0 z-[999]"
+      className="pointer-events-none fixed left-0 top-0 z-[999] flex items-center justify-center bg-bg-inverse"
       style={{
         x: springX,
         y: springY,
+        translateX: "-50%",
+        translateY: "-50%",
         width: BASE_SIZE,
         height: BASE_SIZE,
-        marginLeft: -BASE_SIZE / 2,
-        marginTop: -BASE_SIZE / 2,
+        clipPath: "circle(50%)",
         willChange: "transform",
       }}
+      animate={{ scale, opacity: visible ? 1 : 0 }}
+      transition={{ type: "spring", damping: 25, stiffness: 350 }}
     >
-      <motion.div
-        className="flex h-full w-full items-center justify-center bg-bg-inverse"
-        style={{ clipPath: "circle(50%)" }}
-        animate={{ scale, opacity: visible ? 1 : 0 }}
-        transition={{ type: "spring", damping: 25, stiffness: 350 }}
-      >
-        <AnimatePresence>
-          {kind === "smile" && (
-            <motion.span
-              key="smile"
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0, opacity: 0 }}
-              transition={{ type: "spring", damping: 25, stiffness: 350 }}
-              className="material-symbols-rounded absolute inset-0 m-auto text-text-accent"
-            >
-              sentiment_satisfied
-            </motion.span>
-          )}
-          {kind === "play" && (
-            <motion.span
-              key="play"
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0, opacity: 0 }}
-              transition={{ type: "spring", damping: 25, stiffness: 350 }}
-              className="material-symbols-rounded absolute inset-0 m-auto text-text-accent"
-            >
-              play_arrow
-            </motion.span>
-          )}
-        </AnimatePresence>
-      </motion.div>
+      <AnimatePresence>
+        {kind === "smile" && (
+          <motion.span
+            key="smile"
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0, opacity: 0 }}
+            transition={{ type: "spring", damping: 25, stiffness: 350 }}
+            className="material-symbols-rounded absolute inset-0 m-auto text-text-accent"
+          >
+            sentiment_satisfied
+          </motion.span>
+        )}
+        {kind === "play" && (
+          <motion.span
+            key="play"
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0, opacity: 0 }}
+            transition={{ type: "spring", damping: 25, stiffness: 350 }}
+            className="material-symbols-rounded absolute inset-0 m-auto text-text-accent"
+          >
+            play_arrow
+          </motion.span>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }
