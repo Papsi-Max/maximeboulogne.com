@@ -14,6 +14,12 @@ const tasaExplorer = TASA_Explorer({
   variable: "--font-tasa",
   subsets: ["latin"],
   weight: ["400", "500", "600"],
+  // Next doesn't have ascent/descent metrics for this font, so it can't
+  // auto-adjust a fallback's size to match it (that's the "Failed to find
+  // font override values" warning) — disable that step and declare our own
+  // fallback instead: shown before the font loads, or if it fails to load.
+  adjustFontFallback: false,
+  fallback: ["system-ui", "-apple-system", "Segoe UI", "sans-serif"],
 });
 
 export const metadata: Metadata = {
