@@ -22,10 +22,6 @@ function MusicWidgetOverlay() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [showMusic, closeMusic]);
 
-  // TEST 1: no visual wrapper/animation — mount MusicWidget (audio-only) directly.
-  if (!showMusic) return null;
-  return <MusicWidget onClose={closeMusic} autoFocus />;
-
   return (
     <AnimatePresence>
       {showMusic && (
