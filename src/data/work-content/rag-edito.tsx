@@ -47,12 +47,10 @@ export const ragEditoContent: WorkContentBlock[] = [
         blocks: [
           {
             type: "image",
-            src: "/images/work/rag-edito/01-search-results-page.webp",
+            src: "/images/work/rag-edito/01-search-results-page.png",
             alt: "Leroy Merlin search results page for a natural-language DIY question, with editorial steps and matched products",
             width: 1280,
             height: 3435,
-            blurDataURL:
-              "data:image/webp;base64,UklGRloAAABXRUJQVlA4IE4AAADQAwCdASoKABsAPzmGu1QvKSYjMAgB4CcJZwAAW+oVZey6dJIjCAAA/t6HIMVyNM7eDg3VYzsgggT7IfDlCk3hkJmmhEYFHoHjo8BAAAA=",
           },
         ],
       },
@@ -137,12 +135,10 @@ export const ragEditoContent: WorkContentBlock[] = [
         blocks: [
           {
             type: "image",
-            src: "/images/work/rag-edito/02-ai-guidelines-cover.webp",
+            src: "/images/work/rag-edito/02-ai-guidelines-cover.png",
             alt: "Cover of the ADEO group's Design & Artificial Intelligence guidelines",
             width: 637,
             height: 637,
-            blurDataURL:
-              "data:image/webp;base64,UklGRkIAAABXRUJQVlA4IDYAAACwAQCdASoKAAoABUB8JQBOgBuEbxgAAP7sJU+KtTWxaf6l5biMycw3QhaA65MpBSGUAMmH0AA=",
           },
         ],
       },
@@ -164,12 +160,10 @@ export const ragEditoContent: WorkContentBlock[] = [
         blocks: [
           {
           type: "image",
-          src: "/images/work/rag-edito/03-virtual-assistant-widget.webp",
+          src: "/images/work/rag-edito/03-virtual-assistant-widget.png",
           alt: "Virtual assistant widget with a question field and suggested follow-up questions",
           width: 1128,
           height: 562,
-          blurDataURL:
-            "data:image/webp;base64,UklGRmQAAABXRUJQVlA4WAoAAAAQAAAACQAABAAAQUxQSBsAAAABJ3D//4iIAYNsIwd79wKP8ggf0f8oDgQLBg8AVlA4ICIAAAAwAQCdASoKAAUABUB8JZwAA3AA/u8YCVZWQkDtvzEuQEAA",
           }
         ]
       },
@@ -200,12 +194,10 @@ export const ragEditoContent: WorkContentBlock[] = [
         blocks: [
           {
             type: "image",
-            src: "/images/work/rag-edito/04-virtual-assistant-product-page.webp",
+            src: "/images/work/rag-edito/04-virtual-assistant-product-page.png",
             alt: "Virtual assistant integrated into a Leroy Merlin product page, answering a question about a product",
             width: 1063,
             height: 760,
-            blurDataURL:
-              "data:image/webp;base64,UklGRi4AAABXRUJQVlA4ICIAAAAwAQCdASoKAAcABUB8JaQAA3AA/vBm8xfPTWUnIRdIAAAA",
           }
         ]
       },
