@@ -12,6 +12,8 @@ const SIZE: Record<CursorKind, number> = {
   play: 80,
 };
 
+const BASE_SIZE = 80;
+
 export default function CustomCursor() {
   const [kind, setKind] = useState<CursorKind>("default");
   const [isTouch] = useState(
@@ -56,14 +58,22 @@ export default function CustomCursor() {
 
   if (isTouch) return null;
 
-  const size = SIZE[kind];
+  const scale = SIZE[kind] / BASE_SIZE;
 
   return (
     <motion.div
       aria-hidden
       className="pointer-events-none fixed left-0 top-0 z-[999] flex items-center justify-center overflow-hidden rounded-full bg-bg-inverse"
-      style={{ x: springX, y: springY, translateX: "-50%", translateY: "-50%" }}
-      animate={{ width: size, height: size, opacity: visible ? 1 : 0 }}
+      style={{
+        x: springX,
+        y: springY,
+        translateX: "-50%",
+        translateY: "-50%",
+        width: BASE_SIZE,
+        height: BASE_SIZE,
+        willChange: "transform",
+      }}
+      animate={{ scale, opacity: visible ? 1 : 0 }}
       transition={{ type: "spring", damping: 25, stiffness: 350 }}
     >
       <AnimatePresence>
