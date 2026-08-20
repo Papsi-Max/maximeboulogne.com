@@ -15,11 +15,17 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
+            set -euo pipefail
             export NVM_DIR="$HOME/.nvm"
             source "$NVM_DIR/nvm.sh"
             cd /home/deploy/apps/maximeboulogne.com
-            git pull origin main
-            npm install
+
+            git fetch origin main
+            git reset --hard origin/main
+            git clean -fd
+
+            npm ci
             npm run build
+
             pm2 restart portfolio --update-env
             pm2 save
