@@ -22,8 +22,8 @@ export default function WorkPage() {
       </div>
 
       <div className="grid w-full grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-1.5">
-        {workItems.map((item) => (
-          <WorkCard key={item.slug} item={item} />
+        {workItems.map((item, index) => (
+          <WorkCard key={item.slug} item={item} priority={index < 2} />
         ))}
       </div>
     </div>
