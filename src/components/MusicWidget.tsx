@@ -125,6 +125,9 @@ export default function MusicWidget({
 
   const currentTime = (progress || 0) * (duration || 0);
 
+  // TEST 1: isolate <audio> alone — visual JSX temporarily disabled.
+  return <audio ref={audioRef} src={src} preload="metadata" style={{ display: "none" }} />;
+
   return (
     <div
       role="region"
