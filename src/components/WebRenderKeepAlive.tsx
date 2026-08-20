@@ -12,21 +12,24 @@ import { useEffect, useRef } from "react";
  * invalidated when a clipped layer moves without any other layer changing.
  *
  * We observed that mounting/animating an unrelated element elsewhere on the
- * page (the music player widget) reliably stops the ghosting for as long as
- * it stays active. That confirms the trigger is layer *invalidation*, not
- * anything specific to the widget itself.
+ * page (the music player widget, animating via Framer Motion on every frame
+ * for ~0.3s) reliably stops the ghosting for as long as it stays active.
+ * That confirms the trigger is continuous, per-frame layer invalidation —
+ * not anything specific to the widget itself, and not a one-off nudge every
+ * couple of seconds (an earlier version of this component used a slow
+ * setInterval toggle, which was not enough).
  *
  * This component reproduces that side effect deliberately and cheaply: a
  * tiny, always-mounted, off-screen element that nudges a compositor-only
- * property (`transform`) at a low, fixed interval. It never becomes visible
- * and has no layout/paint cost beyond a single GPU layer tick.
+ * property (`transform`) on every animation frame, continuously, for as
+ * long as the page is open. It never becomes visible and has no
+ * layout/paint cost beyond a single GPU layer tick per frame.
  *
  * Safe to remove entirely once the underlying WebRender bug is fixed
  * upstream — this is a mitigation, not a real fix.
  */
 export default function WebRenderKeepAlive() {
   const ref = useRef<HTMLDivElement>(null);
-  const flipped = useRef(false);
 
   useEffect(() => {
     const el = ref.current;
@@ -37,14 +40,18 @@ export default function WebRenderKeepAlive() {
       navigator.userAgent.toLowerCase().includes("firefox");
     if (!isFirefox) return;
 
-    const id = window.setInterval(() => {
-      flipped.current = !flipped.current;
-      el.style.transform = flipped.current
-        ? "translate3d(0, 0, 0) scale(1.0001)"
-        : "translate3d(0, 0, 0) scale(1)";
-    }, 2000);
+    let frame: number;
+    const tick = (t: number) => {
+      // Sub-pixel oscillation: visually a no-op, but a real transform
+      // change on every frame, matching what the music widget's
+      // animation does while it's mounted.
+      const s = 1 + Math.sin(t / 500) * 0.0001;
+      el.style.transform = `translate3d(0, 0, 0) scale(${s})`;
+      frame = requestAnimationFrame(tick);
+    };
+    frame = requestAnimationFrame(tick);
 
-    return () => window.clearInterval(id);
+    return () => cancelAnimationFrame(frame);
   }, []);
 
   return (
