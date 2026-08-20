@@ -72,9 +72,6 @@ export default function CustomCursor() {
         width: BASE_SIZE,
         height: BASE_SIZE,
         clipPath: "circle(50%)",
-        willChange: "transform",
-        contain: "paint",
-        isolation: "isolate",
       }}
       animate={{ scale, opacity: visible ? 1 : 0 }}
       transition={{ type: "spring", damping: 25, stiffness: 350 }}
