@@ -11,6 +11,7 @@ export default function WorkAccordionImage({
   alt,
   width,
   height,
+  blurDataURL,
 }: {
   title: string;
   note?: string;
@@ -18,6 +19,7 @@ export default function WorkAccordionImage({
   alt: string;
   width: number;
   height: number;
+  blurDataURL: string;
 }) {
   const [open, setOpen] = useState(false);
 
@@ -55,6 +57,8 @@ export default function WorkAccordionImage({
             alt={alt}
             width={width}
             height={height}
+            placeholder="blur"
+            blurDataURL={blurDataURL}
             className="h-auto w-auto max-w-full rounded-2xl object-contain"
             sizes="(min-width: 1024px) 100vw, (min-width: 768px) 60vw, 90vw"
           />

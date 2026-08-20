@@ -98,10 +98,12 @@ export const leroyMerlinContent: WorkContentBlock[] = [
   },
   {
     type: "image",
-    src: "/images/work/leroy-merlin/01-experience-orchestree-vision.png",
+    src: "/images/work/leroy-merlin/01-experience-orchestree-vision.webp",
     alt: "Unified search widget for in-store staff, with action shortcuts and recent history",
     width: 656,
     height: 710,
+    blurDataURL:
+      "data:image/webp;base64,UklGRkoAAABXRUJQVlA4ID4AAADwAQCdASoKAAsABUB8JbACdAELXMk4YgAA/uGXNK7XC1jx+7YQ0B+UiKw9WetrLRfW27VooYQH1LC8MLgAAA==",
   },
   {
     type: "paragraph",

@@ -128,6 +128,8 @@ function renderLeaf(block: WorkContentLeaf, i: number, bleed: boolean) {
             alt={block.alt}
             width={block.width}
             height={block.height}
+            placeholder="blur"
+            blurDataURL={block.blurDataURL}
             className="h-auto w-auto max-w-full rounded-2xl object-contain"
             sizes={
               bleed
@@ -150,6 +152,8 @@ function renderLeaf(block: WorkContentLeaf, i: number, bleed: boolean) {
               alt={block.desktop.alt}
               width={block.desktop.width}
               height={block.desktop.height}
+              placeholder="blur"
+              blurDataURL={block.desktop.blurDataURL}
               className="h-auto min-w-0 rounded-lg object-contain"
               style={{
                 aspectRatio: `${block.desktop.width} / ${block.desktop.height}`,
@@ -164,6 +168,8 @@ function renderLeaf(block: WorkContentLeaf, i: number, bleed: boolean) {
               alt={block.mobile.alt}
               width={block.mobile.width}
               height={block.mobile.height}
+              placeholder="blur"
+              blurDataURL={block.mobile.blurDataURL}
               className="h-auto min-w-0 rounded-lg object-contain"
               style={{
                 aspectRatio: `${block.mobile.width} / ${block.mobile.height}`,
@@ -206,6 +212,7 @@ function renderLeaf(block: WorkContentLeaf, i: number, bleed: boolean) {
           alt={block.alt}
           width={block.width}
           height={block.height}
+          blurDataURL={block.blurDataURL}
         />
       );
 
