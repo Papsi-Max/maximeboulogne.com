@@ -17,27 +17,19 @@ export default function NavPill({
   disabled = false,
 }: NavPillProps) {
   const isAccent = variant === "accent";
-  const Component = disabled ? "div" : Link;
 
-  return (
-    <Component
-      {...(disabled ? {} : { href })}
-      data-cursor={disabled ? "disabled" : undefined}
-      role={disabled ? "link" : undefined}
-      aria-disabled={disabled || undefined}
-      tabIndex={disabled ? 0 : undefined}
-      className={`group relative flex items-center justify-center gap-3 rounded-full px-6 py-3 transition-colors duration-200 ${
-        disabled ? "focus-visible:outline-none" : ""
-      } ${
-        isAccent ? "bg-bg-accent" : "bg-bg-tertiary"
-      } ${
-        disabled
-          ? "cursor-not-allowed opacity-50"
-          : isAccent
-            ? "hover:bg-[#FFE37C]"
-            : "hover:bg-[#525252]"
-      }`}
-    >
+  const className = `group relative flex items-center justify-center gap-3 rounded-full px-6 py-3 transition-colors duration-200 ${
+    disabled ? "focus-visible:outline-none" : ""
+  } ${isAccent ? "bg-bg-accent" : "bg-bg-tertiary"} ${
+    disabled
+      ? "cursor-not-allowed opacity-50"
+      : isAccent
+        ? "hover:bg-[#FFE37C]"
+        : "hover:bg-[#525252]"
+  }`;
+
+  const content = (
+    <>
       <span className="flex items-center gap-1.5">
         <span
           className={`font-body font-semibold text-lg ${
@@ -66,6 +58,26 @@ export default function NavPill({
           }`}
         />
       )}
-    </Component>
+    </>
+  );
+
+  if (disabled) {
+    return (
+      <div
+        data-cursor="disabled"
+        role="link"
+        aria-disabled
+        tabIndex={0}
+        className={className}
+      >
+        {content}
+      </div>
+    );
+  }
+
+  return (
+    <Link href={href} className={className}>
+      {content}
+    </Link>
   );
 }
