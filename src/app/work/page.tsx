@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import Icon from "@/components/Icon";
 import WorkCard from "@/components/WorkCard";
 import { workItems } from "@/data/work";
 
@@ -14,7 +14,7 @@ export default function WorkPage() {
           aria-label="Back"
           className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-text-primary transition-colors hover:bg-bg-tertiary"
         >
-          <ArrowLeft aria-hidden className="h-9 w-9" strokeWidth={1.75} />
+          <Icon name="arrow_back" aria-hidden size={36} />
         </Link>
         <h1 className="flex-1 font-display text-5xl font-normal text-text-primary">
           Work

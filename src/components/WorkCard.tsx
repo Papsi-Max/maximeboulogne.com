@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import Icon from "@/components/Icon";
 import type { WorkItem } from "@/data/work";
 
 export default function WorkCard({
@@ -49,10 +49,11 @@ export default function WorkCard({
           <span className="rounded-lg bg-bg-tertiary px-3 py-2 font-body text-base text-text-secondary">
             {item.readTime}
           </span>
-          <ArrowRight
+          <Icon
+            name="arrow_forward"
             aria-hidden
-            className="h-8 w-8 text-text-secondary transition-transform duration-200 group-hover:translate-x-1"
-            strokeWidth={1.75}
+            size={32}
+            className="text-text-secondary transition-transform duration-200 group-hover:translate-x-1"
           />
         </div>
       </div>

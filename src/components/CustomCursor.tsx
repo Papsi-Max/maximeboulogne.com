@@ -3,13 +3,14 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useMotionValue, useSpring } from "framer-motion";
 
-type CursorKind = "default" | "hover" | "smile" | "play";
+type CursorKind = "default" | "hover" | "smile" | "play" | "disabled";
 
 const SIZE: Record<CursorKind, number> = {
   default: 40,
   hover: 80,
   smile: 80,
   play: 80,
+  disabled: 40,
 };
 
 const BASE_SIZE = 80;
@@ -99,6 +100,18 @@ export default function CustomCursor() {
             className="material-symbols-rounded absolute inset-0 m-auto text-text-accent"
           >
             play_arrow
+          </motion.span>
+        )}
+        {kind === "disabled" && (
+          <motion.span
+            key="disabled"
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0, opacity: 0 }}
+            transition={{ type: "spring", damping: 25, stiffness: 350 }}
+            className="material-symbols-rounded absolute inset-0 m-auto text-text-accent"
+          >
+            block
           </motion.span>
         )}
       </AnimatePresence>

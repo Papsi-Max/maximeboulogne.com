@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import Icon from "@/components/Icon";
 
 const ABOUT_PARAGRAPHS = [
   "I've been designing experiences for about 5 years now. Self-taught, coming from an unusual path I originally worked in the VFX field before finding my way into UX.",
@@ -19,7 +19,7 @@ export default function AboutPage() {
           aria-label="Back"
           className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-text-primary transition-colors hover:bg-bg-tertiary"
         >
-          <ArrowLeft aria-hidden className="h-9 w-9" strokeWidth={1.75} />
+          <Icon name="arrow_back" aria-hidden size={36} />
         </Link>
         <h1 className="flex-1 font-display text-5xl font-normal text-text-primary">
           About

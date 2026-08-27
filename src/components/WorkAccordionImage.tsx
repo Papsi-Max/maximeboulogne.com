@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { ChevronDown } from "lucide-react";
+import Icon from "@/components/Icon";
 
 export default function WorkAccordionImage({
   title,
@@ -41,12 +41,13 @@ export default function WorkAccordionImage({
             </p>
           )}
         </div>
-        <ChevronDown
+        <Icon
+          name="expand_more"
           aria-hidden
-          className={`h-6 w-6 shrink-0 text-text-secondary transition-transform duration-200 ${
+          size={24}
+          className={`shrink-0 text-text-secondary transition-transform duration-200 ${
             open ? "rotate-180" : ""
           }`}
-          strokeWidth={1.75}
         />
       </button>
 

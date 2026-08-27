@@ -32,7 +32,7 @@ function MusicWidgetOverlay() {
           transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
           className="fixed bottom-8 right-6 sm:right-10"
         >
-          <MusicWidget onClose={closeMusic} autoFocus />
+          <MusicWidget onClose={closeMusic} autoFocus autoPlay />
         </motion.div>
       )}
     </AnimatePresence>

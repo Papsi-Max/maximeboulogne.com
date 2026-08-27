@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Pause, Play, Music2, X } from "lucide-react";
+import Icon from "@/components/Icon";
 
 type MusicWidgetProps = {
   src?: string;
@@ -11,6 +11,7 @@ type MusicWidgetProps = {
   className?: string;
   onClose?: () => void;
   autoFocus?: boolean;
+  autoPlay?: boolean;
 };
 
 function formatTime(seconds: number) {
@@ -30,6 +31,7 @@ export default function MusicWidget({
   className = "",
   onClose,
   autoFocus = false,
+  autoPlay = false,
 }: MusicWidgetProps) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const barRef = useRef<HTMLDivElement>(null);
@@ -42,6 +44,22 @@ export default function MusicWidget({
   useEffect(() => {
     if (autoFocus) playButtonRef.current?.focus();
   }, [autoFocus]);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (audio) audio.volume = 0.25;
+  }, []);
+
+  useEffect(() => {
+    if (!autoPlay) return;
+    const audio = audioRef.current;
+    if (!audio) return;
+    audio
+      .play()
+      .then(() => setIsPlaying(true))
+      .catch(() => setReady(false));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [autoPlay]);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -133,18 +151,7 @@ export default function MusicWidget({
     >
       <audio ref={audioRef} src={src} preload="metadata" />
 
-      {onClose && (
-        <button
-          type="button"
-          onClick={onClose}
-          aria-label="Close music player"
-          className="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full bg-bg-tertiary text-text-primary transition-colors hover:bg-[#525252]"
-        >
-          <X aria-hidden className="h-3.5 w-3.5" strokeWidth={2} />
-        </button>
-      )}
-
-      <div className="flex flex-1 items-center gap-3">
+      <div className="flex flex-1 items-start gap-3">
         <div className="relative aspect-square h-16 shrink-0 overflow-hidden rounded-xl bg-bg-tertiary">
           {cover ? (
             // eslint-disable-next-line @next/next/no-img-element
@@ -155,12 +162,12 @@ export default function MusicWidget({
             />
           ) : (
             <div className="flex h-full w-full items-center justify-center text-text-secondary">
-              <Music2 aria-hidden className="h-6 w-6" strokeWidth={1.5} />
+              <Icon name="music_note" aria-hidden size={24} />
             </div>
           )}
         </div>
 
-        <div className="flex h-full min-w-0 flex-1 flex-col items-center justify-center gap-0.5">
+        <div className="flex h-full min-w-0 flex-1 flex-col items-center justify-start">
           <p className="w-full truncate font-body text-lg font-semibold text-text-primary">
             {title}
           </p>
@@ -169,31 +176,37 @@ export default function MusicWidget({
           </p>
         </div>
 
-        <button
-          ref={playButtonRef}
-          type="button"
-          onClick={togglePlay}
-          disabled={!ready}
-          aria-label={isPlaying ? "Pause" : "Play"}
-          className="flex shrink-0 items-center gap-1 rounded-full bg-bg-tertiary px-4 py-2 transition-colors duration-150 hover:bg-[#525252] disabled:opacity-40"
-        >
-          {isPlaying ? (
-            <Pause
+        <div className="flex shrink-0 items-start gap-2">
+          <button
+            ref={playButtonRef}
+            type="button"
+            onClick={togglePlay}
+            disabled={!ready}
+            aria-label={isPlaying ? "Pause" : "Play"}
+            className="flex shrink-0 items-center gap-1 rounded-full bg-bg-tertiary px-4 py-2 transition-colors duration-150 hover:bg-[#525252] disabled:opacity-40"
+          >
+            <Icon
+              name={isPlaying ? "pause" : "play_arrow"}
               aria-hidden
-              className="h-4 w-4 text-text-primary"
-              fill="currentColor"
+              size={18}
+              className="text-text-primary"
             />
-          ) : (
-            <Play
-              aria-hidden
-              className="h-4 w-4 text-text-primary"
-              fill="currentColor"
-            />
+            <span className="font-body text-base font-semibold text-text-primary">
+              {isPlaying ? "Pause" : "Play"}
+            </span>
+          </button>
+
+          {onClose && (
+            <button
+              type="button"
+              onClick={onClose}
+              aria-label="Close music player"
+              className="flex shrink-0 items-center justify-center rounded-full bg-bg-tertiary p-3 transition-colors duration-150 hover:bg-[#525252]"
+            >
+              <Icon name="close" aria-hidden size={18} className="text-text-primary" />
+            </button>
           )}
-          <span className="font-body text-base font-semibold text-text-primary">
-            {isPlaying ? "Pause" : "Play"}
-          </span>
-        </button>
+        </div>
       </div>
 
       <div className="flex items-center gap-3 px-2.5">

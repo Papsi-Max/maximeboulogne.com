@@ -6,7 +6,6 @@ import HoverWord from "@/components/HoverWord";
 import NavPill from "@/components/NavPill";
 import { useMusicWidget } from "@/components/MusicWidgetContext";
 import { workItems } from "@/data/work";
-import { projectItems } from "@/data/projects";
 import { noteItems } from "@/data/notes";
 import { countLabel } from "@/lib/count-label";
 
@@ -51,14 +50,10 @@ export default function Home() {
           variant="accent"
         />
         <NavPill
-          href="/projects"
-          label="Projects"
-          count={countLabel(projectItems.length)}
-        />
-        <NavPill
           href="/notes"
           label="Notes"
           count={countLabel(noteItems.length)}
+          disabled
         />
       </div>
 
