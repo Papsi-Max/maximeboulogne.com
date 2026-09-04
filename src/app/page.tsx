@@ -53,7 +53,6 @@ export default function Home() {
           href="/notes"
           label="Notes"
           count={countLabel(noteItems.length)}
-          disabled
         />
       </div>
 
