@@ -48,7 +48,7 @@ Le reste des ajustements a porté sur les informations que les utilisateurs dema
 
 ![image.png](image%209.png)
 
-#### Voir le parcours complet du produit *(ce funnel s'inscrit dans un flow plus large — dépliez pour voir l'ensemble du parcours de réservation tel qu'il fonctionnait à la fin du projet)*
+#### Voir le parcours complet du produit *(ce funnel s'inscrit dans un flow plus large, dépliez pour voir l'ensemble du parcours de réservation tel qu'il fonctionnait à la fin du projet)*
 
 ![image.png](image%2010.png)
 
