@@ -8,6 +8,10 @@ export type WorkContentLeaf =
       width: number;
       height: number;
       blurDataURL: string;
+      /** Stretch to fill the full-bleed width instead of showing at its
+       * natural size — for screenshots meant to read as a wide scene
+       * rather than an inline illustration. */
+      fullWidth?: boolean;
     }
   | {
       type: "screenPair";

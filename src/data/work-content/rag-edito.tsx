@@ -193,23 +193,14 @@ export const ragEditoContent: WorkContentBlock[] = [
     text: "On the Search Widget, usage rate went from 0.16% to 2.45% after applying the guidelines (+1431%), with an estimated business impact of €21.8M in annual GMV on the France web platform.",
   },
   {
-    type: "row",
-    columns: [
-      {
-        cols: 12,
-        blocks: [
-          {
-            type: "image",
-            src: "/images/work/rag-edito/04-virtual-assistant-product-page.webp",
-            alt: "Virtual assistant integrated into a Leroy Merlin product page, answering a question about a product",
-            width: 1063,
-            height: 760,
-            blurDataURL:
-              "data:image/webp;base64,UklGRi4AAABXRUJQVlA4ICIAAAAwAQCdASoKAAcABUB8JaQAA3AA/vBm8xfPTWUnIRdIAAAA",
-          }
-        ]
-      },
-    ]
+    type: "image",
+    src: "/images/work/rag-edito/04-virtual-assistant-product-page.webp",
+    alt: "Virtual assistant integrated into a Leroy Merlin product page, answering a question about a product",
+    width: 1063,
+    height: 760,
+    blurDataURL:
+      "data:image/webp;base64,UklGRi4AAABXRUJQVlA4ICIAAAAwAQCdASoKAAcABUB8JaQAA3AA/vBm8xfPTWUnIRdIAAAA",
+    fullWidth: true,
   },
   {
     type: "sectionHeading",

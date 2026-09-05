@@ -37,7 +37,9 @@ export default async function WorkDetailPage({
         </h1>
       </div>
 
-      <WorkContentBlocks blocks={blocks} />
+      <div className="mt-6 w-full sm:mt-10">
+        <WorkContentBlocks blocks={blocks} />
+      </div>
     </div>
   );
 }

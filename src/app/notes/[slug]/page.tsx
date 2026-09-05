@@ -51,7 +51,9 @@ export default async function NoteDetailPage({
         <span>{formatNoteDate(item.date)}</span>
       </div>
 
-      <NoteContentBlocks blocks={blocks} />
+      <div className="mt-6 w-full sm:mt-10">
+        <NoteContentBlocks blocks={blocks} />
+      </div>
     </div>
   );
 }

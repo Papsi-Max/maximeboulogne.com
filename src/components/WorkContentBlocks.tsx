@@ -21,32 +21,85 @@ const COL_SPAN: Record<WorkContentColumn["cols"], string> = {
   12: "lg:col-span-12",
 };
 
+// Gestalt law of proximity: elements that belong together sit close,
+// elements that start a new idea get more air. Spacing follows an 8pt
+// scale and varies by the *relationship* between consecutive blocks
+// rather than a single flat gap everywhere.
+type BlockCategory = "text" | "visual" | "heading";
+
+function categorize(type: WorkContentBlock["type"]): BlockCategory {
+  switch (type) {
+    case "sectionHeading":
+    case "heading":
+      return "heading";
+    case "image":
+    case "screenPair":
+    case "stat":
+    case "callout":
+    case "accordionImage":
+    case "row":
+      return "visual";
+    default:
+      return "text";
+  }
+}
+
+function spacingBefore(
+  prev: BlockCategory | null,
+  curr: BlockCategory
+): string {
+  if (prev === null) return "";
+  if (curr === "heading") return "mt-16"; // new idea starting — most separation
+  if (prev === "heading") return "mt-6"; // heading hugs the content it introduces
+  if (curr === "visual" || prev === "visual") return "mt-12"; // media reads as its own unit
+  return "mt-6"; // tightly related running text (paragraph/list/quote)
+}
+
 export default function WorkContentBlocks({
   blocks,
 }: {
   blocks: WorkContentBlock[];
 }) {
   return (
-    <div className="flex w-full flex-col items-start gap-6">
-      {blocks.map((block, i) =>
-        block.type === "row" ? (
+    <div className="flex w-full flex-col items-start">
+      {blocks.map((block, i) => {
+        const prevCategory = i > 0 ? categorize(blocks[i - 1].type) : null;
+        const spacing = spacingBefore(prevCategory, categorize(block.type));
+
+        return block.type === "row" ? (
           <div
             key={i}
-            className="full-bleed-lg grid w-full grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-8"
+            className={`full-bleed-lg grid w-full grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-8 ${spacing}`}
           >
             {block.columns.map((column, ci) => (
               <div
                 key={ci}
-                className={`flex w-full flex-col items-start gap-6 ${COL_SPAN[column.cols]}`}
+                className={`flex w-full flex-col items-start ${COL_SPAN[column.cols]}`}
               >
-                {column.blocks.map((leaf, li) => renderLeaf(leaf, li, false))}
+                {column.blocks.map((leaf, li) => {
+                  const prevLeafCategory =
+                    li > 0 ? categorize(column.blocks[li - 1].type) : null;
+                  return (
+                    <div
+                      key={li}
+                      className={spacingBefore(
+                        prevLeafCategory,
+                        categorize(leaf.type)
+                      )}
+                    >
+                      {renderLeaf(leaf, li, false)}
+                    </div>
+                  );
+                })}
               </div>
             ))}
           </div>
         ) : (
-          renderLeaf(block, i, true)
-        )
-      )}
+          <div key={i} className={`w-full ${spacing}`}>
+            {renderLeaf(block, i, true)}
+          </div>
+        );
+      })}
     </div>
   );
 }
@@ -82,7 +135,7 @@ function renderLeaf(block: WorkContentLeaf, i: number, bleed: boolean) {
       return (
         <h2
           key={i}
-          className="w-full mt-16 font-display text-2xl font-normal text-text-primary"
+          className="w-full font-display text-2xl font-normal text-text-primary"
         >
           {block.text}
         </h2>
@@ -117,7 +170,8 @@ function renderLeaf(block: WorkContentLeaf, i: number, bleed: boolean) {
         </div>
       );
 
-    case "image":
+    case "image": {
+      const stretch = bleed && block.fullWidth;
       return (
         <div
           key={i}
@@ -130,7 +184,16 @@ function renderLeaf(block: WorkContentLeaf, i: number, bleed: boolean) {
             height={block.height}
             placeholder="blur"
             blurDataURL={block.blurDataURL}
-            className="h-auto w-auto max-w-full rounded-2xl object-contain"
+            className={
+              stretch
+                ? "h-auto rounded-2xl object-contain"
+                : "h-auto w-auto max-w-full rounded-2xl object-contain"
+            }
+            style={
+              stretch
+                ? { aspectRatio: `${block.width} / ${block.height}`, width: "100%" }
+                : undefined
+            }
             sizes={
               bleed
                 ? "(min-width: 1024px) 100vw, (min-width: 768px) 60vw, 90vw"
@@ -139,6 +202,7 @@ function renderLeaf(block: WorkContentLeaf, i: number, bleed: boolean) {
           />
         </div>
       );
+    }
 
     case "screenPair":
       return (
