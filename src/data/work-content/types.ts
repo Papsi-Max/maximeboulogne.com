@@ -14,6 +14,20 @@ export type WorkContentLeaf =
       fullWidth?: boolean;
     }
   | {
+      type: "video";
+      src: string;
+      width: number;
+      height: number;
+      poster?: string;
+      /** Accessible label describing what the video shows — required since
+       * the clip is silent and carries no captions to convey that. */
+      ariaLabel: string;
+      caption?: string;
+      /** Stretch to fill the full-bleed width instead of showing at its
+       * natural size — mirrors the `image` block's fullWidth option. */
+      fullWidth?: boolean;
+    }
+  | {
       type: "screenPair";
       desktop: {
         src: string;

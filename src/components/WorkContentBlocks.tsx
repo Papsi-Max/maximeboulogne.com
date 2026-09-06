@@ -5,6 +5,7 @@ import type {
   WorkContentLeaf,
 } from "@/data/work-content";
 import WorkAccordionImage from "@/components/WorkAccordionImage";
+import WorkVideoPlayer from "@/components/WorkVideoPlayer";
 
 const COL_SPAN: Record<WorkContentColumn["cols"], string> = {
   1: "lg:col-span-1",
@@ -33,6 +34,7 @@ function categorize(type: WorkContentBlock["type"]): BlockCategory {
     case "heading":
       return "heading";
     case "image":
+    case "video":
     case "screenPair":
     case "stat":
     case "callout":
@@ -200,6 +202,37 @@ function renderLeaf(block: WorkContentLeaf, i: number, bleed: boolean) {
                 : "(min-width: 1024px) 33vw, 90vw"
             }
           />
+        </div>
+      );
+    }
+
+    case "video": {
+      const stretch = bleed && block.fullWidth;
+      return (
+        <div
+          key={i}
+          className={`flex w-full flex-col items-start gap-2 ${bleed ? "full-bleed-lg" : ""}`}
+        >
+          <div className="flex w-full justify-center">
+            <WorkVideoPlayer
+              src={block.src}
+              poster={block.poster}
+              width={block.width}
+              height={block.height}
+              ariaLabel={block.ariaLabel}
+              className={stretch ? "" : "w-auto max-w-full"}
+              style={
+                stretch
+                  ? { aspectRatio: `${block.width} / ${block.height}` }
+                  : undefined
+              }
+            />
+          </div>
+          {block.caption && (
+            <p className="w-full font-body text-sm text-text-secondary">
+              {block.caption}
+            </p>
+          )}
         </div>
       );
     }

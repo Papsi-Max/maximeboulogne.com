@@ -10,6 +10,14 @@ export const teampifyContent: WorkContentBlock[] = [
     text: "Working closely with the founding team, we defined a futuristic, minimal, gamified visual world aimed at digital startups and companies. I built the user flow around two distinct profiles (one fast and autonomous, one needing more guidance), landing on a free-navigation approach where each user finds their own path through the app.",
   },
   {
+    type: "video",
+    src: "/videos/work/teampify-team-builder/teampify-team-builder-video.mp4",
+    width: 1440,
+    height: 1024,
+    ariaLabel: "Screen recording of the Teampify team-building app walkthrough",
+    fullWidth: true,
+  },
+  {
     type: "quote",
     text: "Maxime is very professional in everything he takes on. He delivered perfectly on every task we gave him.",
     attribution: "Gabriel Waterlot, CEO of Teampify",
