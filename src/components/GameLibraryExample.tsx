@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Icon from "@/components/Icon";
+import Tag from "@/components/Tag";
 
 type Game = {
   id: string;
@@ -149,9 +150,7 @@ export default function GameLibraryExample() {
                   <p className="min-w-0 flex-1 truncate font-body text-base font-semibold text-text-accent">
                     {game.name}
                   </p>
-                  <span className="shrink-0 rounded-full bg-bg-tertiary px-2.5 py-0.5 font-body text-xs text-text-secondary">
-                    {game.genre}
-                  </span>
+                  <Tag>{game.genre}</Tag>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <Icon

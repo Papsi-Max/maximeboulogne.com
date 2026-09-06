@@ -1,7 +1,6 @@
 "use client";
 
-import Link from "next/link";
-import Icon from "@/components/Icon";
+import BackButton from "@/components/BackButton";
 import WorkCard from "@/components/WorkCard";
 import { workItems } from "@/data/work";
 
@@ -9,13 +8,7 @@ export default function WorkPage() {
   return (
     <div className="flex flex-col items-start gap-4 px-4">
       <div className="flex w-full items-start gap-3">
-        <Link
-          href="/"
-          aria-label="Back"
-          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-text-primary transition-colors hover:bg-bg-tertiary"
-        >
-          <Icon name="arrow_back" aria-hidden size={36} />
-        </Link>
+        <BackButton href="/" />
         <h1 className="flex-1 font-display text-5xl font-normal text-text-primary">
           Work
         </h1>

@@ -1,5 +1,4 @@
-import Link from "next/link";
-import Icon from "@/components/Icon";
+import BackButton from "@/components/BackButton";
 import { notFound } from "next/navigation";
 import { workItems } from "@/data/work";
 import { workContent } from "@/data/work-content";
@@ -25,13 +24,7 @@ export default async function WorkDetailPage({
   return (
     <div className="flex flex-col items-start gap-4 px-4">
       <div className="flex w-full items-start gap-3">
-        <Link
-          href="/work"
-          aria-label="Back"
-          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-text-primary transition-colors hover:bg-bg-tertiary"
-        >
-          <Icon name="arrow_back" aria-hidden size={36} />
-        </Link>
+        <BackButton href="/work" />
         <h1 className="flex-1 font-display text-5xl font-normal text-text-primary">
           {item.title}
         </h1>
