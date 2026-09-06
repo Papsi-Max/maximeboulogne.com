@@ -7,6 +7,24 @@ export const competitorXpContent: WorkContentBlock[] = [
   },
   {
     type: "sectionHeading",
+    text: "My role",
+  },
+  {
+    type: "list",
+    items: [
+      "End-to-end ownership of the UX redesign,",
+      "field research and understanding of the real task,",
+      "systemic simplification and experience architecture,",
+      "design of the modules and cross-cutting journeys,",
+      "close collaboration with business, product, data, and tech,",
+      "building an experience model exportable to the rest of the platform.",
+    ],
+  },
+  {
+    type: "divider",
+  },
+  {
+    type: "sectionHeading",
     text: "Context",
   },
   {
@@ -150,20 +168,5 @@ export const competitorXpContent: WorkContentBlock[] = [
   {
     type: "paragraph",
     text: "This shift laid the groundwork for a more legible, scalable, business-oriented platform, now used as a reference for other strategic initiatives.",
-  },
-  {
-    type: "sectionHeading",
-    text: "My role",
-  },
-  {
-    type: "list",
-    items: [
-      "End-to-end ownership of the UX redesign,",
-      "field research and understanding of the real task,",
-      "systemic simplification and experience architecture,",
-      "design of the modules and cross-cutting journeys,",
-      "close collaboration with business, product, data, and tech,",
-      "building an experience model exportable to the rest of the platform.",
-    ],
   },
 ];

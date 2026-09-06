@@ -1,5 +1,6 @@
 export type WorkContentLeaf =
   | { type: "paragraph"; text: string }
+  | { type: "divider" }
   | { type: "quote"; text: string; attribution?: string }
   | {
       type: "image";

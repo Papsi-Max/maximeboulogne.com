@@ -7,6 +7,24 @@ export const storeXpContent: WorkContentBlock[] = [
   },
   {
     type: "sectionHeading",
+    text: "My role, summarized",
+  },
+  {
+    type: "list",
+    items: [
+      "UX Designer selected for these strategic hackdays,",
+      "AI lens representative within the team,",
+      "designer of the smart, contextual search,",
+      "cross-functional experience architect,",
+      "facilitator between designers, business, product, and data,",
+      "co-author of a vision laying the groundwork for a platform of experiences.",
+    ],
+  },
+  {
+    type: "divider",
+  },
+  {
+    type: "sectionHeading",
     text: "Context",
   },
   {
@@ -108,20 +126,5 @@ export const storeXpContent: WorkContentBlock[] = [
   {
     type: "paragraph",
     text: "This vision introduces a paradigm shift: we're no longer designing products, but experiences — orchestrated, contextualized modules that share a common language and work together.\n\nIt sets off a deeper shift within the ADEO ecosystem: moving from a \"tool\" logic to an experience-first logic, more coherent, more legible, and better suited to staff's real-world tasks.",
-  },
-  {
-    type: "sectionHeading",
-    text: "My role, summarized",
-  },
-  {
-    type: "list",
-    items: [
-      "UX Designer selected for these strategic hackdays,",
-      "AI lens representative within the team,",
-      "designer of the smart, contextual search,",
-      "cross-functional experience architect,",
-      "facilitator between designers, business, product, and data,",
-      "co-author of a vision laying the groundwork for a platform of experiences.",
-    ],
   },
 ];

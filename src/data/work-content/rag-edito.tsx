@@ -5,6 +5,23 @@ export const ragEditoContent: WorkContentBlock[] = [
     type: "paragraph",
     text: "TL;DR: The AI Program had identified that nearly 5% of queries typed into LeroyMerlin.fr's search bar were natural-language DIY questions. I joined this project to design the RAG Edito, an experience that turns these queries into actionable answers paired with the right products. This work became the learning ground from which I co-wrote the group's AI UX guidelines, then coached other designers on applying them, with measurable results at platform scale.",
   },
+  {
+    type: "sectionHeading",
+    text: "My role",
+  },
+  {
+    type: "list",
+    items: [
+      "Designed the RAG Edito's experience (answer structure, sourcing, product pairing)",
+      "Ongoing collaboration with AI engineering on relevance, fallbacks, and interface generation",
+      "Ran and analyzed user testing on generative features",
+      "Co-wrote the group's AI UX guidelines",
+      "Coaching and design reviews for designers applying these standards",
+    ],
+  },
+  {
+    type: "divider",
+  },
   { type: "sectionHeading", text: "Context" },
   {
     type: "paragraph",
@@ -201,19 +218,5 @@ export const ragEditoContent: WorkContentBlock[] = [
     blurDataURL:
       "data:image/webp;base64,UklGRi4AAABXRUJQVlA4ICIAAAAwAQCdASoKAAcABUB8JaQAA3AA/vBm8xfPTWUnIRdIAAAA",
     fullWidth: true,
-  },
-  {
-    type: "sectionHeading",
-    text: "My role",
-  },
-  {
-    type: "list",
-    items: [
-      "Designed the RAG Edito's experience (answer structure, sourcing, product pairing)",
-      "Ongoing collaboration with AI engineering on relevance, fallbacks, and interface generation",
-      "Ran and analyzed user testing on generative features",
-      "Co-wrote the group's AI UX guidelines",
-      "Coaching and design reviews for designers applying these standards",
-    ],
   },
 ];

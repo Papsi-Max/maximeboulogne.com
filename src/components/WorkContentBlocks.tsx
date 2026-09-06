@@ -26,7 +26,7 @@ const COL_SPAN: Record<WorkContentColumn["cols"], string> = {
 // elements that start a new idea get more air. Spacing follows an 8pt
 // scale and varies by the *relationship* between consecutive blocks
 // rather than a single flat gap everywhere.
-type BlockCategory = "text" | "visual" | "heading";
+type BlockCategory = "text" | "visual" | "heading" | "divider";
 
 function categorize(type: WorkContentBlock["type"]): BlockCategory {
   switch (type) {
@@ -41,6 +41,8 @@ function categorize(type: WorkContentBlock["type"]): BlockCategory {
     case "accordionImage":
     case "row":
       return "visual";
+    case "divider":
+      return "divider";
     default:
       return "text";
   }
@@ -51,6 +53,7 @@ function spacingBefore(
   curr: BlockCategory
 ): string {
   if (prev === null) return "";
+  if (curr === "divider" || prev === "divider") return "mt-16"; // breathing room on both sides of a hard break
   if (curr === "heading") return "mt-16"; // new idea starting — most separation
   if (prev === "heading") return "mt-6"; // heading hugs the content it introduces
   if (curr === "visual" || prev === "visual") return "mt-12"; // media reads as its own unit
@@ -117,6 +120,9 @@ function renderLeaf(block: WorkContentLeaf, i: number, bleed: boolean) {
           {block.text}
         </p>
       );
+
+    case "divider":
+      return <div key={i} className="h-px w-full rounded-full bg-border-primary" />;
 
     case "quote":
       return (
