@@ -18,7 +18,7 @@ export const livinfranceAccommodationProcessContent: WorkContentBlock[] = [
   {
     type: "screenPair",
     desktop: {
-      src: "/images/work/logement-etudiant/01-listing-desktop.webp",
+      src: "/images/work/livinfrance-accommodation-process/01-listing-desktop.webp",
       alt: "Listings page with interactive map, desktop",
       width: 1600,
       height: 1138,
@@ -26,7 +26,7 @@ export const livinfranceAccommodationProcessContent: WorkContentBlock[] = [
         "data:image/webp;base64,UklGRmQAAABXRUJQVlA4WAoAAAAQAAAACQAABgAAQUxQSBcAAAABF9D/iAgoaBsFuhfwbxoLEf1PIviEAwBWUDggJgAAALABAJ0BKgoABwAFQHwlpAAC510++AAA/uuFY+nFiBwZYnltoaAA",
     },
     mobile: {
-      src: "/images/work/logement-etudiant/02-listing-mobile.webp",
+      src: "/images/work/livinfrance-accommodation-process/02-listing-mobile.webp",
       alt: "Listings page, mobile version",
       width: 766,
       height: 1350,
@@ -38,7 +38,7 @@ export const livinfranceAccommodationProcessContent: WorkContentBlock[] = [
   {
     type: "screenPair",
     desktop: {
-      src: "/images/work/logement-etudiant/03-detail-desktop.webp",
+      src: "/images/work/livinfrance-accommodation-process/03-detail-desktop.webp",
       alt: "Listing detail with commute map, desktop",
       width: 1600,
       height: 1138,
@@ -46,7 +46,7 @@ export const livinfranceAccommodationProcessContent: WorkContentBlock[] = [
         "data:image/webp;base64,UklGRmIAAABXRUJQVlA4WAoAAAAQAAAACQAABgAAQUxQSBcAAAABF9D/iAgoaBsFuhfwbxoLEf1PIviEAwBWUDggJAAAALABAJ0BKgoABwAFQHwlpAADF/90tAAA/u3Xu2QMg4wWEAAAAA==",
     },
     mobile: {
-      src: "/images/work/logement-etudiant/04-detail-mobile.webp",
+      src: "/images/work/livinfrance-accommodation-process/04-detail-mobile.webp",
       alt: "Listing detail, mobile version",
       width: 766,
       height: 1350,
@@ -70,7 +70,7 @@ export const livinfranceAccommodationProcessContent: WorkContentBlock[] = [
   {
     type: "screenPair",
     desktop: {
-      src: "/images/work/logement-etudiant/05-payment-schedule-desktop.webp",
+      src: "/images/work/livinfrance-accommodation-process/05-payment-schedule-desktop.webp",
       alt: "Upcoming payment schedule detail, desktop",
       width: 1600,
       height: 1138,
@@ -78,7 +78,7 @@ export const livinfranceAccommodationProcessContent: WorkContentBlock[] = [
         "data:image/webp;base64,UklGRmoAAABXRUJQVlA4WAoAAAAQAAAACQAABgAAQUxQSBcAAAABF9D/iAgoaBsFuhfwbxoLEf1PIviEAwBWUDggLAAAANABAJ0BKgoABwAFQHwllAAC6yjfT1EIAP7v0hhnM1UQXVQv1FA/yKqhAAAA",
     },
     mobile: {
-      src: "/images/work/logement-etudiant/06-payment-detail-mobile.webp",
+      src: "/images/work/livinfrance-accommodation-process/06-payment-detail-mobile.webp",
       alt: "Payments detail, mobile version",
       width: 766,
       height: 1350,
@@ -98,7 +98,7 @@ export const livinfranceAccommodationProcessContent: WorkContentBlock[] = [
   {
     type: "screenPair",
     desktop: {
-      src: "/images/work/logement-etudiant/07-information-form-desktop.webp",
+      src: "/images/work/livinfrance-accommodation-process/07-information-form-desktop.webp",
       alt: "Simplified personal information form, desktop",
       width: 1600,
       height: 1138,
@@ -106,7 +106,7 @@ export const livinfranceAccommodationProcessContent: WorkContentBlock[] = [
         "data:image/webp;base64,UklGRmgAAABXRUJQVlA4WAoAAAAQAAAACQAABgAAQUxQSBcAAAABF9D/iAgoaBsFuhfwbxoLEf1PIviEAwBWUDggKgAAANABAJ0BKgoABwAFQHwllAAC6yjfLIwAAP7v0hhnM1UQXVQvad35FVQgAA==",
     },
     mobile: {
-      src: "/images/work/logement-etudiant/08-information-form-mobile.webp",
+      src: "/images/work/livinfrance-accommodation-process/08-information-form-mobile.webp",
       alt: "Information form, mobile version",
       width: 766,
       height: 1350,
@@ -130,7 +130,7 @@ export const livinfranceAccommodationProcessContent: WorkContentBlock[] = [
   {
     type: "screenPair",
     desktop: {
-      src: "/images/work/logement-etudiant/09-payment-desktop.webp",
+      src: "/images/work/livinfrance-accommodation-process/09-payment-desktop.webp",
       alt: "Final payment step, desktop",
       width: 1600,
       height: 1138,
@@ -138,7 +138,7 @@ export const livinfranceAccommodationProcessContent: WorkContentBlock[] = [
         "data:image/webp;base64,UklGRmoAAABXRUJQVlA4WAoAAAAQAAAACQAABgAAQUxQSBcAAAABF9D/iAgoaBsFuhfwbxoLEf1PIviEAwBWUDggLAAAALABAJ0BKgoABwAFQHwllAAC6ygcywAA/u/SGGczVRBE+dcLCf2LtsQRCAAA",
     },
     mobile: {
-      src: "/images/work/logement-etudiant/10-payment-mobile.webp",
+      src: "/images/work/livinfrance-accommodation-process/10-payment-mobile.webp",
       alt: "Payment step, mobile version",
       width: 766,
       height: 1350,
@@ -151,7 +151,7 @@ export const livinfranceAccommodationProcessContent: WorkContentBlock[] = [
     type: "accordionImage",
     title: "See the full product journey",
     note: "This funnel is part of a broader flow — expand to see the entire booking journey as it worked at the end of the project",
-    src: "/images/work/logement-etudiant/11-full-journey.webp",
+    src: "/images/work/livinfrance-accommodation-process/11-full-journey.webp",
     alt: "Full booking journey diagram, from landing to confirmation",
     width: 1400,
     height: 1880,

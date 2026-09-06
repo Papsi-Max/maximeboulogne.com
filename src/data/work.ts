@@ -47,7 +47,7 @@ export const workItems: WorkItem[] = [
   {
     slug: "livinfrance-accommodation-process",
     title: "Student housing search and booking",
-    image: "/images/work/logement-etudiant-cover.webp",
+    image: "/images/work/livinfrance-accommodation-process-cover.webp",
     imageAlt: "LivinFrance search results page",
     imageBlurDataURL:
       "data:image/webp;base64,UklGRoQAAABXRUJQVlA4WAoAAAAQAAAACQAABgAAQUxQSC8AAAABR6CgbRuGP9Gi+BuJiMg8KEJRI0mxoNrleCNhPYADDCGBiP7HOPs+EFggUWCG+gBWUDggLgAAANABAJ0BKgoABwAFQHwliALsAPRyXw4AAP7uDtxEbmAb8Dc31oB/xitlyo8AAAA=",
