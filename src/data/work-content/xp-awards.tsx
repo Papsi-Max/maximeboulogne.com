@@ -95,10 +95,10 @@ export const xpAwardsContent: WorkContentBlock[] = [
     type: "image",
     src: "/images/work/xp-awards/01-before-after-competitor-experience.webp",
     alt: "Before/after diagram: seven scattered tools with no shared logic, taking 8 minutes per lookup, versus the unified Competitor Experience — competitors, alignment, monitoring, and AI recommendations in one place, under a minute per lookup",
-    width: 1600,
-    height: 847,
+    width: 2896,
+    height: 1128,
     blurDataURL:
-      "data:image/webp;base64,UklGRnwAAABXRUJQVlA4WAoAAAAQAAAACQAABAAAQUxQSDMAAAAAKnFvYARUcWxuHGz//+oSzf/8/0tq//rkG8r/9f1JbP//6hHO//z/SzqYk4EHcZeQkycAVlA4ICIAAAAwAQCdASoKAAUABUB8JYwAA3AA/u9st0CSBIf9mH+/t3AA",
+      "data:image/webp;base64,UklGRnIAAABXRUJQVlA4WAoAAAAQAAAACAAAAwAAQUxQSCUAAAAA/v3/1ArS//39//3/1yDX//3///3/1hTW//3//v3/1ArS//39AFZQOCAmAAAAsAEAnQEqCQAEAAVAfCWcAAJcogdpAAD+z0mxn4JF2PELw9q8gAA=",
   },
   {
     type: "sectionHeading",
