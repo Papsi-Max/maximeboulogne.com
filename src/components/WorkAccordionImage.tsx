@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useId, useState } from "react";
 import Image from "next/image";
 import Icon from "@/components/Icon";
 
@@ -22,6 +22,7 @@ export default function WorkAccordionImage({
   blurDataURL: string;
 }) {
   const [open, setOpen] = useState(false);
+  const panelId = useId();
 
   return (
     <div className="flex w-full flex-col items-start gap-4">
@@ -29,6 +30,7 @@ export default function WorkAccordionImage({
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
+        aria-controls={panelId}
         className="flex w-full items-start justify-between gap-4 rounded-2xl bg-bg-secondary px-6 py-4 text-left transition-colors hover:bg-[#333333]"
       >
         <div className="flex flex-col items-start gap-1">
@@ -52,7 +54,7 @@ export default function WorkAccordionImage({
       </button>
 
       {open && (
-        <div className="flex w-full justify-center">
+        <div id={panelId} className="flex w-full justify-center">
           <Image
             src={src}
             alt={alt}

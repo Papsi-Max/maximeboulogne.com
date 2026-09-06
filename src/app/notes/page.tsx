@@ -38,32 +38,35 @@ export default function NotesPage() {
         </h1>
       </div>
 
-      <div className="flex w-full flex-col items-start gap-4">
+      <ul className="flex w-full flex-col items-start gap-4">
         {groups.map((group) => (
-          <div
+          <li
             key={group[0].slug}
             className="flex w-full flex-col items-start gap-0.5"
           >
-            {group.map((item) => (
-              <Link
-                key={item.slug}
-                href={`/notes/${item.slug}`}
-                className="group flex w-full items-center gap-1.5 rounded-full px-4 py-1.5 text-text-secondary transition-colors hover:bg-bg-tertiary hover:text-text-primary"
-              >
-                <span className="min-w-0 flex-1 truncate font-body text-lg">
-                  {item.title}
-                </span>
-                <span className="shrink-0 font-body text-sm">
-                  {formatNoteDate(item.date)}
-                </span>
-              </Link>
-            ))}
+            <ul className="flex w-full flex-col items-start gap-0.5">
+              {group.map((item) => (
+                <li key={item.slug} className="w-full">
+                  <Link
+                    href={`/notes/${item.slug}`}
+                    className="group flex w-full items-center gap-1.5 rounded-full px-4 py-1.5 text-text-secondary transition-colors hover:bg-bg-tertiary hover:text-text-primary"
+                  >
+                    <span className="min-w-0 flex-1 truncate font-body text-lg">
+                      {item.title}
+                    </span>
+                    <span className="shrink-0 font-body text-sm">
+                      {formatNoteDate(item.date)}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
             <div className="w-full px-4">
               <div className="h-px w-full rounded-full bg-border-primary" />
             </div>
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 }

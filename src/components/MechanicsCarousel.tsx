@@ -272,6 +272,7 @@ export default function MechanicsCarousel() {
           ref={trackRef}
           tabIndex={0}
           data-cursor="drag"
+          aria-label="Mechanics named by designers in the workshop"
           onKeyDown={handleKeyDown}
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
