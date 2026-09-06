@@ -1,6 +1,6 @@
 import type { WorkContentBlock } from "./types";
 
-export const xpAwardsContent: WorkContentBlock[] = [
+export const competitorXpContent: WorkContentBlock[] = [
   {
     type: "paragraph",
     text: "TL;DR: Smatch sat at the center of a fragmented ecosystem: seven different tools, scattered data, hard-to-follow journeys, and a heavy mental load for pricing managers.\n\nI led the UX redesign to create a unified Competitor Experience, capable of aligning information across multiple sources, clarifying decisions, and considerably improving the fluidity of the day-to-day task.\n\nResult: 63,200+ hours saved, a SUS score of 81, and the foundations of a modular experience model reusable across the platform.",

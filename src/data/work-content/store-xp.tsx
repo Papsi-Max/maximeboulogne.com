@@ -1,6 +1,6 @@
 import type { WorkContentBlock } from "./types";
 
-export const leroyMerlinContent: WorkContentBlock[] = [
+export const storeXpContent: WorkContentBlock[] = [
   {
     type: "paragraph",
     text: "TL;DR: 48 hours, a small team, and a mandate to decide rather than explore.\n\nIn 2025, ADEO gathered a small team of designers for two days of hackdays on the future of tools for in-store staff. I contributed as the AI UX representative, tasked with exploring how artificial intelligence could genuinely enrich the experience. We designed a unified, modular, scalable vision, conceived as a single intelligent access point for daily store operations. This work set off a deeper shift: moving from a set of isolated tools to a platform of experiences.",

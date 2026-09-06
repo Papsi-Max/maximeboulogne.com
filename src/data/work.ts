@@ -23,7 +23,7 @@ export const workItems: WorkItem[] = [
     readTime: "5-min read",
   },
   {
-    slug: "leroy-merlin",
+    slug: "store-xp",
     title: "Envisioning the future of LEROY MERLIN's in-store experience",
     image: "/images/work/leroy-merlin-cover.webp",
     imageAlt: "Leroy Merlin research component",
@@ -34,7 +34,7 @@ export const workItems: WorkItem[] = [
     readTime: "4-min read",
   },
   {
-    slug: "xp-awards",
+    slug: "competitor-xp",
     title: "Turning competitor analysis into sharper pricing decisions",
     image: "/images/work/xp-awards-cover.webp",
     imageAlt: "ADEO Experience Awards title card",
@@ -56,7 +56,7 @@ export const workItems: WorkItem[] = [
     readTime: "3-min read",
   },
   {
-    slug: "atelier-june",
+    slug: "atelier-june-murals-showcase",
     title: "Giving a digital presence to a craft business",
     image: "/images/work/atelier-june-cover.webp",
     imageAlt: "Atelier June landing page",
@@ -67,7 +67,7 @@ export const workItems: WorkItem[] = [
     readTime: "1-min read",
   },
   {
-    slug: "teampify",
+    slug: "teampify-team-builder",
     title: "Designing the UX of a team-building tool for project managers",
     image: "/images/work/teampify-cover.webp",
     imageAlt: "Teampify project dashboard",
