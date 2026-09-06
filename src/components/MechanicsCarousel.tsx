@@ -229,6 +229,16 @@ export default function MechanicsCarousel() {
     // No snapping: wherever the drag lands is the new position.
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLUListElement>) => {
+    if (e.key === "ArrowRight") {
+      e.preventDefault();
+      step(1);
+    } else if (e.key === "ArrowLeft") {
+      e.preventDefault();
+      step(-1);
+    }
+  };
+
   return (
     <div
       role="region"
@@ -260,7 +270,9 @@ export default function MechanicsCarousel() {
       <div className="w-full overflow-visible">
         <ul
           ref={trackRef}
+          tabIndex={0}
           data-cursor="drag"
+          onKeyDown={handleKeyDown}
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
           onPointerUp={endDrag}
@@ -269,7 +281,7 @@ export default function MechanicsCarousel() {
             transform: `translateX(-${offset}px)`,
             touchAction: "pan-y",
           }}
-          className={`flex list-none select-none gap-4 ease-out ${
+          className={`flex w-max list-none select-none gap-4 ease-out ${
             isDragging ? "cursor-grabbing" : "cursor-grab transition-transform duration-300"
           }`}
         >
