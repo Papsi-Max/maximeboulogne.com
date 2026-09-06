@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useMotionValue, useSpring } from "framer-motion";
 
-type CursorKind = "default" | "hover" | "smile" | "play" | "disabled";
+type CursorKind = "default" | "hover" | "smile" | "play" | "disabled" | "drag";
 
 const SIZE: Record<CursorKind, number> = {
   default: 40,
@@ -11,12 +12,27 @@ const SIZE: Record<CursorKind, number> = {
   smile: 80,
   play: 80,
   disabled: 40,
+  drag: 80,
 };
 
 const BASE_SIZE = 80;
+// Pressing on "hover" (80px) shrinks it to 60px; every other kind scales
+// by that same ratio. "disabled" never reacts to press — it's not
+// interactive.
+const PRESSED_SCALE = 60 / 80;
+
+function kindFromTarget(eventTarget: EventTarget | null): CursorKind {
+  const target = (eventTarget as HTMLElement)?.closest<HTMLElement>(
+    "[data-cursor], a, button"
+  );
+  const dataCursor = target?.dataset.cursor as CursorKind | undefined;
+  return dataCursor ?? (target ? "hover" : "default");
+}
 
 export default function CustomCursor() {
+  const pathname = usePathname();
   const [kind, setKind] = useState<CursorKind>("default");
+  const [pressed, setPressed] = useState(false);
   const [isTouch] = useState(
     () =>
       typeof window !== "undefined" &&
@@ -40,26 +56,91 @@ export default function CustomCursor() {
     return () => document.body.classList.remove("custom-cursor-active");
   }, [isTouch]);
 
+  // Re-check whatever's currently under the cursor's last known position,
+  // for whenever the DOM changes without the mouse moving.
+  const recheckKindAtCursor = () => {
+    const el = document.elementFromPoint(x.get(), y.get());
+    setKind(kindFromTarget(el));
+  };
+
+  // A route change swaps the DOM under a cursor that hasn't moved, so the
+  // kind picked up on the old page (hover, drag, dragging…) would otherwise
+  // stick until the next mousemove. Re-check what's now under the cursor
+  // once the new page has painted.
+  useEffect(() => {
+    const id = requestAnimationFrame(() => {
+      recheckKindAtCursor();
+      setPressed(false);
+    });
+    return () => cancelAnimationFrame(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname]);
+
+  // A button can flip to/from disabled (attribute change, or the whole
+  // element getting swapped) while the cursor sits still on top of it —
+  // no mousemove fires to trigger a recheck, so the stale kind would
+  // otherwise linger. Watch the DOM for that and recheck.
+  useEffect(() => {
+    let frame: number | null = null;
+    const scheduleRecheck = () => {
+      if (frame !== null) return;
+      frame = requestAnimationFrame(() => {
+        frame = null;
+        recheckKindAtCursor();
+      });
+    };
+
+    const observer = new MutationObserver(scheduleRecheck);
+    observer.observe(document.body, {
+      subtree: true,
+      childList: true,
+      attributes: true,
+      attributeFilter: ["disabled", "aria-disabled", "data-cursor"],
+    });
+
+    return () => {
+      observer.disconnect();
+      if (frame !== null) cancelAnimationFrame(frame);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   useEffect(() => {
     const onMove = (e: MouseEvent) => {
       x.set(e.clientX);
       y.set(e.clientY);
       setVisible(true);
+      setKind(kindFromTarget(e.target));
+    };
 
-      const target = (e.target as HTMLElement)?.closest<HTMLElement>(
-        "[data-cursor], a, button"
-      );
-      const dataCursor = target?.dataset.cursor as CursorKind | undefined;
-      setKind(dataCursor ?? (target ? "hover" : "default"));
+    // React to press/release right away rather than waiting for the next
+    // mousemove, so the shrink starts exactly at the click.
+    const onDown = (e: MouseEvent) => {
+      setKind(kindFromTarget(e.target));
+      setPressed(true);
+    };
+    const onUp = (e: MouseEvent) => {
+      setKind(kindFromTarget(e.target));
+      setPressed(false);
     };
 
     window.addEventListener("mousemove", onMove);
-    return () => window.removeEventListener("mousemove", onMove);
+    window.addEventListener("mousedown", onDown);
+    window.addEventListener("mouseup", onUp);
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("mousedown", onDown);
+      window.removeEventListener("mouseup", onUp);
+    };
   }, [x, y]);
 
   if (isTouch) return null;
 
-  const scale = SIZE[kind] / BASE_SIZE;
+  const isPressed = pressed && kind !== "disabled";
+  const scale = (SIZE[kind] / BASE_SIZE) * (isPressed ? PRESSED_SCALE : 1);
+  const scaleTransition = isPressed
+    ? { type: "tween" as const, duration: 0.2, ease: "easeOut" as const }
+    : { type: "spring" as const, damping: 25, stiffness: 350 };
 
   return (
     <motion.div
@@ -75,7 +156,7 @@ export default function CustomCursor() {
         clipPath: "circle(50%)",
       }}
       animate={{ scale, opacity: visible ? 1 : 0 }}
-      transition={{ type: "spring", damping: 25, stiffness: 350 }}
+      transition={scaleTransition}
     >
       <AnimatePresence>
         {kind === "smile" && (
@@ -112,6 +193,18 @@ export default function CustomCursor() {
             className="material-symbols-rounded absolute inset-0 m-auto text-text-accent"
           >
             block
+          </motion.span>
+        )}
+        {kind === "drag" && (
+          <motion.span
+            key="drag"
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0, opacity: 0 }}
+            transition={{ type: "spring", damping: 25, stiffness: 350 }}
+            className="material-symbols-rounded absolute inset-0 m-auto text-text-accent"
+          >
+            arrow_range
           </motion.span>
         )}
       </AnimatePresence>
