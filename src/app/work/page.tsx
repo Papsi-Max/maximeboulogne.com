@@ -21,11 +21,13 @@ export default function WorkPage() {
         </h1>
       </div>
 
-      <div className="grid w-full grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-1.5">
+      <ul className="grid w-full grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-1.5">
         {workItems.map((item, index) => (
-          <WorkCard key={item.slug} item={item} priority={index < 2} />
+          <li key={item.slug} className="flex h-full">
+            <WorkCard item={item} priority={index < 2} />
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 }

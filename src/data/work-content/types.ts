@@ -20,6 +20,10 @@ export type WorkContentLeaf =
       width: number;
       height: number;
       poster?: string;
+      /** Tiny base64 blur-up shown behind the video until its poster (or
+       * first frame) has painted — mirrors the `image` block's blurDataURL.
+       * Only meaningful alongside `poster`. */
+      posterBlurDataURL?: string;
       /** Accessible label describing what the video shows — required since
        * the clip is silent and carries no captions to convey that. */
       ariaLabel: string;

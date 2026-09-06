@@ -10,6 +10,7 @@ type Mechanic = {
   game: string;
   needs: string[];
   image: string;
+  imageBlurDataURL: string;
 };
 
 const mechanics: Mechanic[] = [
@@ -23,6 +24,8 @@ const mechanics: Mechanic[] = [
       "Empowerment of Creativity & Feedback",
     ],
     image: "/images/notes/a-workshop-on-video-game-mechanics/turn-based-battle.png",
+    imageBlurDataURL:
+      "data:image/webp;base64,UklGRoIAAABXRUJQVlA4WAoAAAAQAAAACQAABQAAQUxQSCgAAAABP0CQbeOPeoivGhER1BwUtW0DRWUwJiPTIRn/z4Uhov8pIHlimLLdVlA4IDQAAACwAQCdASoKAAYABUB8JbACdADZkQoAAMsIUREaoQ0ShvQnNK0Mg+HjZ+OVL7PL+OZ18VwA",
   },
   {
     id: "skillbar",
@@ -30,6 +33,8 @@ const mechanics: Mechanic[] = [
     game: "World of Warcraft",
     needs: ["Development & Accomplishment", "Ownership & Possession"],
     image: "/images/notes/a-workshop-on-video-game-mechanics/skillbar.png",
+    imageBlurDataURL:
+      "data:image/webp;base64,UklGRnoAAABXRUJQVlA4WAoAAAAQAAAACQAABQAAQUxQSCgAAAABP0CQbeOPeoivGhER1BwUtW0DRWUwJiPTIRn/z4Uhov8pIHlimLLdVlA4ICwAAACwAQCdASoKAAYABUB8JYwAAmcmUBwAAP6e6ZiYN7zKhFr6eqHb8DSYHwAAAA==",
   },
   {
     id: "synchronized-skills",
@@ -42,6 +47,8 @@ const mechanics: Mechanic[] = [
       "Scarcity & Impatience",
     ],
     image: "/images/notes/a-workshop-on-video-game-mechanics/synchronized-skills.png",
+    imageBlurDataURL:
+      "data:image/webp;base64,UklGRnYAAABXRUJQVlA4WAoAAAAQAAAACQAABQAAQUxQSCgAAAABP0CQbeOPeoivGhER1BwUtW0DRWUwJiPTIRn/z4Uhov8pIHlimLLdVlA4ICgAAACwAQCdASoKAAYABUB8JYwAAudlDw5oAP7ukVsDycoXY/FyU9MuAAAA",
   },
   {
     id: "random-card",
@@ -54,6 +61,8 @@ const mechanics: Mechanic[] = [
       "Unpredictability & Curiosity",
     ],
     image: "/images/notes/a-workshop-on-video-game-mechanics/random-card.png",
+    imageBlurDataURL:
+      "data:image/webp;base64,UklGRn4AAABXRUJQVlA4WAoAAAAQAAAACQAABQAAQUxQSCcAAAABPyAQSPxB12iNiIingaK2baCoDMZkZDok4/+5MET0PwUkTwxTthsAVlA4IDAAAADQAQCdASoKAAYABUB8JYgAAxew3YyuAAD85T2zyCDcHf6VahqsPiWXUhRY/J38AAA=",
   },
   {
     id: "pick-3",
@@ -66,6 +75,8 @@ const mechanics: Mechanic[] = [
       "Loss & Avoidance",
     ],
     image: "/images/notes/a-workshop-on-video-game-mechanics/pick-3.png",
+    imageBlurDataURL:
+      "data:image/webp;base64,UklGRmwAAABXRUJQVlA4WAoAAAAQAAAACQAABQAAQUxQSCgAAAABP0CQbeOPeoivGhER1BwUtW0DRWUwJiPTIRn/z4Uhov8pIHlimLLdVlA4IB4AAAAwAQCdASoKAAYABUB8JaQAA3AA/vC05awIhNFGAAA=",
   },
   {
     id: "mystery-loot",
@@ -77,6 +88,8 @@ const mechanics: Mechanic[] = [
       "Unpredictability & Curiosity",
     ],
     image: "/images/notes/a-workshop-on-video-game-mechanics/mystery-loot.png",
+    imageBlurDataURL:
+      "data:image/webp;base64,UklGRoQAAABXRUJQVlA4WAoAAAAQAAAACQAABQAAQUxQSCgAAAABP0CQbeOPeoivGhER1BwUtW0DRWUwJiPTIRn/z4Uhov8pIHlimLLdVlA4IDYAAADwAQCdASoKAAYABUB8JbACdAEWtVkNdQAA8nKb6xijQCbmD3COZIpYD0Qc4OeMJ3ENnwcboAA=",
   },
   {
     id: "furnishment-list",
@@ -88,6 +101,8 @@ const mechanics: Mechanic[] = [
       "Development & Accomplishment",
     ],
     image: "/images/notes/a-workshop-on-video-game-mechanics/furnishment-list.png",
+    imageBlurDataURL:
+      "data:image/webp;base64,UklGRngAAABXRUJQVlA4WAoAAAAQAAAACQAABQAAQUxQSCgAAAABP0CQbeOPeoivGhER1BwUtW0DRWUwJiPTIRn/z4Uhov8pIHlimLLdVlA4ICoAAACwAQCdASoKAAYABUB8JQAAS0Gfp4oAAP4uInOgh2hZ87A1yleBGyFiBAA=",
   },
 ];
 
@@ -104,6 +119,8 @@ function MechanicCard({ mechanic, index }: { mechanic: Mechanic; index: number }
           alt={`Screenshot of the ${mechanic.name} mechanic in ${mechanic.game}`}
           fill
           draggable={false}
+          placeholder="blur"
+          blurDataURL={mechanic.imageBlurDataURL}
           sizes="(min-width: 640px) 280px, 260px"
           className="object-cover"
         />
@@ -272,6 +289,7 @@ export default function MechanicsCarousel() {
           ref={trackRef}
           tabIndex={0}
           data-cursor="drag"
+          aria-label="Mechanics named by designers in the workshop"
           onKeyDown={handleKeyDown}
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
