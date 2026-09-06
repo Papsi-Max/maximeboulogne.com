@@ -98,7 +98,7 @@ export const storeXpContent: WorkContentBlock[] = [
   },
   {
     type: "image",
-    src: "/images/work/leroy-merlin/01-experience-orchestree-vision.webp",
+    src: "/images/work/store-xp/01-experience-orchestree-vision.webp",
     alt: "Unified search widget for in-store staff, with action shortcuts and recent history",
     width: 656,
     height: 710,

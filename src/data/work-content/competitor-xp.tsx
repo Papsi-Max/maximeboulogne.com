@@ -93,7 +93,7 @@ export const competitorXpContent: WorkContentBlock[] = [
   },
   {
     type: "image",
-    src: "/images/work/xp-awards/01-before-after-competitor-experience.webp",
+    src: "/images/work/competitor-xp/01-before-after-competitor-experience.webp",
     alt: "Before/after diagram: seven scattered tools with no shared logic, taking 8 minutes per lookup, versus the unified Competitor Experience — competitors, alignment, monitoring, and AI recommendations in one place, under a minute per lookup",
     width: 2896,
     height: 1128,
