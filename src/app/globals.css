@@ -125,6 +125,10 @@ a[data-cursor="smile"]:focus-visible {
   border-radius: 12px;
 }
 
+button.rounded-full:focus-visible {
+  border-radius: 1000px;
+}
+
 a.work-card:focus-visible {
   border-radius: 24px;
 }
