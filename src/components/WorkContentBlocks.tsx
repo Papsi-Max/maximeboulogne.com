@@ -223,6 +223,7 @@ function renderLeaf(block: WorkContentLeaf, i: number, bleed: boolean) {
             <WorkVideoPlayer
               src={block.src}
               poster={block.poster}
+              posterBlurDataURL={block.posterBlurDataURL}
               width={block.width}
               height={block.height}
               ariaLabel={block.ariaLabel}

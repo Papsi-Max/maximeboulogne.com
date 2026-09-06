@@ -6,6 +6,10 @@ import Icon from "@/components/Icon";
 type WorkVideoPlayerProps = {
   src: string;
   poster?: string;
+  /** Tiny base64 blur-up shown behind the video until its poster (or first
+   * frame) has painted over it — same idea as next/image's blurDataURL,
+   * applied by hand since a plain <video> has no such placeholder built in. */
+  posterBlurDataURL?: string;
   width: number;
   height: number;
   /** Accessible label describing what the video shows — required since the
@@ -18,6 +22,7 @@ type WorkVideoPlayerProps = {
 export default function WorkVideoPlayer({
   src,
   poster,
+  posterBlurDataURL,
   width,
   height,
   ariaLabel,
@@ -160,7 +165,16 @@ export default function WorkVideoPlayer({
       role="region"
       aria-label={ariaLabel}
       className={`relative w-full overflow-hidden rounded-2xl bg-bg-secondary ${className}`}
-      style={style}
+      style={
+        posterBlurDataURL
+          ? {
+              ...style,
+              backgroundImage: `url(${posterBlurDataURL})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }
+          : style
+      }
     >
       {/* Silent by design: this clip has no audio track, so there's no mute
           control — muted is required for autoplay and stays on permanently. */}

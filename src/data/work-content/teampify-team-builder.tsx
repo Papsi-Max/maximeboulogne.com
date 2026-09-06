@@ -12,6 +12,9 @@ export const teampifyContent: WorkContentBlock[] = [
   {
     type: "video",
     src: "/videos/work/teampify-team-builder/teampify-team-builder-video.mp4",
+    poster: "/images/work/teampify-team-builder-poster.webp",
+    posterBlurDataURL:
+      "data:image/webp;base64,UklGRkQAAABXRUJQVlA4IDgAAAAQAgCdASoKAAcABUB8JbAAAvagCnHzcXsAAP7np0FhvgQ7wed/8jD5l51eXsGw0EI0v29zbDYAAA==",
     width: 1440,
     height: 1024,
     ariaLabel: "Screen recording of the Teampify team-building app walkthrough",
