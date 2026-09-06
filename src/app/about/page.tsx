@@ -1,7 +1,6 @@
 "use client";
 
-import Link from "next/link";
-import Icon from "@/components/Icon";
+import BackButton from "@/components/BackButton";
 
 const ABOUT_PARAGRAPHS = [
   "I've been designing experiences for about 5 years now. Self-taught, coming from an unusual path I originally worked in the VFX field before finding my way into UX.",
@@ -14,13 +13,7 @@ export default function AboutPage() {
   return (
     <div className="flex flex-col items-start gap-4 px-4">
       <div className="flex w-full items-start gap-3">
-        <Link
-          href="/"
-          aria-label="Back"
-          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-text-primary transition-colors hover:bg-bg-tertiary"
-        >
-          <Icon name="arrow_back" aria-hidden size={36} />
-        </Link>
+        <BackButton href="/" />
         <h1 className="flex-1 font-display text-5xl font-normal text-text-primary">
           About
         </h1>

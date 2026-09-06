@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Icon from "@/components/Icon";
+import Tag from "@/components/Tag";
 
 type Mechanic = {
   id: string;
@@ -133,13 +134,10 @@ function MechanicCard({ mechanic, index }: { mechanic: Mechanic; index: number }
           {mechanic.game}
         </p>
       </div>
-      <ul className="flex flex-col items-start gap-2">
+      <ul className="flex w-full flex-col items-start gap-2">
         {mechanic.needs.map((need) => (
-          <li
-            key={need}
-            className="rounded-full bg-bg-tertiary px-3 py-1 font-body text-sm whitespace-nowrap text-text-secondary"
-          >
-            {need}
+          <li key={need} className="w-full">
+            <Tag size="md">{need}</Tag>
           </li>
         ))}
       </ul>
