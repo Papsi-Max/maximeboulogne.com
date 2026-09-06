@@ -7,10 +7,11 @@ type TagProps = {
 const SIZE_CLASSES: Record<NonNullable<TagProps["size"]>, string> = {
   // sm: one short word (a genre), always fits on one line.
   sm: "shrink-0 px-2.5 py-0.5 text-xs",
-  // md: can hold a longer phrase (a requirement) that may not fit — stays
-  // on one line and ellipsizes rather than being wrapped or clipped by an
-  // ancestor's overflow-hidden.
-  md: "block w-full px-3 py-1.5 text-sm",
+  // md: can hold a longer phrase (a requirement) that may not fit — hugs
+  // its text like sm, but caps at the container's width and ellipsizes
+  // past that instead of wrapping or being clipped by an ancestor's
+  // overflow-hidden.
+  md: "inline-block max-w-full px-3 py-1.5 text-sm",
 };
 
 /** Small pill label for a piece of content metadata (a genre, a category,
