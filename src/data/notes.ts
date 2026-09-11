@@ -6,6 +6,11 @@ export type NoteItem = {
 
 export const noteItems: NoteItem[] = [
   {
+    slug: "skills",
+    title: "Claude skills ready to be used",
+    date: "2026-09-11",
+  },
+  {
     slug: "a-workshop-on-video-game-mechanics",
     title: "A workshop on video game mechanics",
     date: "2026-09-06",
