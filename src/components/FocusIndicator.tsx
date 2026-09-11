@@ -29,6 +29,14 @@ export default function FocusIndicator() {
   } | null>(null);
 
   useEffect(() => {
+    const readState = (target: HTMLElement) => {
+      const dataCursor = target.dataset.cursor as FocusKind | undefined;
+      if (!dataCursor) return null;
+
+      const rect = target.getBoundingClientRect();
+      return { kind: dataCursor, top: rect.top, left: rect.right };
+    };
+
     const onFocusIn = (e: FocusEvent) => {
       const target = (e.target as HTMLElement)?.closest<HTMLElement>(
         "[data-cursor]"
@@ -38,27 +46,34 @@ export default function FocusIndicator() {
         return;
       }
 
-      const dataCursor = target.dataset.cursor as FocusKind | undefined;
-      if (!dataCursor) {
-        setState(null);
-        return;
-      }
-
-      const rect = target.getBoundingClientRect();
-      setState({
-        kind: dataCursor,
-        top: rect.top,
-        left: rect.right,
-      });
+      setState(readState(target));
     };
 
     const onFocusOut = () => setState(null);
 
     window.addEventListener("focusin", onFocusIn);
     window.addEventListener("focusout", onFocusOut);
+
+    // A focused element's own data-cursor can change without the focus
+    // moving (e.g. a copy button flipping to its "copied" state) — keep
+    // the dot in sync with it instead of freezing on the value it had
+    // when focus first landed.
+    const observer = new MutationObserver(() => {
+      const active = document.activeElement as HTMLElement | null;
+      const target = active?.closest<HTMLElement>("[data-cursor]");
+      if (!target || !target.matches(":focus-visible")) return;
+      setState(readState(target));
+    });
+    observer.observe(document.body, {
+      subtree: true,
+      attributes: true,
+      attributeFilter: ["data-cursor"],
+    });
+
     return () => {
       window.removeEventListener("focusin", onFocusIn);
       window.removeEventListener("focusout", onFocusOut);
+      observer.disconnect();
     };
   }, []);
 
