@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import GitHubIcon from "@/components/GitHubIcon";
 import { CURSOR_PULSE_EVENT } from "@/lib/cursor-events";
 
@@ -15,12 +15,22 @@ export default function CommandBlock({
 }) {
   const [copied, setCopied] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const resetTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (resetTimeout.current) clearTimeout(resetTimeout.current);
+    };
+  }, []);
 
   async function handleCopy() {
     try {
       await navigator.clipboard.writeText(command);
       setCopied(true);
-      setTimeout(() => setCopied(false), 1500);
+      // Re-clicking while still showing "copied" must push the reset
+      // out again, not race against the first click's timer.
+      if (resetTimeout.current) clearTimeout(resetTimeout.current);
+      resetTimeout.current = setTimeout(() => setCopied(false), 1500);
       // Tell FocusIndicator to (re)play its press-shrink, even if this
       // click lands while already showing "copied" and data-cursor's
       // value won't actually change.
