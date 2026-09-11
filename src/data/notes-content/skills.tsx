@@ -21,6 +21,6 @@ export const skillsContent: NoteContentBlock[] = [
   },
   {
     type: "paragraph",
-    text: "Publishing them wasn't the point of writing them. But once they existed, keeping them private felt like the wrong default. Same instinct as open-sourcing code: the underlying research isn't mine, only the synthesis is, so the synthesis can be shared too.",
+    text: "Using them daily, and having colleagues push back on the arguments they produced, settled it: everyone designing deserves to work from the same references. More skills are coming, each one a shortcut back to the research instead of a rule pulled from memory.",
   },
 ];
