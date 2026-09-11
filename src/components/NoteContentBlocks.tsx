@@ -1,6 +1,7 @@
 import Icon from "@/components/Icon";
 import GameLibraryExample from "@/components/GameLibraryExample";
 import MechanicsCarousel from "@/components/MechanicsCarousel";
+import CommandBlock from "@/components/CommandBlock";
 import type { NoteContentBlock } from "@/data/notes-content";
 
 // Gestalt law of proximity: closely related text stays close, a new kind
@@ -12,6 +13,7 @@ function categorize(type: NoteContentBlock["type"]): BlockCategory {
     case "gameLibraryExample":
     case "mechanicsCarousel":
     case "imagePlaceholder":
+    case "commandBlock":
       return "visual";
     default:
       return "text";
@@ -59,6 +61,17 @@ export default function NoteContentBlocks({
             return (
               <div key={i} className={`w-full ${spacing}`}>
                 <MechanicsCarousel />
+              </div>
+            );
+
+          case "commandBlock":
+            return (
+              <div key={i} className={`w-full ${spacing}`}>
+                <CommandBlock
+                  linkText={block.linkText}
+                  href={block.href}
+                  command={block.command}
+                />
               </div>
             );
 

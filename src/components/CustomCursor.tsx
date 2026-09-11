@@ -4,7 +4,15 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useMotionValue, useSpring } from "framer-motion";
 
-type CursorKind = "default" | "hover" | "smile" | "play" | "disabled" | "drag";
+type CursorKind =
+  | "default"
+  | "hover"
+  | "smile"
+  | "play"
+  | "disabled"
+  | "drag"
+  | "copy"
+  | "copied";
 
 const SIZE: Record<CursorKind, number> = {
   default: 40,
@@ -13,6 +21,8 @@ const SIZE: Record<CursorKind, number> = {
   play: 80,
   disabled: 40,
   drag: 80,
+  copy: 80,
+  copied: 80,
 };
 
 const BASE_SIZE = 80;
@@ -205,6 +215,30 @@ export default function CustomCursor() {
             className="material-symbols-rounded absolute inset-0 m-auto text-text-accent"
           >
             arrow_range
+          </motion.span>
+        )}
+        {kind === "copy" && (
+          <motion.span
+            key="copy"
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0, opacity: 0 }}
+            transition={{ type: "spring", damping: 25, stiffness: 350 }}
+            className="material-symbols-rounded absolute inset-0 m-auto text-text-accent"
+          >
+            content_copy
+          </motion.span>
+        )}
+        {kind === "copied" && (
+          <motion.span
+            key="copied"
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0, opacity: 0 }}
+            transition={{ type: "spring", damping: 25, stiffness: 350 }}
+            className="material-symbols-rounded absolute inset-0 m-auto text-text-accent"
+          >
+            check
           </motion.span>
         )}
       </AnimatePresence>
