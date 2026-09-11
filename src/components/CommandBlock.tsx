@@ -24,6 +24,17 @@ export default function CommandBlock({
     }
   }
 
+  // Belt and suspenders: a native <button> already fires "click" on
+  // Enter/Space, but don't rely on that alone for something as central
+  // as the copy action — handle the keys directly too, and stop Space
+  // from scrolling the page while we're at it.
+  function handleKeyDown(e: React.KeyboardEvent<HTMLButtonElement>) {
+    if (e.key === "Enter" || e.key === " " || e.key === "Spacebar") {
+      e.preventDefault();
+      handleCopy();
+    }
+  }
+
   return (
     <div className="flex w-full flex-col items-start gap-3">
       <a
@@ -39,6 +50,7 @@ export default function CommandBlock({
       <button
         type="button"
         onClick={handleCopy}
+        onKeyDown={handleKeyDown}
         data-cursor={copied ? "copied" : "copy"}
         aria-label={copied ? "Command copied" : "Copy command"}
         className="inline-flex max-w-full items-center rounded-xl border border-border-primary bg-bg-tertiary px-4 py-3 text-left transition-colors hover:bg-[#525252]"
@@ -47,6 +59,9 @@ export default function CommandBlock({
           {command}
         </code>
       </button>
+      <span role="status" aria-live="polite" className="sr-only">
+        {copied ? "Command copied to clipboard" : ""}
+      </span>
     </div>
   );
 }
