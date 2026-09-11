@@ -17,7 +17,7 @@ export const skillsContent: NoteContentBlock[] = [
   },
   {
     type: "paragraph",
-    text: "Writing them down forced a distinction I hadn't made explicit before: knowing a framework and having it ready at the right moment are different skills. I know Hick's Law. I don't always reach for it mid-review, or when a dropdown has grown to forty items. Having the skill ready makes it easier to stay pragmatic, and to argue from references instead of feel.",
+    text: "Writing them down forced a distinction I hadn't made explicit before: knowing a framework and having it ready at the right moment are different skills. I know Hick's Law. I don't always reach for it during design review, or when a dropdown has grown to forty items. Having the skill ready makes it easier to stay pragmatic, and to argue from references instead of feel.",
   },
   {
     type: "paragraph",
