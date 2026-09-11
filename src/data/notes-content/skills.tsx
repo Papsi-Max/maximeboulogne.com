@@ -3,7 +3,7 @@ import type { NoteContentBlock } from "./types";
 export const skillsContent: NoteContentBlock[] = [
   {
     type: "paragraph",
-    text: "Claude, or any LLM, can be used every day for product design work. Not only as a chatbot you ask questions to, but as something closer to a colleague who shares the same references you do. Those references slowly turned into skills: one on the Laws of UX, one on debunked UX myths.",
+    text: "Claude, or any LLM, can be used every day for product design work. Not only as a chatbot you ask questions to, but as something closer to a copilot who shares the same references you do. Those references slowly turned into skills: one on the Laws of UX, one on debunked UX myths.",
   },
   {
     type: "paragraph",
@@ -17,7 +17,7 @@ export const skillsContent: NoteContentBlock[] = [
   },
   {
     type: "paragraph",
-    text: "Writing them down forced a distinction I hadn't made explicit before: knowing a framework and having it ready at the right moment are different skills. I know Hick's Law. I don't always reach for it mid-review, three Slack threads deep, or when a dropdown has grown to forty items. Having the skill ready makes it easier to stay pragmatic, and to argue from references instead of feel.",
+    text: "Writing them down forced a distinction I hadn't made explicit before: knowing a framework and having it ready at the right moment are different skills. I know Hick's Law. I don't always reach for it mid-review, or when a dropdown has grown to forty items. Having the skill ready makes it easier to stay pragmatic, and to argue from references instead of feel.",
   },
   {
     type: "paragraph",
