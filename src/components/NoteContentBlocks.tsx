@@ -62,6 +62,31 @@ export default function NoteContentBlocks({
               </div>
             );
 
+          case "link":
+            return (
+              <a
+                key={i}
+                href={block.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`w-full font-body text-lg leading-relaxed text-text-accent underline underline-offset-2 ${spacing}`}
+              >
+                {block.text}
+              </a>
+            );
+
+          case "code":
+            return (
+              <pre
+                key={i}
+                className={`w-full overflow-x-auto rounded-xl border border-border-primary bg-bg-secondary px-4 py-3 ${spacing}`}
+              >
+                <code className="font-mono text-base text-text-primary">
+                  {block.text}
+                </code>
+              </pre>
+            );
+
           case "imagePlaceholder":
             return (
               <div
