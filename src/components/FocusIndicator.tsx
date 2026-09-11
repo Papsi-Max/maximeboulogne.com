@@ -36,7 +36,7 @@ export default function FocusIndicator() {
 
   const targetRef = useRef<HTMLElement | null>(null);
   const nextId = useRef(0);
-  const pulse = useAnimationControls();
+  const circle = useAnimationControls();
 
   useEffect(() => {
     const readState = (target: HTMLElement) => {
@@ -61,6 +61,13 @@ export default function FocusIndicator() {
       targetRef.current = next ? target : null;
       nextId.current += 1;
       setState(next ? { ...next, id: nextId.current } : null);
+      if (next) {
+        circle.set({ scale: 0 });
+        circle.start({
+          scale: [0, 1.15, 1],
+          transition: { duration: 0.5, ease: [0.34, 1.56, 0.64, 1] },
+        });
+      }
     };
 
     const onFocusOut = () => {
@@ -85,7 +92,7 @@ export default function FocusIndicator() {
 
       setState((prev) => {
         if (prev && prev.kind !== next.kind) {
-          pulse.start({
+          circle.start({
             scale: [1, PRESSED_SCALE, 1],
             transition: { duration: 0.2, ease: "easeOut" },
           });
@@ -104,7 +111,7 @@ export default function FocusIndicator() {
       window.removeEventListener("focusout", onFocusOut);
       observer.disconnect();
     };
-  }, [pulse]);
+  }, [circle]);
 
   return (
     <AnimatePresence>
@@ -112,11 +119,11 @@ export default function FocusIndicator() {
         <motion.div
           key={state.id}
           aria-hidden
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: [0, 1.15, 1] }}
-          exit={{ opacity: 0, scale: 0 }}
-          transition={{ duration: 0.5, ease: [0.34, 1.56, 0.64, 1] }}
-          className="pointer-events-none fixed z-[999] flex -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-bg-inverse"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+          className="pointer-events-none fixed z-[999] -translate-x-1/2 -translate-y-1/2"
           style={{
             top: state.top,
             left: state.left,
@@ -124,9 +131,9 @@ export default function FocusIndicator() {
             height: SIZE[state.kind],
           }}
         >
-          <motion.span
-            animate={pulse}
-            className="flex items-center justify-center"
+          <motion.div
+            animate={circle}
+            className="flex h-full w-full items-center justify-center rounded-full bg-bg-inverse"
           >
             {state.kind === "smile" && (
               <span
@@ -188,7 +195,7 @@ export default function FocusIndicator() {
                 check
               </span>
             )}
-          </motion.span>
+          </motion.div>
         </motion.div>
       )}
     </AnimatePresence>
