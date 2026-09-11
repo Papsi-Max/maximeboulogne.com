@@ -3,18 +3,22 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-type FocusKind = "smile" | "play" | "disabled";
+type FocusKind = "smile" | "play" | "disabled" | "copy" | "copied";
 
 const SIZE: Record<FocusKind, number> = {
   smile: 80,
   play: 80,
   disabled: 40,
+  copy: 80,
+  copied: 80,
 };
 
 const ICON_SIZE: Record<FocusKind, number> = {
   smile: 48,
   play: 48,
   disabled: 24,
+  copy: 48,
+  copied: 48,
 };
 
 export default function FocusIndicator() {
@@ -110,6 +114,30 @@ export default function FocusIndicator() {
               }}
             >
               block
+            </span>
+          )}
+          {state.kind === "copy" && (
+            <span
+              className="material-symbols-rounded text-text-accent"
+              style={{
+                width: ICON_SIZE.copy,
+                height: ICON_SIZE.copy,
+                fontSize: ICON_SIZE.copy,
+              }}
+            >
+              content_copy
+            </span>
+          )}
+          {state.kind === "copied" && (
+            <span
+              className="material-symbols-rounded text-text-accent"
+              style={{
+                width: ICON_SIZE.copied,
+                height: ICON_SIZE.copied,
+                fontSize: ICON_SIZE.copied,
+              }}
+            >
+              check
             </span>
           )}
         </motion.div>

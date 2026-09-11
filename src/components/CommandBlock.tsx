@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Icon from "@/components/Icon";
 import GitHubIcon from "@/components/GitHubIcon";
 
 export default function CommandBlock({
@@ -42,17 +41,11 @@ export default function CommandBlock({
         onClick={handleCopy}
         data-cursor={copied ? "copied" : "copy"}
         aria-label={copied ? "Command copied" : "Copy command"}
-        className="flex w-full items-center justify-between gap-3 rounded-xl border border-border-primary bg-bg-tertiary px-4 py-3 text-left transition-colors hover:bg-[#525252]"
+        className="inline-flex max-w-full items-center rounded-xl border border-border-primary bg-bg-tertiary px-4 py-3 text-left transition-colors hover:bg-[#525252]"
       >
         <code className="whitespace-pre-wrap break-words font-mono text-base text-text-primary">
           {command}
         </code>
-        <Icon
-          name={copied ? "check" : "content_copy"}
-          aria-hidden
-          size={20}
-          className="shrink-0 text-text-secondary"
-        />
       </button>
     </div>
   );
