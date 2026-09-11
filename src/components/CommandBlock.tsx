@@ -25,13 +25,14 @@ export default function CommandBlock({
   }
 
   return (
-    <div className="w-full overflow-hidden rounded-2xl border border-border-primary bg-bg-secondary">
+    <div className="flex w-full flex-col items-start gap-3">
       <a
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className="block px-4 py-3 font-body text-base text-text-accent underline underline-offset-2 transition-colors hover:bg-bg-tertiary"
+        className="inline-flex items-center gap-1.5 font-body text-lg leading-relaxed text-text-accent underline underline-offset-2 transition-colors hover:text-text-primary"
       >
+        <Icon name="open_in_new" aria-hidden size={16} className="shrink-0" />
         {linkText}
       </a>
       <button
@@ -39,7 +40,7 @@ export default function CommandBlock({
         onClick={handleCopy}
         data-cursor="hover"
         aria-label={copied ? "Command copied" : "Copy command"}
-        className="flex w-full items-center justify-between gap-3 border-t border-border-primary px-4 py-3 text-left transition-colors hover:bg-bg-tertiary"
+        className="flex w-full items-center justify-between gap-3 rounded-xl border border-border-primary bg-bg-tertiary px-4 py-3 text-left transition-colors hover:bg-[#525252]"
       >
         <code className="whitespace-pre-wrap break-words font-mono text-base text-text-primary">
           {command}
