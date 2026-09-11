@@ -40,7 +40,7 @@ export default function CommandBlock({
       <button
         type="button"
         onClick={handleCopy}
-        data-cursor="hover"
+        data-cursor={copied ? "copied" : "copy"}
         aria-label={copied ? "Command copied" : "Copy command"}
         className="flex w-full items-center justify-between gap-3 rounded-xl border border-border-primary bg-bg-tertiary px-4 py-3 text-left transition-colors hover:bg-[#525252]"
       >
