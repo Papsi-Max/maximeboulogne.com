@@ -79,7 +79,7 @@ export default function NoteContentBlocks({
             return (
               <pre
                 key={i}
-                className={`w-full overflow-x-auto rounded-xl border border-border-primary bg-bg-secondary px-4 py-3 ${spacing}`}
+                className={`w-full overflow-x-auto whitespace-pre-wrap break-words rounded-xl border border-border-primary bg-bg-secondary px-4 py-3 ${spacing}`}
               >
                 <code className="font-mono text-base text-text-primary">
                   {block.text}
