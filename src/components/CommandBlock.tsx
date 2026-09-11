@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import GitHubIcon from "@/components/GitHubIcon";
+import { CURSOR_PULSE_EVENT } from "@/lib/cursor-events";
 
 export default function CommandBlock({
   linkText,
@@ -13,12 +14,19 @@ export default function CommandBlock({
   command: string;
 }) {
   const [copied, setCopied] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   async function handleCopy() {
     try {
       await navigator.clipboard.writeText(command);
       setCopied(true);
       setTimeout(() => setCopied(false), 1500);
+      // Tell FocusIndicator to (re)play its press-shrink, even if this
+      // click lands while already showing "copied" and data-cursor's
+      // value won't actually change.
+      buttonRef.current?.dispatchEvent(
+        new CustomEvent(CURSOR_PULSE_EVENT, { bubbles: true })
+      );
     } catch {
       // Clipboard unavailable (no permission, insecure context) — ignore.
     }
@@ -48,6 +56,7 @@ export default function CommandBlock({
         <span className="sr-only"> (opens in a new tab)</span>
       </a>
       <button
+        ref={buttonRef}
         type="button"
         onClick={handleCopy}
         onKeyDown={handleKeyDown}

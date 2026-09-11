@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useAnimationControls } from "framer-motion";
+import { CURSOR_PULSE_EVENT } from "@/lib/cursor-events";
 
 type FocusKind = "smile" | "play" | "disabled" | "copy" | "copied";
 
@@ -80,9 +81,7 @@ export default function FocusIndicator() {
 
     // The focused element's own data-cursor can change without the focus
     // moving (e.g. a copy button flipping to its "copied" state) — keep
-    // the dot's icon in sync, and give it the same little press-shrink
-    // CustomCursor plays on an actual click, so the keyboard path reads
-    // as an equivalent activation.
+    // the dot's icon in sync with it.
     const observer = new MutationObserver(() => {
       const target = targetRef.current;
       if (!target || !target.matches(":focus-visible")) return;
@@ -90,15 +89,7 @@ export default function FocusIndicator() {
       const next = readState(target);
       if (!next) return;
 
-      setState((prev) => {
-        if (prev && prev.kind !== next.kind) {
-          circle.start({
-            scale: [1, PRESSED_SCALE, 1],
-            transition: { duration: 0.2, ease: "easeOut" },
-          });
-        }
-        return { ...next, id: prev?.id ?? nextId.current };
-      });
+      setState((prev) => (prev ? { ...next, id: prev.id } : null));
     });
     observer.observe(document.body, {
       subtree: true,
@@ -106,9 +97,27 @@ export default function FocusIndicator() {
       attributeFilter: ["data-cursor"],
     });
 
+    // Icon updates alone miss a re-activation that doesn't change the
+    // resulting data-cursor value (e.g. clicking "copy" again while it's
+    // still showing "copied") — controls dispatch this explicitly on
+    // every activation so the press-shrink always replays, mouse or
+    // keyboard.
+    const onPulse = (e: Event) => {
+      const target = targetRef.current;
+      if (!target || !target.matches(":focus-visible")) return;
+      if (e.target !== target) return;
+
+      circle.start({
+        scale: [1, PRESSED_SCALE, 1],
+        transition: { duration: 0.2, ease: "easeOut" },
+      });
+    };
+    window.addEventListener(CURSOR_PULSE_EVENT, onPulse);
+
     return () => {
       window.removeEventListener("focusin", onFocusIn);
       window.removeEventListener("focusout", onFocusOut);
+      window.removeEventListener(CURSOR_PULSE_EVENT, onPulse);
       observer.disconnect();
     };
   }, [circle]);
