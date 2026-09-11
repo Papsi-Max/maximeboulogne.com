@@ -1,6 +1,7 @@
 import Icon from "@/components/Icon";
 import GameLibraryExample from "@/components/GameLibraryExample";
 import MechanicsCarousel from "@/components/MechanicsCarousel";
+import CommandBlock from "@/components/CommandBlock";
 import type { NoteContentBlock } from "@/data/notes-content";
 
 // Gestalt law of proximity: closely related text stays close, a new kind
@@ -12,6 +13,7 @@ function categorize(type: NoteContentBlock["type"]): BlockCategory {
     case "gameLibraryExample":
     case "mechanicsCarousel":
     case "imagePlaceholder":
+    case "commandBlock":
       return "visual";
     default:
       return "text";
@@ -62,29 +64,15 @@ export default function NoteContentBlocks({
               </div>
             );
 
-          case "link":
+          case "commandBlock":
             return (
-              <a
-                key={i}
-                href={block.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`w-full font-body text-lg leading-relaxed text-text-accent underline underline-offset-2 ${spacing}`}
-              >
-                {block.text}
-              </a>
-            );
-
-          case "code":
-            return (
-              <pre
-                key={i}
-                className={`w-full overflow-x-auto whitespace-pre-wrap break-words rounded-xl border border-border-primary bg-bg-secondary px-4 py-3 ${spacing}`}
-              >
-                <code className="font-mono text-base text-text-primary">
-                  {block.text}
-                </code>
-              </pre>
+              <div key={i} className={`w-full ${spacing}`}>
+                <CommandBlock
+                  linkText={block.linkText}
+                  href={block.href}
+                  command={block.command}
+                />
+              </div>
             );
 
           case "imagePlaceholder":

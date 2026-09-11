@@ -10,11 +10,11 @@ export const skillsContent: NoteContentBlock[] = [
     text: "A skill is a folder Claude reads before it answers. Not a prompt retyped each time, a standing reference it consults on its own when the conversation matches. The ux-laws skill grounds a critique in Fitts, Hick, Jakob, Gestalt, the usual names, instead of \"this feels off.\" The uxmyths skill catches the reverse: a design decision resting on something that sounds true and isn't. \"More choices make users happier.\" It doesn't.",
   },
   {
-    type: "link",
-    text: "github.com/Papsi-Max/skills",
+    type: "commandBlock",
+    linkText: "github.com/Papsi-Max/skills",
     href: "https://github.com/Papsi-Max/skills",
+    command: "npx skills@latest add Papsi-Max/skills",
   },
-  { type: "code", text: "npx skills@latest add Papsi-Max/skills" },
   {
     type: "paragraph",
     text: "Writing them down forced a distinction I hadn't made explicit before: knowing a framework and having it ready at the right moment are different skills. I know Hick's Law. I don't always reach for it mid-review, three Slack threads deep, or when a dropdown has grown to forty items. Having the skill ready makes it easier to stay pragmatic, and to argue from references instead of feel.",

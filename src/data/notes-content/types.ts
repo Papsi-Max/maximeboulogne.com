@@ -3,5 +3,4 @@ export type NoteContentBlock =
   | { type: "imagePlaceholder"; label?: string }
   | { type: "gameLibraryExample" }
   | { type: "mechanicsCarousel" }
-  | { type: "link"; text: string; href: string }
-  | { type: "code"; text: string };
+  | { type: "commandBlock"; linkText: string; href: string; command: string };
