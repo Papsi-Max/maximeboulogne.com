@@ -1,8 +1,49 @@
 @import "tailwindcss";
-@import "material-symbols/rounded.css";
-@import "material-symbols/outlined.css";
+
+/* Self-hosted, subsetted Material Symbols: only the glyphs actually
+ * used on the site, instead of the material-symbols package's full
+ * unsubsetted font (~5MB per style for every icon in the set).
+ *
+ * Rounded (arrow_back, arrow_forward, chevron_left, chevron_right,
+ * close, expand_more, image, music_note, sentiment_satisfied,
+ * play_arrow, block, arrow_range, content_copy, check): used via
+ * Icon.tsx, and directly in CustomCursor.tsx / FocusIndicator.tsx.
+ * Outlined (schedule): used once, in GameLibraryExample.tsx.
+ *
+ * Adding a new icon anywhere on the site means regenerating the
+ * matching file: fetch
+ * https://fonts.googleapis.com/css2?family=Material+Symbols+<Rounded|Outlined>&icon_names=<comma-separated icon names, including the new one>
+ * and save the woff2 its @font-face points to into public/fonts/. */
+@font-face {
+  font-family: "Material Symbols Rounded";
+  font-style: normal;
+  font-weight: 100 700;
+  src: url("/fonts/material-symbols-rounded.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Material Symbols Outlined";
+  font-style: normal;
+  font-weight: 100 700;
+  src: url("/fonts/material-symbols-outlined.woff2") format("woff2");
+}
+
+.material-symbols-rounded,
+.material-symbols-outlined {
+  font-weight: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: "liga";
+  font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+}
 
 .material-symbols-rounded {
+  font-family: "Material Symbols Rounded";
   font-variation-settings:
     "FILL" 1,
     "wght" 400,
@@ -17,6 +58,7 @@
 }
 
 .material-symbols-outlined {
+  font-family: "Material Symbols Outlined";
   font-variation-settings:
     "FILL" 0,
     "wght" 400,
