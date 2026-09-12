@@ -163,7 +163,10 @@ export default function CustomCursor() {
         translateY: "-50%",
         width: BASE_SIZE,
         height: BASE_SIZE,
-        clipPath: "circle(50%)",
+        borderRadius: "50%",
+        overflow: "hidden",
+        willChange: "transform",
+        backfaceVisibility: "hidden",
       }}
       animate={{ scale, opacity: visible ? 1 : 0 }}
       transition={scaleTransition}
