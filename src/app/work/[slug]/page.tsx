@@ -95,9 +95,9 @@ export default async function WorkDetailPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
-      <div className="flex w-full items-start gap-3">
+      <div className="flex w-full flex-col items-start gap-3 sm:flex-row">
         <BackButton href="/work" />
-        <h1 className="flex-1 font-display text-5xl font-normal text-text-primary">
+        <h1 className="flex-1 font-display text-4xl font-normal text-text-primary sm:text-5xl">
           {item.title}
         </h1>
       </div>
