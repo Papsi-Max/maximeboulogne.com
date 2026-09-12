@@ -70,7 +70,11 @@ export default async function NoteDetailPage({
     "@type": "BlogPosting",
     headline: item.title,
     description: item.description,
-    datePublished: item.date,
+    image: `${siteConfig.url}/notes/${item.slug}/opengraph-image`,
+    // A bare date ("2026-09-11") reads as ambiguous to Google's parser,
+    // which flags a missing time and timezone. Pin both to midnight UTC
+    // since only the day is meaningful here.
+    datePublished: `${item.date}T00:00:00.000Z`,
     url: `${siteConfig.url}/notes/${item.slug}`,
     author: {
       "@type": "Person",
