@@ -6,7 +6,7 @@ export const siteConfig = {
   title: "Maxime Boulogne - UX Designer",
   titleTemplate: "%s | Maxime Boulogne",
   description:
-    "I'm Maxime Boulogne, I share these notes and case studies to prove UX only serves the light side of the Force.",
+    "I'm Maxime Boulogne, I share notes and case studies to prove UX only serves the light side of the Force.",
   url: "https://maximeboulogne.com",
   author: "Maxime Boulogne",
   locale: "en_US",
