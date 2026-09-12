@@ -34,6 +34,7 @@
   /* Text & Icons */
   --color-text-primary: #f1e7db;
   --color-text-secondary: #d9d2c8;
+  --color-text-tertiary: #cec7bf;
   --color-text-accent: #ffeda9;
   --color-text-inverse: #384000;
 
@@ -52,6 +53,7 @@
 @theme inline {
   --color-text-primary: var(--color-text-primary);
   --color-text-secondary: var(--color-text-secondary);
+  --color-text-tertiary: var(--color-text-tertiary);
   --color-text-accent: var(--color-text-accent);
   --color-text-inverse: var(--color-text-inverse);
 

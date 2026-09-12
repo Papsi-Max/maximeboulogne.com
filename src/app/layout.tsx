@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Newsreader, TASA_Explorer } from "next/font/google";
 import PageShell from "@/components/PageShell";
+import { siteConfig } from "@/lib/site-config";
 import "./globals.css";
 
 const newsreader = Newsreader({
@@ -23,9 +24,53 @@ const tasaExplorer = TASA_Explorer({
 });
 
 export const metadata: Metadata = {
-  title: "Maxime Boulogne — Designer",
-  description:
-    "I build stuff to bring order to complexity. UX designer, AI & UI go-to person.",
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: siteConfig.title,
+    template: siteConfig.titleTemplate,
+  },
+  description: siteConfig.description,
+  authors: [{ name: siteConfig.author, url: siteConfig.url }],
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+    },
+  },
+  openGraph: {
+    type: "website",
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    title: siteConfig.title,
+    description: siteConfig.description,
+    locale: siteConfig.locale,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.title,
+    description: siteConfig.description,
+  },
+};
+
+// Site-wide WebSite schema: the baseline structured data Google looks for
+// to understand what the domain is before it trusts any page-level markup.
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: siteConfig.name,
+  url: siteConfig.url,
+  description: siteConfig.description,
+  author: {
+    "@type": "Person",
+    name: siteConfig.author,
+    url: `${siteConfig.url}/about`,
+  },
 };
 
 export default function RootLayout({
@@ -39,6 +84,10 @@ export default function RootLayout({
       className={`${newsreader.variable} ${tasaExplorer.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-bg-primary text-text-primary font-body">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
         <PageShell>{children}</PageShell>
       </body>
     </html>

@@ -1,7 +1,17 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import BackButton from "@/components/BackButton";
 import { noteItems, type NoteItem } from "@/data/notes";
 import { formatNoteDate, noteMonthKey } from "@/lib/format-note-date";
+
+export const metadata: Metadata = {
+  title: "Notes",
+  description:
+    "Notes on UX, AI, and design practice, written by Maxime Boulogne.",
+  alternates: {
+    canonical: "/notes",
+  },
+};
 
 /** Consecutive notes sharing the same calendar month, so a divider only
  * appears between groups instead of after every row. */
