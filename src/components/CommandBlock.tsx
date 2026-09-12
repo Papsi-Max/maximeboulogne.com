@@ -59,7 +59,7 @@ export default function CommandBlock({
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className="-ml-4 flex items-center gap-1.5 rounded-full px-4 py-1.5 font-body text-base text-text-secondary underline decoration-from-font transition-colors hover:bg-bg-tertiary hover:text-text-primary"
+        className="flex items-center gap-1.5 rounded-full px-4 py-1.5 font-body text-base text-text-secondary underline decoration-from-font transition-colors hover:bg-bg-tertiary hover:text-text-primary"
       >
         <GitHubIcon aria-hidden className="h-4 w-4" />
         {linkText}
@@ -72,9 +72,9 @@ export default function CommandBlock({
         onKeyDown={handleKeyDown}
         data-cursor={copied ? "copied" : "copy"}
         aria-label={copied ? "Command copied" : "Copy command"}
-        className="inline-flex max-w-full items-center rounded-xl border border-border-primary bg-bg-tertiary px-4 py-3 text-left transition-colors hover:bg-[#525252]"
+        className="inline-flex max-w-full items-center rounded border border-[#4a4a4a] bg-bg-primary py-1 px-1.5 text-left transition-colors hover:bg-bg-secondary"
       >
-        <code className="whitespace-pre-wrap break-words font-mono text-base text-text-primary">
+        <code className="whitespace-pre-wrap break-words font-body text-base text-text-accent">
           {command}
         </code>
       </button>
