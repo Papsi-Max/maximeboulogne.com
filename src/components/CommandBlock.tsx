@@ -59,7 +59,7 @@ export default function CommandBlock({
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className="-ml-4 flex items-center gap-1.5 rounded-full px-4 py-1.5 font-body text-base text-text-secondary underline decoration-from-font transition-colors hover:bg-bg-tertiary hover:text-text-primary"
+        className="flex items-center gap-1.5 rounded-full px-4 py-1.5 font-body text-base text-text-secondary underline decoration-from-font transition-colors hover:bg-bg-tertiary hover:text-text-primary"
       >
         <GitHubIcon aria-hidden className="h-4 w-4" />
         {linkText}
