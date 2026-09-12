@@ -72,7 +72,7 @@ export default function CommandBlock({
         onKeyDown={handleKeyDown}
         data-cursor={copied ? "copied" : "copy"}
         aria-label={copied ? "Command copied" : "Copy command"}
-        className="inline-flex max-w-full items-center rounded border border-[#4a4a4a] bg-bg-primary p-1 text-left transition-colors hover:bg-bg-secondary"
+        className="inline-flex max-w-full items-center rounded border border-[#4a4a4a] bg-bg-primary py-1 px-1.5 text-left transition-colors hover:bg-bg-secondary"
       >
         <code className="whitespace-pre-wrap break-words font-body text-base text-text-accent">
           {command}
