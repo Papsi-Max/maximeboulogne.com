@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Icon from "@/components/Icon";
 import { FIGMA_FALLBACK_PILLS as FALLBACK_PILLS } from "@/lib/work-search-pills";
 
 export type WorkSearchState =
@@ -75,6 +76,13 @@ export default function WorkSearchBar({
     runSearch(label);
   };
 
+  const handleClear = () => {
+    setQuery("");
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    requestIdRef.current += 1;
+    onStateChange({ status: "idle" });
+  };
+
   return (
     <div className="flex w-full flex-col items-start gap-3">
       <div className="flex flex-wrap items-center gap-3">
@@ -89,15 +97,25 @@ export default function WorkSearchBar({
           </button>
         ))}
       </div>
-      <label className="w-full max-w-[205px]">
+      <label className="relative w-full max-w-[205px]">
         <span className="sr-only">Search by skill</span>
         <input
-          type="search"
+          type="text"
           value={query}
           onChange={(e) => handleChange(e.target.value)}
           placeholder="Or any other skill"
-          className="w-full rounded-full border border-border-primary bg-transparent px-3 py-2 font-body text-base text-text-primary placeholder:text-text-tertiary focus:outline-none"
+          className="w-full rounded-full border border-border-primary bg-transparent px-3 py-2 pr-9 font-body text-base text-text-primary placeholder:text-text-tertiary focus:outline-none"
         />
+        {query.length > 0 && (
+          <button
+            type="button"
+            onClick={handleClear}
+            aria-label="Clear search"
+            className="absolute top-1/2 right-2 flex -translate-y-1/2 items-center justify-center text-text-tertiary transition-colors hover:text-text-primary"
+          >
+            <Icon name="cancel" aria-hidden size={20} />
+          </button>
+        )}
       </label>
     </div>
   );
