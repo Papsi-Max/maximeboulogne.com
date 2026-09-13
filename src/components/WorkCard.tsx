@@ -46,7 +46,9 @@ export default function WorkCard({
           </p>
           <div className="flex flex-wrap items-center gap-1.5 pt-1">
             {item.tags.map((tag) => (
-              <Tag key={tag}>{tag}</Tag>
+              <Tag key={tag} className="!text-sm">
+                {tag}
+              </Tag>
             ))}
           </div>
         </div>
