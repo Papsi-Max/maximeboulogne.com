@@ -30,4 +30,4 @@ jobs:
             pm2 restart portfolio --update-env
             pm2 save
 
-            node --experimental-strip-types --env-file=.env --import "data:text/javascript,import { register } from 'node:module'; import { pathToFileURL } from 'node:url'; register('./scripts/node-test-loader.mjs', pathToFileURL('./'));" scripts/reindex-work-search.ts || true
+            npm run reindex || true
