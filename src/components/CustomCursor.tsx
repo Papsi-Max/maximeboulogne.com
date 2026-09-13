@@ -3,6 +3,12 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useMotionValue, useSpring } from "framer-motion";
+import SentimentSatisfiedIcon from "@/components/icons/SentimentSatisfiedIcon";
+import PlayArrowIcon from "@/components/icons/PlayArrowIcon";
+import BlockIcon from "@/components/icons/BlockIcon";
+import ArrowRangeIcon from "@/components/icons/ArrowRangeIcon";
+import ContentCopyIcon from "@/components/icons/ContentCopyIcon";
+import CheckIcon from "@/components/icons/CheckIcon";
 
 type CursorKind =
   | "default"
@@ -55,10 +61,6 @@ export default function CustomCursor() {
   const springY = useSpring(y, { damping: 30, stiffness: 400, mass: 0.4 });
 
   const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    document.fonts?.load('48px "Material Symbols Rounded"');
-  }, []);
 
   useEffect(() => {
     if (isTouch) return;
@@ -179,9 +181,9 @@ export default function CustomCursor() {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
             transition={{ type: "spring", damping: 25, stiffness: 350 }}
-            className="material-symbols-rounded absolute inset-0 m-auto text-text-accent"
+            className="absolute inset-0 m-auto flex h-12 w-12 items-center justify-center text-text-accent"
           >
-            sentiment_satisfied
+            <SentimentSatisfiedIcon size={48} />
           </motion.span>
         )}
         {kind === "play" && (
@@ -191,9 +193,9 @@ export default function CustomCursor() {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
             transition={{ type: "spring", damping: 25, stiffness: 350 }}
-            className="material-symbols-rounded absolute inset-0 m-auto text-text-accent"
+            className="absolute inset-0 m-auto flex h-12 w-12 items-center justify-center text-text-accent"
           >
-            play_arrow
+            <PlayArrowIcon size={48} />
           </motion.span>
         )}
         {kind === "disabled" && (
@@ -203,9 +205,9 @@ export default function CustomCursor() {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
             transition={{ type: "spring", damping: 25, stiffness: 350 }}
-            className="material-symbols-rounded absolute inset-0 m-auto text-text-accent"
+            className="absolute inset-0 m-auto flex h-12 w-12 items-center justify-center text-text-accent"
           >
-            block
+            <BlockIcon size={48} />
           </motion.span>
         )}
         {kind === "drag" && (
@@ -215,9 +217,9 @@ export default function CustomCursor() {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
             transition={{ type: "spring", damping: 25, stiffness: 350 }}
-            className="material-symbols-rounded absolute inset-0 m-auto text-text-accent"
+            className="absolute inset-0 m-auto flex h-12 w-12 items-center justify-center text-text-accent"
           >
-            arrow_range
+            <ArrowRangeIcon size={48} />
           </motion.span>
         )}
         {kind === "copy" && (
@@ -227,9 +229,9 @@ export default function CustomCursor() {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
             transition={{ type: "spring", damping: 25, stiffness: 350 }}
-            className="material-symbols-rounded absolute inset-0 m-auto text-text-accent"
+            className="absolute inset-0 m-auto flex h-12 w-12 items-center justify-center text-text-accent"
           >
-            content_copy
+            <ContentCopyIcon size={48} />
           </motion.span>
         )}
         {kind === "copied" && (
@@ -239,9 +241,9 @@ export default function CustomCursor() {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
             transition={{ type: "spring", damping: 25, stiffness: 350 }}
-            className="material-symbols-rounded absolute inset-0 m-auto text-text-accent"
+            className="absolute inset-0 m-auto flex h-12 w-12 items-center justify-center text-text-accent"
           >
-            check
+            <CheckIcon size={48} />
           </motion.span>
         )}
       </AnimatePresence>
