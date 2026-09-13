@@ -101,6 +101,7 @@ export default function WorkSearchBar({
         <span className="sr-only">Search by skill</span>
         <input
           type="text"
+          data-cursor="search"
           value={query}
           onChange={(e) => handleChange(e.target.value)}
           placeholder="Or any other skill"

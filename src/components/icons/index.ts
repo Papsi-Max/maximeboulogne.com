@@ -15,6 +15,7 @@ import PauseIcon from "./PauseIcon";
 import PlayArrowIcon from "./PlayArrowIcon";
 import SentimentSatisfiedIcon from "./SentimentSatisfiedIcon";
 import ScheduleIcon from "./ScheduleIcon";
+import SearchIcon from "./SearchIcon";
 
 export const icons = {
   arrow_back: ArrowBackIcon,
@@ -34,6 +35,7 @@ export const icons = {
   play_arrow: PlayArrowIcon,
   sentiment_satisfied: SentimentSatisfiedIcon,
   schedule: ScheduleIcon,
+  search: SearchIcon,
 };
 
 export type IconName = keyof typeof icons;
