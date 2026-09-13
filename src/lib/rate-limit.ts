@@ -9,6 +9,9 @@ export function createRateLimiter({ max, windowMs }: RateLimiterOptions) {
   return {
     allow(key: string, now: number = Date.now()): boolean {
       const timestamps = (hits.get(key) ?? []).filter((t) => now - t < windowMs);
+      if (timestamps.length === 0) {
+        hits.delete(key);
+      }
       if (timestamps.length >= max) {
         hits.set(key, timestamps);
         return false;

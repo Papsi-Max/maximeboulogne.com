@@ -6,7 +6,8 @@ import { searchSidecar } from "@/lib/work-search-sidecar";
 const limiter = createRateLimiter({ max: 20, windowMs: 60_000 });
 
 export async function GET(request: NextRequest) {
-  const ip = request.headers.get("x-forwarded-for") ?? "unknown";
+  const forwardedFor = request.headers.get("x-forwarded-for");
+  const ip = forwardedFor ? forwardedFor.split(",")[0].trim() : "unknown";
   if (!limiter.allow(ip)) {
     return NextResponse.json({ error: "rate_limited" }, { status: 429 });
   }
@@ -28,6 +29,6 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ slugs: null, unavailable: true });
   }
 
-  await recordSearch(trimmed);
+  recordSearch(trimmed).catch(() => {});
   return NextResponse.json({ slugs: result.slugs });
 }
