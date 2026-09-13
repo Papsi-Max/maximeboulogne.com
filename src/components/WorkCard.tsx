@@ -44,11 +44,12 @@ export default function WorkCard({
           <p className="w-full font-body text-lg font-semibold text-text-secondary">
             {item.title}
           </p>
-          <div className="flex flex-wrap items-center gap-1.5 pt-1">
-            {item.tags.map((tag) => (
-              <Tag key={tag}>{tag}</Tag>
-            ))}
-          </div>
+        </div>
+
+        <div className="flex flex-wrap items-center gap-1.5">
+          {item.tags.map((tag) => (
+            <Tag key={tag}>{tag}</Tag>
+          ))}
         </div>
 
         <div className="mt-auto flex w-full items-center justify-between">
