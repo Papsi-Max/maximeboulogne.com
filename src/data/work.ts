@@ -16,6 +16,8 @@ export type WorkItem = {
   icon: string;
   iconAlt: string;
   readTime: string;
+  /** Skill tags shown as pills on the work card, e.g. "AI UX", "Mentoring". */
+  tags: string[];
 };
 
 export const workItems: WorkItem[] = [
@@ -32,6 +34,7 @@ export const workItems: WorkItem[] = [
     icon: "/images/work/icons/leroymerlin-icon.webp",
     iconAlt: "Leroy Merlin logo",
     readTime: "5-min read",
+    tags: ["AI UX", "User research", "Mentoring"],
   },
   {
     slug: "store-xp",
@@ -46,6 +49,7 @@ export const workItems: WorkItem[] = [
     icon: "/images/work/icons/leroymerlin-icon.webp",
     iconAlt: "Leroy Merlin logo",
     readTime: "4-min read",
+    tags: ["AI strategy", "Workshop facilitation", "Design Vision"],
   },
   {
     slug: "competitor-xp",
@@ -60,6 +64,7 @@ export const workItems: WorkItem[] = [
     icon: "/images/work/icons/leroymerlin-icon.webp",
     iconAlt: "Leroy Merlin logo",
     readTime: "5-min read",
+    tags: ["Systems Design", "User Research", "Design Leadership"],
   },
   {
     slug: "livinfrance-accommodation-process",
@@ -73,6 +78,7 @@ export const workItems: WorkItem[] = [
     icon: "/images/work/icons/livinfrance-icon.webp",
     iconAlt: "LivinFrance logo",
     readTime: "3-min read",
+    tags: ["UX Research", "Accessibility", "User Flows"],
   },
   {
     slug: "atelier-june-murals-showcase",
@@ -86,6 +92,7 @@ export const workItems: WorkItem[] = [
     icon: "/images/work/icons/atelierjune-icon.webp",
     iconAlt: "Atelier June logo",
     readTime: "1-min read",
+    tags: ["Brand Identity", "Web Design", "Content Strategy"],
   },
   {
     slug: "teampify-team-builder",
@@ -100,5 +107,6 @@ export const workItems: WorkItem[] = [
     icon: "/images/work/icons/teampify-icon.webp",
     iconAlt: "Teampify logo",
     readTime: "1-min read",
+    tags: ["Interaction Design", "Visual Design", "User Flows"],
   },
 ];
