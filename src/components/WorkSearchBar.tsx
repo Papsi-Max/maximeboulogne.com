@@ -1,20 +1,13 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { FIGMA_FALLBACK_PILLS as FALLBACK_PILLS } from "@/lib/work-search-pills";
 
 export type WorkSearchState =
   | { status: "idle" }
   | { status: "loading" }
   | { status: "success"; slugs: string[] }
   | { status: "unavailable" };
-
-const FALLBACK_PILLS = [
-  "AI UX",
-  "User Research",
-  "Design Leadership",
-  "Accessibility",
-  "Mentoring",
-];
 
 export default function WorkSearchBar({
   onStateChange,
@@ -24,6 +17,13 @@ export default function WorkSearchBar({
   const [query, setQuery] = useState("");
   const [pills, setPills] = useState<string[]>(FALLBACK_PILLS);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const requestIdRef = useRef(0);
+
+  useEffect(() => {
+    return () => {
+      if (debounceRef.current) clearTimeout(debounceRef.current);
+    };
+  }, []);
 
   useEffect(() => {
     fetch("/api/work-search")
@@ -41,16 +41,25 @@ export default function WorkSearchBar({
       return;
     }
     onStateChange({ status: "loading" });
+    const requestId = ++requestIdRef.current;
     fetch(`/api/work-search?q=${encodeURIComponent(trimmed)}`)
-      .then((res) => res.json())
-      .then((data: { slugs: string[] | null }) => {
+      .then(async (res) => {
+        if (requestIdRef.current !== requestId) return;
+        if (!res.ok) {
+          onStateChange({ status: "unavailable" });
+          return;
+        }
+        const data: { slugs: string[] | null } = await res.json();
         if (data.slugs === null) {
           onStateChange({ status: "unavailable" });
         } else {
           onStateChange({ status: "success", slugs: data.slugs });
         }
       })
-      .catch(() => onStateChange({ status: "unavailable" }));
+      .catch(() => {
+        if (requestIdRef.current !== requestId) return;
+        onStateChange({ status: "unavailable" });
+      });
   };
 
   const handleChange = (value: string) => {
