@@ -9,7 +9,6 @@ import BlockIcon from "@/components/icons/BlockIcon";
 import ArrowRangeIcon from "@/components/icons/ArrowRangeIcon";
 import ContentCopyIcon from "@/components/icons/ContentCopyIcon";
 import CheckIcon from "@/components/icons/CheckIcon";
-import SearchIcon from "@/components/icons/SearchIcon";
 
 type CursorKind =
   | "default"
@@ -19,8 +18,7 @@ type CursorKind =
   | "disabled"
   | "drag"
   | "copy"
-  | "copied"
-  | "search";
+  | "copied";
 
 const SIZE: Record<CursorKind, number> = {
   default: 40,
@@ -31,7 +29,6 @@ const SIZE: Record<CursorKind, number> = {
   drag: 80,
   copy: 80,
   copied: 80,
-  search: 80,
 };
 
 const BASE_SIZE = 80;
@@ -247,18 +244,6 @@ export default function CustomCursor() {
             className="absolute inset-0 m-auto flex h-12 w-12 items-center justify-center text-text-accent"
           >
             <CheckIcon size={48} />
-          </motion.span>
-        )}
-        {kind === "search" && (
-          <motion.span
-            key="search"
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0, opacity: 0 }}
-            transition={{ type: "spring", damping: 25, stiffness: 350 }}
-            className="absolute inset-0 m-auto flex h-12 w-12 items-center justify-center text-text-accent"
-          >
-            <SearchIcon size={48} />
           </motion.span>
         )}
       </AnimatePresence>

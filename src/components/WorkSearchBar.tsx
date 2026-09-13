@@ -99,13 +99,19 @@ export default function WorkSearchBar({
       </div>
       <label className="relative w-full max-w-[205px]">
         <span className="sr-only">Search by skill</span>
+        <Icon
+          name="search"
+          aria-hidden
+          size={20}
+          className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-text-tertiary"
+        />
         <input
           type="text"
-          data-cursor="search"
+          data-cursor="hover"
           value={query}
           onChange={(e) => handleChange(e.target.value)}
           placeholder="Or any other skill"
-          className="w-full rounded-full border border-border-primary bg-transparent px-3 py-2 pr-9 font-body text-base text-text-primary placeholder:text-text-tertiary focus:outline-none"
+          className="w-full rounded-full border border-border-primary bg-transparent py-2 pr-9 pl-9 font-body text-base text-text-primary placeholder:text-text-tertiary focus:outline-none"
         />
         {query.length > 0 && (
           <button

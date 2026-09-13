@@ -8,9 +8,8 @@ import PlayArrowIcon from "@/components/icons/PlayArrowIcon";
 import BlockIcon from "@/components/icons/BlockIcon";
 import ContentCopyIcon from "@/components/icons/ContentCopyIcon";
 import CheckIcon from "@/components/icons/CheckIcon";
-import SearchIcon from "@/components/icons/SearchIcon";
 
-type FocusKind = "smile" | "play" | "disabled" | "copy" | "copied" | "search";
+type FocusKind = "smile" | "play" | "disabled" | "copy" | "copied";
 
 const SIZE: Record<FocusKind, number> = {
   smile: 80,
@@ -18,7 +17,6 @@ const SIZE: Record<FocusKind, number> = {
   disabled: 40,
   copy: 80,
   copied: 80,
-  search: 80,
 };
 
 const ICON_SIZE: Record<FocusKind, number> = {
@@ -27,7 +25,6 @@ const ICON_SIZE: Record<FocusKind, number> = {
   disabled: 24,
   copy: 48,
   copied: 48,
-  search: 48,
 };
 
 // Same shrink ratio CustomCursor uses for its own click feedback (80px ->
@@ -49,6 +46,13 @@ export default function FocusIndicator() {
 
   useEffect(() => {
     const readState = (target: HTMLElement) => {
+      // Text-entry fields already get a focus ring from the global
+      // [data-cursor]:focus-visible CSS — a floating dot on top of a field
+      // you're about to type into is just noise, not useful feedback.
+      if (target.tagName === "INPUT" || target.tagName === "TEXTAREA") {
+        return null;
+      }
+
       const dataCursor = target.dataset.cursor as FocusKind | undefined;
       if (!dataCursor) return null;
 
@@ -175,11 +179,6 @@ export default function FocusIndicator() {
             {state.kind === "copied" && (
               <span className="text-text-accent">
                 <CheckIcon size={ICON_SIZE.copied} />
-              </span>
-            )}
-            {state.kind === "search" && (
-              <span className="text-text-accent">
-                <SearchIcon size={ICON_SIZE.search} />
               </span>
             )}
           </motion.div>
