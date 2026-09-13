@@ -97,7 +97,8 @@ a[data-cursor="smile"]:focus-visible {
   border-radius: 12px;
 }
 
-button.rounded-full:focus-visible {
+button.rounded-full:focus-visible,
+input.rounded-full:focus-visible {
   border-radius: 1000px;
 }
 
