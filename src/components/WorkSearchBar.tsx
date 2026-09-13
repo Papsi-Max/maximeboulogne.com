@@ -50,6 +50,7 @@ export default function WorkSearchBar({
           return;
         }
         const data: { slugs: string[] | null } = await res.json();
+        if (requestIdRef.current !== requestId) return;
         if (data.slugs === null) {
           onStateChange({ status: "unavailable" });
         } else {
