@@ -33,23 +33,25 @@ export default function WorkCard({
       </div>
 
       <div className="flex w-full flex-1 flex-col items-start gap-8 p-2.5">
-        <div className="flex w-full flex-col items-start gap-1.5">
-          <Image
-            src={item.icon}
-            alt={item.iconAlt}
-            width={24}
-            height={24}
-            className="h-6 w-6 shrink-0 object-contain"
-          />
-          <p className="w-full font-body text-lg font-semibold text-text-secondary">
-            {item.title}
-          </p>
-        </div>
+        <div className="flex w-full flex-col items-start gap-4">
+          <div className="flex w-full flex-col items-start gap-1.5">
+            <Image
+              src={item.icon}
+              alt={item.iconAlt}
+              width={24}
+              height={24}
+              className="h-6 w-6 shrink-0 object-contain"
+            />
+            <p className="w-full font-body text-lg font-semibold text-text-secondary">
+              {item.title}
+            </p>
+          </div>
 
-        <div className="flex flex-wrap items-center gap-1.5">
-          {item.tags.map((tag) => (
-            <Tag key={tag}>{tag}</Tag>
-          ))}
+          <div className="flex flex-wrap items-center gap-1.5">
+            {item.tags.map((tag) => (
+              <Tag key={tag}>{tag}</Tag>
+            ))}
+          </div>
         </div>
 
         <div className="mt-auto flex w-full items-center justify-between">
