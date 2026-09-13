@@ -91,7 +91,7 @@ export default function WorkSearchBar({
             key={label}
             type="button"
             onClick={() => handlePillClick(label)}
-            className="rounded-full bg-bg-tertiary px-4 py-3 font-body text-sm text-text-secondary transition-colors hover:bg-[#525252]"
+            className="rounded-full bg-bg-tertiary px-4 py-3 font-body text-base text-text-secondary transition-colors hover:bg-[#525252]"
           >
             {label}
           </button>
