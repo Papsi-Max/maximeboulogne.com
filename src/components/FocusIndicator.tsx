@@ -3,6 +3,11 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useAnimationControls } from "framer-motion";
 import { CURSOR_PULSE_EVENT } from "@/lib/cursor-events";
+import SentimentSatisfiedIcon from "@/components/icons/SentimentSatisfiedIcon";
+import PlayArrowIcon from "@/components/icons/PlayArrowIcon";
+import BlockIcon from "@/components/icons/BlockIcon";
+import ContentCopyIcon from "@/components/icons/ContentCopyIcon";
+import CheckIcon from "@/components/icons/CheckIcon";
 
 type FocusKind = "smile" | "play" | "disabled" | "copy" | "copied";
 
@@ -145,63 +150,28 @@ export default function FocusIndicator() {
             className="flex h-full w-full items-center justify-center rounded-full bg-bg-inverse"
           >
             {state.kind === "smile" && (
-              <span
-                className="material-symbols-rounded text-text-accent"
-                style={{
-                  width: ICON_SIZE.smile,
-                  height: ICON_SIZE.smile,
-                  fontSize: ICON_SIZE.smile,
-                }}
-              >
-                sentiment_satisfied
+              <span className="text-text-accent">
+                <SentimentSatisfiedIcon size={ICON_SIZE.smile} />
               </span>
             )}
             {state.kind === "play" && (
-              <span
-                className="material-symbols-rounded text-text-accent"
-                style={{
-                  width: ICON_SIZE.play,
-                  height: ICON_SIZE.play,
-                  fontSize: ICON_SIZE.play,
-                }}
-              >
-                play_arrow
+              <span className="text-text-accent">
+                <PlayArrowIcon size={ICON_SIZE.play} />
               </span>
             )}
             {state.kind === "disabled" && (
-              <span
-                className="material-symbols-rounded text-text-accent"
-                style={{
-                  width: ICON_SIZE.disabled,
-                  height: ICON_SIZE.disabled,
-                  fontSize: ICON_SIZE.disabled,
-                }}
-              >
-                block
+              <span className="text-text-accent">
+                <BlockIcon size={ICON_SIZE.disabled} />
               </span>
             )}
             {state.kind === "copy" && (
-              <span
-                className="material-symbols-rounded text-text-accent"
-                style={{
-                  width: ICON_SIZE.copy,
-                  height: ICON_SIZE.copy,
-                  fontSize: ICON_SIZE.copy,
-                }}
-              >
-                content_copy
+              <span className="text-text-accent">
+                <ContentCopyIcon size={ICON_SIZE.copy} />
               </span>
             )}
             {state.kind === "copied" && (
-              <span
-                className="material-symbols-rounded text-text-accent"
-                style={{
-                  width: ICON_SIZE.copied,
-                  height: ICON_SIZE.copied,
-                  fontSize: ICON_SIZE.copied,
-                }}
-              >
-                check
+              <span className="text-text-accent">
+                <CheckIcon size={ICON_SIZE.copied} />
               </span>
             )}
           </motion.div>
