@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Icon from "@/components/Icon";
+import Tag from "@/components/Tag";
 import type { WorkItem } from "@/data/work";
 
 export default function WorkCard({
@@ -43,6 +44,11 @@ export default function WorkCard({
           <p className="w-full font-body text-lg font-semibold text-text-secondary">
             {item.title}
           </p>
+          <div className="flex flex-wrap items-center gap-1.5 pt-1">
+            {item.tags.map((tag) => (
+              <Tag key={tag}>{tag}</Tag>
+            ))}
+          </div>
         </div>
 
         <div className="mt-auto flex w-full items-center justify-between">
