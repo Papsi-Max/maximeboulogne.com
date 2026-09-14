@@ -118,7 +118,8 @@ export default function WorkSearchBar({
             type="button"
             onClick={handleClear}
             aria-label="Clear search"
-            className="absolute top-1/2 right-0 flex h-12 w-12 -translate-y-1/2 items-center justify-center text-text-tertiary transition-colors hover:text-text-primary"
+            data-cursor="clear"
+            className="absolute top-1/2 right-0 z-[999] flex h-12 w-12 -translate-y-1/2 items-center justify-center text-text-tertiary transition-colors hover:text-text-primary"
           >
             <Icon name="cancel" aria-hidden size={20} />
           </button>
