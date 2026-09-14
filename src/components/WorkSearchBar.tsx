@@ -84,7 +84,7 @@ export default function WorkSearchBar({
   };
 
   return (
-    <div className="flex w-full flex-col items-start gap-3">
+    <div role="search" className="flex w-full flex-col items-start gap-3">
       <div className="flex flex-wrap items-center gap-3">
         {pills.map((label) => (
           <button
@@ -98,7 +98,6 @@ export default function WorkSearchBar({
         ))}
       </div>
       <label className="relative w-full max-w-[205px]">
-        <span className="sr-only">Search by skill</span>
         <Icon
           name="search"
           aria-hidden
@@ -107,18 +106,19 @@ export default function WorkSearchBar({
         />
         <input
           type="text"
+          aria-label="Search by skill"
           data-cursor="hover"
           value={query}
           onChange={(e) => handleChange(e.target.value)}
           placeholder="Or any other skill"
-          className="w-full rounded-full border border-border-primary bg-transparent py-2 pr-9 pl-9 font-body text-base text-text-primary placeholder:text-text-tertiary focus:outline-none"
+          className="w-full rounded-full border border-border-primary bg-transparent py-3 pr-12 pl-9 font-body text-base text-text-primary placeholder:text-text-tertiary focus:outline-none"
         />
         {query.length > 0 && (
           <button
             type="button"
             onClick={handleClear}
             aria-label="Clear search"
-            className="absolute top-1/2 right-2 flex -translate-y-1/2 items-center justify-center text-text-tertiary transition-colors hover:text-text-primary"
+            className="absolute top-1/2 right-0 flex h-12 w-12 -translate-y-1/2 items-center justify-center text-text-tertiary transition-colors hover:text-text-primary"
           >
             <Icon name="cancel" aria-hidden size={20} />
           </button>

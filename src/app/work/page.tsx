@@ -29,11 +29,10 @@ export default function WorkPage() {
 
       <WorkSearchBar onStateChange={setSearchState} />
 
-      {searchState.status === "unavailable" && (
-        <p className="font-body text-sm text-text-tertiary">
-          Search is unavailable right now — showing every project.
-        </p>
-      )}
+      <p aria-live="polite" className="font-body text-sm text-text-tertiary empty:hidden">
+        {searchState.status === "unavailable" &&
+          "Search is unavailable right now — showing every project."}
+      </p>
 
       <ul className="grid w-full grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-1.5">
         {searchState.status === "loading"
