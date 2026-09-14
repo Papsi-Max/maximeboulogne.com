@@ -9,7 +9,7 @@ import BlockIcon from "@/components/icons/BlockIcon";
 import ArrowRangeIcon from "@/components/icons/ArrowRangeIcon";
 import ContentCopyIcon from "@/components/icons/ContentCopyIcon";
 import CheckIcon from "@/components/icons/CheckIcon";
-import CancelIcon from "@/components/icons/CancelIcon";
+import CloseIcon from "@/components/icons/CloseIcon";
 
 type CursorKind =
   | "default"
@@ -258,7 +258,7 @@ export default function CustomCursor() {
             transition={{ type: "spring", damping: 25, stiffness: 350 }}
             className="absolute inset-0 m-auto flex h-12 w-12 items-center justify-center text-text-accent"
           >
-            <CancelIcon size={48} />
+            <CloseIcon size={48} />
           </motion.span>
         )}
       </AnimatePresence>

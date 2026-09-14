@@ -8,7 +8,7 @@ import PlayArrowIcon from "@/components/icons/PlayArrowIcon";
 import BlockIcon from "@/components/icons/BlockIcon";
 import ContentCopyIcon from "@/components/icons/ContentCopyIcon";
 import CheckIcon from "@/components/icons/CheckIcon";
-import CancelIcon from "@/components/icons/CancelIcon";
+import CloseIcon from "@/components/icons/CloseIcon";
 
 type FocusKind = "smile" | "play" | "disabled" | "copy" | "copied" | "clear";
 
@@ -186,7 +186,7 @@ export default function FocusIndicator() {
             )}
             {state.kind === "clear" && (
               <span className="text-text-accent">
-                <CancelIcon size={ICON_SIZE.clear} />
+                <CloseIcon size={ICON_SIZE.clear} />
               </span>
             )}
           </motion.div>
