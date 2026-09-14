@@ -111,7 +111,7 @@ export default function WorkSearchBar({
           value={query}
           onChange={(e) => handleChange(e.target.value)}
           placeholder="Or any other skill"
-          className="w-full rounded-full border border-border-primary bg-transparent py-3 pr-12 pl-9 font-body text-base text-text-primary placeholder:text-text-tertiary focus:outline-none"
+          className="w-full rounded-full border border-border-primary bg-transparent py-3 pr-11 pl-11 font-body text-base text-text-primary placeholder:text-text-tertiary focus:outline-none"
         />
         {query.length > 0 && (
           <button
