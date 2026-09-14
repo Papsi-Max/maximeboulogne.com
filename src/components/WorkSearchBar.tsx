@@ -106,15 +106,16 @@ export default function WorkSearchBar({
           manual onClick needed — and it correctly leaves the clear
           button's own click alone, since a label only forwards the click
           when the target isn't itself a control. */}
-      <label className="flex w-full max-w-[232px] items-center gap-1 overflow-hidden rounded-full border border-border-primary py-0.5 pr-0.5 pl-1.5 has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-4 has-[:focus-visible]:outline-[var(--color-text-accent)]">
+      <label
+        data-cursor="hover"
+        className="flex w-full max-w-[232px] items-center gap-1 overflow-hidden rounded-full border border-border-primary py-0.5 pr-0.5 pl-1.5 has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-4 has-[:focus-visible]:outline-[var(--color-text-accent)]"
+      >
         <span className="flex shrink-0 items-center justify-center rounded-full p-2.5 text-text-tertiary">
           <Icon name="ai_search" aria-hidden size={24} />
         </span>
         <input
           type="text"
           aria-label="Search by skill"
-          data-cursor="hover"
-          data-focus-ring="none"
           value={query}
           onChange={(e) => handleChange(e.target.value)}
           placeholder="Or any other skill"
