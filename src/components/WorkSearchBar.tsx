@@ -101,7 +101,7 @@ export default function WorkSearchBar({
         <Icon
           name="ai_search"
           aria-hidden
-          size={20}
+          size={24}
           className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-text-tertiary"
         />
         <input
@@ -121,7 +121,7 @@ export default function WorkSearchBar({
             data-cursor="clear"
             className="absolute top-1/2 right-0 z-[999] flex h-12 w-12 -translate-y-1/2 items-center justify-center text-text-tertiary transition-colors hover:text-text-primary"
           >
-            <Icon name="cancel" aria-hidden size={20} />
+            <Icon name="cancel" aria-hidden size={24} />
           </button>
         )}
       </label>
