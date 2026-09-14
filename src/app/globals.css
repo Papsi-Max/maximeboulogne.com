@@ -110,6 +110,21 @@ a.work-card:focus-visible {
   border-radius: 1000px;
 }
 
+/* Opt-out of the shared [data-cursor]:focus-visible ring above, for a
+   control whose data-cursor attribute exists only to drive the custom
+   mouse cursor (hiding the native text caret, picking the cursor icon) —
+   not to request its own focus ring. Used when a wrapping element already
+   draws the focus indicator for the whole compound control (e.g. the work
+   search field: the pill wrapping the input owns the ring via
+   has-[:focus-visible], so the input itself must stay silent or the two
+   rings show up nested inside one another. */
+[data-focus-ring="none"]:focus-visible {
+  position: static;
+  z-index: auto;
+  outline: none;
+  animation: none;
+}
+
 .py-160 {
   padding-top: 160px;
   padding-bottom: 160px;

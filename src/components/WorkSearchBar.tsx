@@ -109,6 +109,7 @@ export default function WorkSearchBar({
           type="text"
           aria-label="Search by skill"
           data-cursor="hover"
+          data-focus-ring="none"
           value={query}
           onChange={(e) => handleChange(e.target.value)}
           placeholder="Or any other skill"
