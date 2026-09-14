@@ -29,3 +29,5 @@ jobs:
 
             pm2 restart portfolio --update-env
             pm2 save
+
+            npm run reindex || true

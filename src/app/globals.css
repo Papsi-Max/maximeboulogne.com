@@ -63,6 +63,14 @@ body {
   body.custom-cursor-active [data-cursor] {
     cursor: none;
   }
+
+  /* Form controls carry their own UA cursor (text-input "I-beam" etc.)
+     that doesn't inherit from an ancestor — hovering a data-cursor
+     wrapper (e.g. the work search pill) must still hide it on a nested
+     input, not just on the wrapper itself. */
+  body.custom-cursor-active [data-cursor] input {
+    cursor: none;
+  }
 }
 
 @keyframes focus-outline-in {
@@ -97,7 +105,8 @@ a[data-cursor="smile"]:focus-visible {
   border-radius: 12px;
 }
 
-button.rounded-full:focus-visible {
+button.rounded-full:focus-visible,
+input.rounded-full:focus-visible {
   border-radius: 1000px;
 }
 

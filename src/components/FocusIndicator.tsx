@@ -46,11 +46,18 @@ export default function FocusIndicator() {
 
   useEffect(() => {
     const readState = (target: HTMLElement) => {
-      const dataCursor = target.dataset.cursor as FocusKind | undefined;
-      if (!dataCursor) return null;
+      // Text-entry fields already get a focus ring from the global
+      // [data-cursor]:focus-visible CSS — a floating dot on top of a field
+      // you're about to type into is just noise, not useful feedback.
+      if (target.tagName === "INPUT" || target.tagName === "TEXTAREA") {
+        return null;
+      }
+
+      const dataCursor = target.dataset.cursor;
+      if (!dataCursor || !(dataCursor in SIZE)) return null;
 
       const rect = target.getBoundingClientRect();
-      return { kind: dataCursor, top: rect.top, left: rect.right };
+      return { kind: dataCursor as FocusKind, top: rect.top, left: rect.right };
     };
 
     const onFocusIn = (e: FocusEvent) => {
