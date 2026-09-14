@@ -34,6 +34,9 @@ function extractBlockText(block: WorkContentBlock): string[] {
 }
 
 export function extractWorkText(item: WorkItem, blocks: WorkContentBlock[]): string {
+  // Tags are sent separately (see buildReindexPayload) rather than folded
+  // in here — the search sidecar keeps them verbatim by code rather than
+  // relying on its LLM to preserve them unparaphrased when summarizing.
   const bodyText = blocks.flatMap(extractBlockText);
-  return [item.title, item.description, ...item.tags, ...bodyText].join(" ");
+  return [item.title, item.description, ...bodyText].join(" ");
 }

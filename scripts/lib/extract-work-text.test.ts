@@ -17,11 +17,16 @@ const item: WorkItem = {
   tags: ["AI UX", "User research", "Mentoring"],
 };
 
-test("collects title, description, and tags", () => {
+test("collects title and description", () => {
   const text = extractWorkText(item, []);
   assert.match(text, /Turning the RAG Edito/);
   assert.match(text, /Designing the RAG Edito/);
-  assert.match(text, /User research/);
+});
+
+test("does not include tags — they're sent separately to the search sidecar, verbatim, instead of relying on its LLM to keep them unparaphrased when it summarizes the text (it doesn't, reliably)", () => {
+  const text = extractWorkText(item, []);
+  assert.doesNotMatch(text, /User research/);
+  assert.doesNotMatch(text, /Mentoring/);
 });
 
 test("collects paragraph, heading, and quote text from top-level blocks", () => {
