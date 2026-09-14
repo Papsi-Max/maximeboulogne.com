@@ -93,7 +93,7 @@ export default function WorkSearchBar({
             onClick={() => handlePillClick(label)}
             className="rounded-full bg-bg-tertiary px-4 py-3 font-body text-base text-text-secondary transition-colors hover:bg-[#525252]"
           >
-            <span className="first-letter:uppercase">{label}</span>
+            <span className="inline-block first-letter:uppercase">{label}</span>
           </button>
         ))}
       </div>
