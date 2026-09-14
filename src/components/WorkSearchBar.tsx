@@ -108,7 +108,7 @@ export default function WorkSearchBar({
           when the target isn't itself a control. */}
       <label
         data-cursor="hover"
-        className="flex w-full max-w-[232px] items-center gap-1 overflow-hidden rounded-full border border-border-primary py-0.5 pr-0.5 pl-1.5 has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-4 has-[:focus-visible]:outline-[var(--color-text-accent)]"
+        className="flex w-full max-w-[232px] items-center gap-1 rounded-full border border-border-primary py-0.5 pr-0.5 pl-1.5 has-[input:focus-visible]:outline-2 has-[input:focus-visible]:outline-offset-4 has-[input:focus-visible]:outline-[var(--color-text-accent)]"
       >
         <span className="flex shrink-0 items-center justify-center rounded-full p-2.5 text-text-tertiary">
           <Icon name="ai_search" aria-hidden size={24} />
