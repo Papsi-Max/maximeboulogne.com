@@ -97,13 +97,14 @@ export default function WorkSearchBar({
           </button>
         ))}
       </div>
-      <label className="relative w-full max-w-[232px]">
-        <Icon
-          name="ai_search"
-          aria-hidden
-          size={24}
-          className="pointer-events-none absolute top-1/2 left-4 -translate-y-1/2 text-text-tertiary"
-        />
+      {/* Mirrors the Figma frame's own structure (node 4797:600): the pill
+          itself is the flex row (border, rounded-full, small padding +
+          gap), icons are real flex children sized by their own padding —
+          not an input with icons absolutely positioned on top of it. */}
+      <div className="flex w-full max-w-[232px] items-center gap-1 overflow-hidden rounded-full border border-border-primary py-0.5 pr-0.5 pl-1.5 has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-4 has-[:focus-visible]:outline-[var(--color-text-accent)]">
+        <span className="flex shrink-0 items-center justify-center rounded-full p-2.5 text-text-tertiary">
+          <Icon name="ai_search" aria-hidden size={24} />
+        </span>
         <input
           type="text"
           aria-label="Search by skill"
@@ -111,7 +112,7 @@ export default function WorkSearchBar({
           value={query}
           onChange={(e) => handleChange(e.target.value)}
           placeholder="Or any other skill"
-          className="w-full rounded-full border border-border-primary bg-transparent py-3 pr-11 pl-12 font-body text-base text-text-primary placeholder:text-text-tertiary focus:outline-none"
+          className="min-w-0 flex-1 bg-transparent font-body text-base text-text-primary placeholder:text-text-tertiary focus:outline-none"
         />
         {query.length > 0 && (
           <button
@@ -119,14 +120,12 @@ export default function WorkSearchBar({
             onClick={handleClear}
             aria-label="Clear search"
             data-cursor="clear"
-            className="group absolute top-1/2 right-0 z-[999] flex h-12 w-12 -translate-y-1/2 items-center justify-center"
+            className="flex shrink-0 items-center justify-center rounded-full p-2.5 text-text-tertiary transition-colors hover:bg-bg-tertiary hover:text-text-primary"
           >
-            <span className="flex h-11 w-11 items-center justify-center rounded-full text-text-tertiary transition-colors group-hover:bg-bg-tertiary group-hover:text-text-primary">
-              <Icon name="close" aria-hidden size={24} />
-            </span>
+            <Icon name="close" aria-hidden size={24} />
           </button>
         )}
-      </label>
+      </div>
     </div>
   );
 }
