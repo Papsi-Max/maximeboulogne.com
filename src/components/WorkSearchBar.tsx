@@ -100,8 +100,13 @@ export default function WorkSearchBar({
       {/* Mirrors the Figma frame's own structure (node 4797:600): the pill
           itself is the flex row (border, rounded-full, small padding +
           gap), icons are real flex children sized by their own padding —
-          not an input with icons absolutely positioned on top of it. */}
-      <div className="flex w-full max-w-[232px] items-center gap-1 overflow-hidden rounded-full border border-border-primary py-0.5 pr-0.5 pl-1.5 has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-4 has-[:focus-visible]:outline-[var(--color-text-accent)]">
+          not an input with icons absolutely positioned on top of it.
+          A <label> rather than a <div>: clicking anywhere on the pill
+          (padding, icon) focuses the input, native browser behavior, no
+          manual onClick needed — and it correctly leaves the clear
+          button's own click alone, since a label only forwards the click
+          when the target isn't itself a control. */}
+      <label className="flex w-full max-w-[232px] items-center gap-1 overflow-hidden rounded-full border border-border-primary py-0.5 pr-0.5 pl-1.5 has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-4 has-[:focus-visible]:outline-[var(--color-text-accent)]">
         <span className="flex shrink-0 items-center justify-center rounded-full p-2.5 text-text-tertiary">
           <Icon name="ai_search" aria-hidden size={24} />
         </span>
@@ -126,7 +131,7 @@ export default function WorkSearchBar({
             <Icon name="close" aria-hidden size={24} />
           </button>
         )}
-      </div>
+      </label>
     </div>
   );
 }
