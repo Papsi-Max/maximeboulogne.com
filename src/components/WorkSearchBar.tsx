@@ -101,7 +101,7 @@ export default function WorkSearchBar({
         <Icon
           name="ai_search"
           aria-hidden
-          size={24}
+          size={32}
           className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-text-tertiary"
         />
         <input
@@ -111,7 +111,7 @@ export default function WorkSearchBar({
           value={query}
           onChange={(e) => handleChange(e.target.value)}
           placeholder="Or any other skill"
-          className="w-full rounded-full border border-border-primary bg-transparent py-3 pr-11 pl-11 font-body text-base text-text-primary placeholder:text-text-tertiary focus:outline-none"
+          className="w-full rounded-full border border-border-primary bg-transparent py-3 pr-12 pl-[52px] font-body text-base text-text-primary placeholder:text-text-tertiary focus:outline-none"
         />
         {query.length > 0 && (
           <button
@@ -121,8 +121,8 @@ export default function WorkSearchBar({
             data-cursor="clear"
             className="group absolute top-1/2 right-0 z-[999] flex h-12 w-12 -translate-y-1/2 items-center justify-center"
           >
-            <span className="flex h-10 w-10 items-center justify-center rounded-full text-text-tertiary transition-colors group-hover:bg-bg-tertiary group-hover:text-text-primary">
-              <Icon name="close" aria-hidden size={24} />
+            <span className="flex h-11 w-11 items-center justify-center rounded-full text-text-tertiary transition-colors group-hover:bg-bg-tertiary group-hover:text-text-primary">
+              <Icon name="close" aria-hidden size={32} />
             </span>
           </button>
         )}
