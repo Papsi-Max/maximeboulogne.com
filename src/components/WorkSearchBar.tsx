@@ -99,7 +99,7 @@ export default function WorkSearchBar({
       </div>
       <label className="relative w-full max-w-[205px]">
         <Icon
-          name="search"
+          name="ai_search"
           aria-hidden
           size={20}
           className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-text-tertiary"
