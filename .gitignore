@@ -30,3 +30,4 @@ next-env.d.ts
 
 # work search analytics (runtime state, not source)
 /.data/
+next-dev-3002.log

@@ -127,9 +127,9 @@ export default function WorkSearchBar({
             onClick={handleClear}
             aria-label="Clear search"
             data-cursor="clear"
-            className="flex shrink-0 items-center justify-center rounded-full p-2.5 text-text-tertiary transition-colors hover:bg-bg-tertiary hover:text-text-primary"
+            className="flex shrink-0 items-center justify-center rounded-full p-2.5 text-text-tertiary transition-colors hover:text-text-primary"
           >
-            <Icon name="close" aria-hidden size={24} />
+            <Icon name="cancel" aria-hidden size={24} />
           </button>
         )}
       </label>

@@ -8,9 +8,8 @@ import PlayArrowIcon from "@/components/icons/PlayArrowIcon";
 import BlockIcon from "@/components/icons/BlockIcon";
 import ContentCopyIcon from "@/components/icons/ContentCopyIcon";
 import CheckIcon from "@/components/icons/CheckIcon";
-import CloseIcon from "@/components/icons/CloseIcon";
 
-type FocusKind = "smile" | "play" | "disabled" | "copy" | "copied" | "clear";
+type FocusKind = "smile" | "play" | "disabled" | "copy" | "copied";
 
 const SIZE: Record<FocusKind, number> = {
   smile: 80,
@@ -18,7 +17,6 @@ const SIZE: Record<FocusKind, number> = {
   disabled: 40,
   copy: 80,
   copied: 80,
-  clear: 80,
 };
 
 const ICON_SIZE: Record<FocusKind, number> = {
@@ -27,7 +25,6 @@ const ICON_SIZE: Record<FocusKind, number> = {
   disabled: 24,
   copy: 48,
   copied: 48,
-  clear: 48,
 };
 
 // Same shrink ratio CustomCursor uses for its own click feedback (80px ->
@@ -56,11 +53,11 @@ export default function FocusIndicator() {
         return null;
       }
 
-      const dataCursor = target.dataset.cursor as FocusKind | undefined;
-      if (!dataCursor) return null;
+      const dataCursor = target.dataset.cursor;
+      if (!dataCursor || !(dataCursor in SIZE)) return null;
 
       const rect = target.getBoundingClientRect();
-      return { kind: dataCursor, top: rect.top, left: rect.right };
+      return { kind: dataCursor as FocusKind, top: rect.top, left: rect.right };
     };
 
     const onFocusIn = (e: FocusEvent) => {
@@ -182,11 +179,6 @@ export default function FocusIndicator() {
             {state.kind === "copied" && (
               <span className="text-text-accent">
                 <CheckIcon size={ICON_SIZE.copied} />
-              </span>
-            )}
-            {state.kind === "clear" && (
-              <span className="text-text-accent">
-                <CloseIcon size={ICON_SIZE.clear} />
               </span>
             )}
           </motion.div>
