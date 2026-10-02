@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import BackButton from "@/components/BackButton";
+import PageHeader from "@/components/PageHeader";
 import WorkCard from "@/components/WorkCard";
 import WorkCardSkeleton from "@/components/WorkCardSkeleton";
 import WorkSearchBar, { type WorkSearchState } from "@/components/WorkSearchBar";
@@ -20,12 +20,7 @@ export default function WorkPage() {
 
   return (
     <div className="flex flex-col items-start gap-4 px-4">
-      <div className="flex w-full items-start gap-3">
-        <BackButton href="/" />
-        <h1 className="flex-1 font-display text-5xl font-normal text-text-primary">
-          Work
-        </h1>
-      </div>
+      <PageHeader title="Work" backHref="/" backLabel="Back to home" />
 
       <WorkSearchBar onStateChange={setSearchState} />
 

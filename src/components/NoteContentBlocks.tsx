@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Icon from "@/components/Icon";
 import GameLibraryExample from "@/components/GameLibraryExample";
 import MechanicsCarousel from "@/components/MechanicsCarousel";
@@ -13,6 +14,7 @@ function categorize(type: NoteContentBlock["type"]): BlockCategory {
     case "gameLibraryExample":
     case "mechanicsCarousel":
     case "imagePlaceholder":
+    case "image":
     case "commandBlock":
       return "visual";
     default:
@@ -73,6 +75,30 @@ export default function NoteContentBlocks({
                   command={block.command}
                 />
               </div>
+            );
+
+          case "image":
+            return (
+              <figure
+                key={i}
+                className={`flex w-full flex-col items-center gap-2 ${spacing}`}
+              >
+                <Image
+                  src={block.src}
+                  alt={block.alt}
+                  width={block.width}
+                  height={block.height}
+                  placeholder="blur"
+                  blurDataURL={block.blurDataURL}
+                  sizes="(min-width: 640px) 578px, 100vw"
+                  className="h-auto w-full sm:w-auto sm:max-w-full"
+                />
+                {block.caption && (
+                  <figcaption className="w-full font-body text-sm text-text-secondary">
+                    {block.caption}
+                  </figcaption>
+                )}
+              </figure>
             );
 
           case "imagePlaceholder":

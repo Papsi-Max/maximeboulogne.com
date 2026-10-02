@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import BackButton from "@/components/BackButton";
+import PageHeader from "@/components/PageHeader";
+import NoteDate from "@/components/NoteDate";
 import { noteItems, type NoteItem } from "@/data/notes";
-import { formatNoteDate, noteMonthKey } from "@/lib/format-note-date";
+import { noteMonthKey } from "@/lib/format-note-date";
 
 export const metadata: Metadata = {
   title: "Notes",
@@ -35,12 +36,7 @@ export default function NotesPage() {
 
   return (
     <div className="flex flex-col items-start gap-4 px-4">
-      <div className="flex w-full items-start gap-3">
-        <BackButton href="/" />
-        <h1 className="flex-1 font-display text-5xl font-normal text-text-primary">
-          Notes
-        </h1>
-      </div>
+      <PageHeader title="Notes" backHref="/" backLabel="Back to home" />
 
       <ul className="flex w-full flex-col items-start gap-4">
         {groups.map((group) => (
@@ -58,9 +54,10 @@ export default function NotesPage() {
                     <span className="min-w-0 flex-1 truncate font-body text-lg">
                       {item.title}
                     </span>
-                    <span className="shrink-0 font-body text-sm">
-                      {formatNoteDate(item.date)}
-                    </span>
+                    <NoteDate
+                      date={item.date}
+                      className="shrink-0 font-body text-sm"
+                    />
                   </Link>
                 </li>
               ))}
