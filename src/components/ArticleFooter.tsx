@@ -20,7 +20,7 @@ export default function ArticleFooter({
     .slice(0, 3);
 
   return (
-    <div className="mt-12 flex w-full flex-col items-start gap-6 sm:mt-16">
+    <footer className="mt-12 flex w-full flex-col items-start gap-6 sm:mt-16">
       {related.length > 0 && (
         <div className="flex w-full flex-col items-start gap-1">
           <h2 className="font-display text-2xl font-normal text-text-primary">
@@ -57,12 +57,12 @@ export default function ArticleFooter({
             href="/about"
             className="text-text-tertiary underline decoration-from-font transition-colors hover:text-text-primary"
           >
-            Maxime Boulogne,
-          </Link>{" "}
-          I share these notes and case studies to prove UX only serves the
+            Maxime Boulogne
+          </Link>
+          , I share these notes and case studies to prove UX only serves the
           light side of the Force.
         </p>
       </div>
-    </div>
+    </footer>
   );
 }

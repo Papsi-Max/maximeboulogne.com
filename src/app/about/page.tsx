@@ -1,6 +1,6 @@
 "use client";
 
-import BackButton from "@/components/BackButton";
+import PageHeader from "@/components/PageHeader";
 
 const ABOUT_PARAGRAPHS = [
   "I've been designing experiences for about 5 years now. Self-taught, coming from an unusual path I originally worked in the VFX field before finding my way into UX.",
@@ -12,12 +12,7 @@ const ABOUT_PARAGRAPHS = [
 export default function AboutPage() {
   return (
     <div className="flex flex-col items-start gap-4 px-4">
-      <div className="flex w-full items-start gap-3">
-        <BackButton href="/" />
-        <h1 className="flex-1 font-display text-5xl font-normal text-text-primary">
-          About
-        </h1>
-      </div>
+      <PageHeader title="About" backHref="/" backLabel="Back to home" />
 
       {ABOUT_PARAGRAPHS.map((p, i) => (
         <p

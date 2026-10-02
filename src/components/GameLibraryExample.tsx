@@ -111,7 +111,7 @@ export default function GameLibraryExample() {
                   {game.genre}
                 </td>
                 <td className="whitespace-nowrap py-2 pr-3 text-lg text-text-primary">
-                  {game.year}
+                  <time dateTime={game.year}>{game.year}</time>
                 </td>
                 <td className="whitespace-nowrap rounded-r-lg py-2 pr-2 text-lg text-text-primary">
                   {game.hours}

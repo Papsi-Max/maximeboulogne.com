@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import BackButton from "@/components/BackButton";
+import PageHeader from "@/components/PageHeader";
 import { notFound } from "next/navigation";
 import { workItems } from "@/data/work";
 import { workContent } from "@/data/work-content";
@@ -86,7 +86,7 @@ export default async function WorkDetailPage({
   ]);
 
   return (
-    <div className="flex flex-col items-start gap-4 px-4">
+    <article className="flex flex-col items-start gap-4 px-4">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(creativeWorkJsonLd) }}
@@ -95,12 +95,12 @@ export default async function WorkDetailPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
-      <div className="flex w-full flex-col items-start gap-3 sm:flex-row">
-        <BackButton href="/work" />
-        <h1 className="flex-1 font-display text-4xl font-normal text-text-primary sm:text-5xl">
-          {item.title}
-        </h1>
-      </div>
+      <PageHeader
+        title={item.title}
+        backHref="/work"
+        backLabel="Back to work"
+        long
+      />
 
       <div className="mt-6 w-full sm:mt-10">
         <WorkContentBlocks blocks={blocks} />
@@ -112,6 +112,6 @@ export default async function WorkDetailPage({
         items={workItems}
         currentSlug={item.slug}
       />
-    </div>
+    </article>
   );
 }

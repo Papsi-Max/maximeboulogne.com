@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import BackButton from "@/components/BackButton";
+import PageHeader from "@/components/PageHeader";
+import NoteDate from "@/components/NoteDate";
 import { notFound } from "next/navigation";
 import { noteItems } from "@/data/notes";
 import { noteContent } from "@/data/notes-content";
 import NoteContentBlocks from "@/components/NoteContentBlocks";
 import ArticleFooter from "@/components/ArticleFooter";
-import { formatNoteDate } from "@/lib/format-note-date";
 import { siteConfig } from "@/lib/site-config";
 import { buildBreadcrumbJsonLd } from "@/lib/breadcrumb-jsonld";
 
@@ -90,7 +90,7 @@ export default async function NoteDetailPage({
   ]);
 
   return (
-    <div className="flex flex-col items-start gap-4 px-4">
+    <article className="flex flex-col items-start gap-4 px-4">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
@@ -99,25 +99,25 @@ export default async function NoteDetailPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
-      <div className="flex w-full flex-col items-start gap-3 sm:flex-row">
-        <BackButton href="/notes" />
-        <h1 className="flex-1 font-display text-4xl font-normal text-text-primary sm:text-5xl">
-          {item.title}
-        </h1>
-      </div>
-
-      <div className="flex w-full items-center justify-between gap-4 font-body text-base text-text-secondary">
-        <span>
-          by{" "}
-          <Link
-            href="/about"
-            className="text-text-secondary underline decoration-from-font transition-colors hover:text-text-primary"
-          >
-            Maxime Boulogne
-          </Link>
-        </span>
-        <span>{formatNoteDate(item.date)}</span>
-      </div>
+      <PageHeader
+        title={item.title}
+        backHref="/notes"
+        backLabel="Back to notes"
+        long
+      >
+        <div className="flex w-full items-center justify-between gap-4 font-body text-base text-text-secondary">
+          <span>
+            by{" "}
+            <Link
+              href="/about"
+              className="text-text-secondary underline decoration-from-font transition-colors hover:text-text-primary"
+            >
+              Maxime Boulogne
+            </Link>
+          </span>
+          <NoteDate date={item.date} />
+        </div>
+      </PageHeader>
 
       <div className="mt-6 w-full sm:mt-10">
         <NoteContentBlocks blocks={blocks} />
@@ -129,6 +129,6 @@ export default async function NoteDetailPage({
         items={noteItems}
         currentSlug={item.slug}
       />
-    </div>
+    </article>
   );
 }

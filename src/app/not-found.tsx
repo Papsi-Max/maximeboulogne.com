@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import BackButton from "@/components/BackButton";
+import PageHeader from "@/components/PageHeader";
 
 // noindex: a 404 has no content of its own, letting Google index it
 // would waste crawl budget and could dilute the site in search results.
@@ -15,12 +15,12 @@ export const metadata: Metadata = {
 export default function NotFound() {
   return (
     <div className="flex flex-col items-start gap-4 px-4">
-      <div className="flex w-full items-start gap-3">
-        <BackButton href="/" />
-        <h1 className="font-display text-4xl font-normal text-text-primary sm:text-5xl">
-          Page not found
-        </h1>
-      </div>
+      <PageHeader
+        title="Page not found"
+        backHref="/"
+        backLabel="Back to home"
+        long
+      />
       <p className="max-w-lg font-body text-lg text-text-secondary">
         This page doesn&rsquo;t exist, or it moved.{" "}
         <Link

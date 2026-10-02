@@ -9,6 +9,13 @@ export type NoteItem = {
 
 export const noteItems: NoteItem[] = [
   {
+    slug: "desirability-viability-feasibility",
+    title: "Desirability, viability, feasibility",
+    date: "2026-10-01",
+    description:
+      "Using the three questions of Business Thinking for Designers to turn a vague request to increase sales into numbers the whole room can discuss.",
+  },
+  {
     slug: "skills",
     title: "Claude skills ready to be used",
     date: "2026-09-11",
