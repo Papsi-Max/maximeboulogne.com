@@ -9,6 +9,13 @@ export type NoteItem = {
 
 export const noteItems: NoteItem[] = [
   {
+    slug: "invisible-is-not-inaccessible",
+    title: "Invisible is not inaccessible",
+    date: "2026-10-06",
+    description:
+      "A hidden reaction in the hero stays rare to discover, but reachable by keyboard, screen reader, touch and mouse.",
+  },
+  {
     slug: "desirability-viability-feasibility",
     title: "Desirability, viability, feasibility",
     date: "2026-10-01",
