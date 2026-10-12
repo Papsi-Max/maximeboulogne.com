@@ -9,6 +9,13 @@ export type NoteItem = {
 
 export const noteItems: NoteItem[] = [
   {
+    slug: "a-gamification-workshop-on-a-real-business-case",
+    title: "A gamification workshop on a real business case",
+    date: "2026-10-12",
+    description:
+      "Reading a back-office case with Octalysis, then prototyping a skill-tree view that makes the progress of a sellable item visible.",
+  },
+  {
     slug: "invisible-is-not-inaccessible",
     title: "Invisible is not inaccessible",
     date: "2026-10-06",

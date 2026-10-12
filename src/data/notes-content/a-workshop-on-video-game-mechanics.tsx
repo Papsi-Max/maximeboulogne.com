@@ -25,5 +25,9 @@ export const aWorkshopOnVideoGameMechanicsContent: NoteContentBlock[] = [
   {
     type: "paragraph",
     text: "To be continued…",
+    link: {
+      text: "To be continued…",
+      href: "/notes/a-gamification-workshop-on-a-real-business-case",
+    },
   },
 ];
